@@ -1,4 +1,12 @@
 <nav>
-  <a routerLink="/dashboard">Settings</a>
   <a routerLink="/heroes">Logout</a>
+  <div class="dropdown">
+    <a routerLink="/userProfile">Settings</a>
+    <div class="dropdown-content">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+  </div> 
 </nav>
+<router-outlet></router-outlet>
