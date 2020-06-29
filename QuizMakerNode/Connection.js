@@ -11,7 +11,7 @@
     };
 
 
-const sql = require('mssql')
+const sql = require('mssql');
 const poolPromise = new sql.ConnectionPool(config).connect();
 
 
