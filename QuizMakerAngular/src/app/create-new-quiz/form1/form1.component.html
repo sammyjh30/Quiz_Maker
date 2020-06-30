@@ -1,0 +1,35 @@
+<form [formGroup]="quizDetails" (ngSubmit)="onSubmit()">
+    <div class="detail">
+        <label>
+            Quiz Name:
+            <input type="text" formControlName="quizName">
+        </label>
+    </div>
+    <div  class="detail">
+        <label>
+            Number of Rounds:
+            <input class="numeric" type="number" formControlName="numberOfRounds" min="1">
+        </label>
+        <label>
+            Questions per Round:
+            <input class="numeric" type="number" formControlName="questionsPerRound" min="1">
+        </label>
+    </div>
+    <div class="detail">
+        <label>
+            Date:
+            <input type="datetime-local" formControlName="quizDate">
+        </label>
+    </div>
+    <p>Question Types:</p>
+    <mat-radio-group formControlName="questionType" [(ngModel)]="myquestionType">
+        <mat-radio-button value="multipleChoice">Multiple Choice</mat-radio-button>
+        <mat-radio-button value="trueOrFalse">True/False</mat-radio-button>
+    </mat-radio-group><br>
+    <div class="detail">
+        <label *ngIf="isMultipleChoice()">
+            Number of Choices:
+            <input class="numeric" type="number" formControlName="numberOfChoices" min="3">
+        </label>
+    </div>
+</form>

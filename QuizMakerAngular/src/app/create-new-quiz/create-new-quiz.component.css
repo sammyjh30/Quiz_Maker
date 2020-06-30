@@ -1,0 +1,45 @@
+.card {
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 500px;
+    height: 350px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.form-container {
+    width: 2000px;
+    height: 300px;
+    position: relative;
+    transition: left 2s;
+    -webkit-transition: left 2s;
+}
+
+.card-form {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+.button-container {
+    position: relative;
+}
+
+.card-button {
+    display: inline-block;
+    height: 3px;
+    width: 60px;
+    margin-left: 10px;
+    background-color: yellow;
+}
+
+#card-form-1:target ~ .form-container {
+    left: 0;
+}
+
+#card-form-2:target ~ .form-container {
+    left: -800px;
+}
+
+#card-form-3:target ~ .form-container {
+    left: -1600px;
+}
