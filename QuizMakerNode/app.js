@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 const conn = require('./Connection.js')
+const quizRouter = require('./routes/QuizRoute')
+
+app.use('/quiz',quizRouter)//how to add a route to the system
 
 app.get('/', function (req, res) {  
     conn.poolPromise.then((pool) => { //make sure connection is made 
