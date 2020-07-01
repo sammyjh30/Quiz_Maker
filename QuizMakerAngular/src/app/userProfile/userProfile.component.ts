@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from  '@angular/forms';
 import { Router } from  '@angular/router';
+import {Location} from '@angular/common';
 
 
 @Component({
@@ -12,7 +13,8 @@ export class UserProfileComponent implements OnInit {
 
   pswChangeForm: FormGroup;
   isSubmitted  =  false;
-  constructor(private formBuilder: FormBuilder,private router: Router) { }
+  selectedFile: File
+  constructor(private _location: Location,private formBuilder: FormBuilder,private router: Router) { }
 
   get formControls() { return this.pswChangeForm.controls; }
 
@@ -34,6 +36,19 @@ export class UserProfileComponent implements OnInit {
       return;
     }
     //this.router.navigateByUrl('/admin');
+  }
+
+  back(){
+    console.log("return to root");
+    this._location.back();
+  }
+
+  onFileChanged(event) {
+    this.selectedFile = event.target.files[0]
+  }
+
+  onUpload() {
+    // upload code goes here
   }
 
 }
