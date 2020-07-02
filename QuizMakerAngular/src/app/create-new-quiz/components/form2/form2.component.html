@@ -1,0 +1,17 @@
+<h3>Round {{ roundNumber }} of {{ numberOfRounds }}</h3>
+
+<div class="custom-question">
+    <form [formGroup]="quizDetails" (ngSubmit)="addQuestion()">
+        <label>
+            Question:
+            <input type="text" formControlName="question">
+        </label>
+        <label>Answer one:
+            <input type="text" formControlName="ans1">
+        </label>
+        <label>Answer two:
+            <input type="text" formControlName="ans2">
+        </label>
+        <button type="submit">Next Question</button>
+    </form>
+</div>

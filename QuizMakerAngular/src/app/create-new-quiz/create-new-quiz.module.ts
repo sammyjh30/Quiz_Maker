@@ -6,11 +6,16 @@ import {MatRadioModule} from '@angular/material/radio';
 import { CreateNewQuizRoutingModule } from './create-new-quiz-routing.module';
 import { CreateNewQuizComponent } from './create-new-quiz.component';
 import { from } from 'rxjs';
-import { Form1Component } from './form1/form1.component';
+import { Form1Component } from './components/form1/form1.component';
+import { Form2Component } from './components/form2/form2.component';
 
 
 @NgModule({
-  declarations: [CreateNewQuizComponent, Form1Component],
+  declarations: [
+    CreateNewQuizComponent, 
+    Form1Component, 
+    Form2Component
+  ],
   imports: [
     ReactiveFormsModule,
     MatRadioModule,
