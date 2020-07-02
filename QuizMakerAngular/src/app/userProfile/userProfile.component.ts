@@ -12,6 +12,7 @@ import {Location} from '@angular/common';
 export class UserProfileComponent implements OnInit {
 
   pswChangeForm: FormGroup;
+  usernameForm:FormGroup;
   isSubmitted  =  false;
   selectedFile: File
   constructor(private _location: Location,private formBuilder: FormBuilder,private router: Router) { }
@@ -24,6 +25,10 @@ export class UserProfileComponent implements OnInit {
       Newpassword: ['', Validators.required],
       ConfirmPassword: ['', Validators.required]
   });
+  this.usernameForm =  this.formBuilder.group({
+    email: ['', Validators.required]
+
+});
   }
 
   changePassword(data){
@@ -37,6 +42,12 @@ export class UserProfileComponent implements OnInit {
     }
     //this.router.navigateByUrl('/admin');
   }
+
+  username(data){
+
+    console.log(data.username);
+  }
+
 
   back(){
     console.log("return to root");

@@ -5,11 +5,14 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserProfileComponent } from './userProfile/userProfile.component';
+import { UsernameComponent } from './username/username.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    UsernameComponent
   ],
   imports: [
     BrowserModule,

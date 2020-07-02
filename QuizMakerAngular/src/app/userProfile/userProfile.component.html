@@ -23,11 +23,30 @@
     </form>
   </div>
 
+  <div class= "email">
+    <h2 class="change-psw">change username</h2>
+    <form [formGroup] ="usernameForm" class="username-container" (ngSubmit)="username(usernameForm.value)">
+      <p>
+        <input type="text" placeholder="email address" formControlName="email">
+      </p>
+      <div *ngIf="isSubmitted && formControls.email.errors" class="warning">
+        <div *ngIf="formControls.email.errors.required">enter new username</div>
+      </div>
+      <input type="submit" value="update">
+      <app-username></app-username>
+    </form>
+
+  </div>
+
   <section>
     <form [formGroup]="pswChangeForm" class="return" (ngSubmit)="back()">
       <button><-</button>
+    
     </form>
   </section>
+
+  
+  
 
   
 
