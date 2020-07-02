@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const conn = require('./Connection.js')
-const firebaseAuth = require('./firebaseAuth')
+const auth = require('./middleware/auth')
 
 app.get('/', function (req, res) {
   conn.poolPromise.then((pool) => { //make sure connection is made 
@@ -15,7 +15,7 @@ app.get('/', function (req, res) {
   }).catch(err => res.status(500).send(err)) //do shit with error
 });
 
-app.use("/hackerman", firebaseAuth);
+app.use("/hackerman", auth);
 
 app.get('/hackerman', function (req, res) {
   res.status(200).send('hackerman you got in!')
