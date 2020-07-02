@@ -1,8 +1,4 @@
 
-
-
-
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from  '@angular/forms';
 import { Router } from  '@angular/router';
@@ -29,10 +25,7 @@ export class PasswordComponent implements OnInit {
       password: ['', Validators.required],
       ConfirmPassword: ['', Validators.required]
   });
-  this.usernameForm =  this.formBuilder.group({
-    email: ['', Validators.required]
 
-});
   }
 
   changePassword(data){

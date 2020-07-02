@@ -1,48 +1,18 @@
-<div class="password">
-    <h2 class="change-psw">Change password</h2>
-    <form [formGroup]="pswChangeForm"  class="pswd-container" (ngSubmit)="changePassword(pswChangeForm.value)">
-    <p [ngClass]="{ 'has-error': isSubmitted && formControls.password.errors }">
-      <input type="password" placeholder="Password" formControlName="password">
-    </p>
-    <div *ngIf="isSubmitted && formControls.password.errors" class="warning">
-        <div *ngIf="formControls.password.errors.required">Password is required</div>
-      </div>
-      <p>
-        <input type="password" placeholder="New Password" formControlName="Newpassword">
-      </p>
-      <div *ngIf="isSubmitted && formControls.password.errors" class="warning">
-        <div *ngIf="formControls.password.errors.required">New Password is required</div>
-      </div>
-      <p>
-        <input type="password" placeholder="Confirm Password" formControlName="ConfirmPassword">
-      </p>
-      <div *ngIf="isSubmitted && formControls.password.errors" class="warning">
-        <div *ngIf="formControls.password.errors.required">Confirm Password</div>
-      </div>
-      <input type="submit" value="update">
-    </form>
-  </div>
 
-  <div class= "email">
-    <h2 class="change-psw">change username</h2>
-    <form [formGroup] ="usernameForm" class="username-container" (ngSubmit)="username(usernameForm.value)">
-      <p>
-        <input type="text" placeholder="email address" formControlName="email">
-      </p>
-      <div *ngIf="isSubmitted && formControls.email.errors" class="warning">
-        <div *ngIf="formControls.email.errors.required">enter new username</div>
-      </div>
-      <input type="submit" value="update">
-      <app-username></app-username>
-    </form>
+<form [formGroup]="profileForm">
 
-  </div>
+  <app-username name="username"></app-username>
+  <app-password name="password"></app-password>
+
+
+</form>
+    
+    
 
   <section>
-    <form [formGroup]="pswChangeForm" class="return" (ngSubmit)="back()">
-      <button><-</button>
+    <form [formGroup]="profileForm" class="return" (ngSubmit)="back()"></form>
+      <button>back</button>
     
-    </form>
   </section>
 
   

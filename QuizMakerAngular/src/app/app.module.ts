@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserProfileComponent } from './userProfile/userProfile.component';
+//import { UsernameComponent } from './username/username.component';
+import { PasswordComponent } from './password/password.component';
 import { UsernameComponent } from './username/username.component';
 
 
@@ -12,6 +14,8 @@ import { UsernameComponent } from './username/username.component';
   declarations: [
     AppComponent,
     UserProfileComponent,
+    //UsernameComponent,
+    PasswordComponent,
     UsernameComponent
   ],
   imports: [

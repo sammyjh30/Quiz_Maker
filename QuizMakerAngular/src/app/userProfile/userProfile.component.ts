@@ -11,33 +11,33 @@ import {Location} from '@angular/common';
 })
 export class UserProfileComponent implements OnInit {
 
-  pswChangeForm: FormGroup;
+  profileForm: FormGroup;
   usernameForm:FormGroup;
   isSubmitted  =  false;
   selectedFile: File
-  constructor(private _location: Location,private formBuilder: FormBuilder,private router: Router) { }
+  constructor(private _location: Location,private formBuilder: FormBuilder,private router: Router) {
+    this.profileForm = this.formBuilder.group({
+      password: [],
+      username: []
+    });
+   }
 
-  get formControls() { return this.pswChangeForm.controls; }
+  get formControls() { return this. profileForm.controls; }
 
   ngOnInit(): void {
-    this.pswChangeForm  =  this.formBuilder.group({
-      password: ['', Validators.required],
-      Newpassword: ['', Validators.required],
-      ConfirmPassword: ['', Validators.required]
+    this. profileForm  =  this.formBuilder.group({
+      password: [],
+      username: []
   });
-  this.usernameForm =  this.formBuilder.group({
-    email: ['', Validators.required]
 
-});
   }
 
   changePassword(data){
-    console.log(this.pswChangeForm.value);
+    console.log(this. profileForm.value);
     console.log(data.password);
-    console.log(data. Newpassword);
     console.log(data.ConfirmPassword);
     this.isSubmitted = true;
-    if(this.pswChangeForm.invalid){
+    if(this. profileForm.invalid){
       return;
     }
     //this.router.navigateByUrl('/admin');

@@ -1,37 +1,32 @@
-import { Component, OnInit,forwardRef, OnDestroy,ChangeDetectionStrategy } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormBuilder, FormGroup, Validators, FormControl, NG_VALIDATORS } from '@angular/forms';
-import { Subscription } from 'rxjs';
-import { UserProfileComponent } from '../userProfile/userProfile.component';
-
-export interface ProfileFormValues {
-  firstName: string;
-  lastName: string;
-  email: number;
-}
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-username',
   templateUrl: './username.component.html',
-  styleUrls: ['./username.component.css'],
+  styleUrls: ['./username.component.css']
 })
 export class UsernameComponent implements OnInit {
-  form:FormGroup;
 
-
-  constructor(private formBuilder: FormBuilder) {
-
-    this.form = this.formBuilder.group({
-      firstName: [],
-      lastName: [],
-      email: ['', Validators.required]
-    });
-   }
+  detailsForm: FormGroup;
+  isSubmitted  =  false;
+  get formControls() { return this.detailsForm.controls; }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.detailsForm  =  this.formBuilder.group({
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      email:['',Validators.required]
+  });
   }
 
-  get emailControl() {
-    return this.form.controls.email;
+  updateUserProfile(data){
+
+    console.log(data.firstname);
+    console.log(data.lastname);
+    console.log(data.email);
+
   }
 
 }
