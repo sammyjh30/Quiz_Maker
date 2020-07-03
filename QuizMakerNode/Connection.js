@@ -1,13 +1,12 @@
     const config = {
-        user: 'admin',
+        user: 'sqlserver',
         password: 'LoQhDx0HN97&',
-        server: 'quizmakerdb.cffqzqllixvr.af-south-1.rds.amazonaws.com', 
+        server: '35.189.127.206', 
         database: 'QuizMakerDB',
         options: {
           enableArithAbort: true,
           encrypt: true
         },
-        port: 1433
     };
 
 
