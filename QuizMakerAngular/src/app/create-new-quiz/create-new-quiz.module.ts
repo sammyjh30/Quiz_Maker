@@ -8,13 +8,14 @@ import { CreateNewQuizComponent } from './create-new-quiz.component';
 import { from } from 'rxjs';
 import { Form1Component } from './components/form1/form1.component';
 import { Form2Component } from './components/form2/form2.component';
+import { MultipleChoiceComponent } from './components/multiple-choice/multiple-choice.component';
 
 
 @NgModule({
   declarations: [
     CreateNewQuizComponent, 
     Form1Component, 
-    Form2Component
+    Form2Component, MultipleChoiceComponent
   ],
   imports: [
     ReactiveFormsModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { QuestionDataService } from '../../services/question-data.service';
 
 @Component({
   selector: 'app-form1',
@@ -7,18 +8,17 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./form1.component.css']
 })
 export class Form1Component implements OnInit {
-  myquestionType = '';
 
   quizDetails = this.fb.group({
     quizName: ['', Validators.required],
-    numberOfRounds: ['', Validators.required, Validators.min(1)],
-    questionsPerRound: ['', Validators.required, , Validators.min(1)],
+    numberOfRounds: ['', [Validators.required, Validators.min(1)]],
+    questionsPerRound: ['', [Validators.required, , Validators.min(1)]],
     quizDate: ['', Validators.required],
     questionType: ['', Validators.required],
     numberOfChoices: ['', Validators.min(3)]
   })
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private questionData: QuestionDataService) { }
 
   ngOnInit(): void {
   }
@@ -27,14 +27,17 @@ export class Form1Component implements OnInit {
     console.warn(this.quizDetails.value)
   }
 
-  onChange(event): void {
-    console.log(event);
+  changeNumberOfRounds(): void {
+    let numberOfRounds = this.quizDetails.get('numberOfRounds').value;
+    this.questionData.changeNumberOfRounds(numberOfRounds);
   }
 
   isMultipleChoice() {
-    if (this.myquestionType == 'multipleChoice') return true
+    let questionType = this.quizDetails.controls.questionType.value;
+    if (questionType == 'multipleChoice') return true
 
     return false
   }
+
 
 }

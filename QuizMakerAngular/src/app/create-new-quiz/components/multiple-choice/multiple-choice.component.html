@@ -1,0 +1,44 @@
+<div>
+    <form [formGroup]="multiple" (ngSubmit)="addQuestion()">
+        <div>
+            <label>
+                Question {{ questionNumber }}
+                <input type="text" formControlName="question">
+            </label>
+        </div>
+
+        <div formGroupName="option1">
+            <label>
+                Answer 1
+                <input type="text" formControlName="answer">
+            </label>
+            <input type="checkbox" formControlName="check" (change)="answer1Checked($event)">
+        </div>
+
+        <div formGroupName="option2">
+            <label>
+                Answer 2
+                <input type="text" formControlName="answer">
+            </label>
+            <input type="checkbox" formControlName="check" (change)="answer2Checked($event)">
+        </div>
+
+        <div formGroupName="option3">
+            <label>
+                Answer 3
+                <input type="text" formControlName="answer">
+            </label>
+            <input type="checkbox" formControlName="check" (change)="answer3Checked($event)">
+        </div>
+
+        <div formGroupName="option4">
+            <label>
+                Answer 4
+                <input type="text" formControlName="answer">
+            </label>
+            <input type="checkbox" formControlName="check" (change)="answer4Checked($event)">
+        </div>
+
+        <button type="submit">Next Question</button>
+    </form>
+</div>

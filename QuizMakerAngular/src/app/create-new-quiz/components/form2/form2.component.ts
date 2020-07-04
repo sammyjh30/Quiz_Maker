@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormBuilder, AbstractControl } from '@angular/forms';
+import { QuestionDataService } from '../../services/question-data.service';
 
 export class Question {
   question: string;
@@ -14,30 +15,17 @@ export class Question {
 })
 export class Form2Component implements OnInit {
 
-  quizDetails = this.fb.group({
-    question: [''],
-    ans1: [''],
-    ans2: ['']
-  })
-
-  numberOfRounds: number = 3;
+  numberOfRounds: number;
   roundNumber: number;
   listOfQuestions: Question[] = [];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private questionData: QuestionDataService) { }
 
   ngOnInit(): void {
+    this.questionData.currentNumberOfRounds.subscribe(numberOfRounds => this.numberOfRounds = numberOfRounds);
+    this.questionData.currentRoundNumber.subscribe(roundNumber => this.roundNumber = roundNumber)
   }
 
-  addQuestion() {
-    let question = new Question();
   
-    question.question = this.quizDetails.controls['question'].value;
-    question.correctAnswer = this.quizDetails.controls['ans1'].value;
-    question.options.push(this.quizDetails.controls['ans2'].value);
-
-    this.listOfQuestions.push(question);
-    console.warn(this.listOfQuestions)
-  }
 
 }

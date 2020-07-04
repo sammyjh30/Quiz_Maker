@@ -8,7 +8,7 @@
     <div  class="detail">
         <label>
             Number of Rounds:
-            <input class="numeric" type="number" formControlName="numberOfRounds" min="1">
+            <input class="numeric" type="number" formControlName="numberOfRounds" min="1" (change)="changeNumberOfRounds()">
         </label>
         <label>
             Questions per Round:
@@ -22,7 +22,7 @@
         </label>
     </div>
     <p>Question Types:</p>
-    <mat-radio-group formControlName="questionType" [(ngModel)]="myquestionType">
+    <mat-radio-group formControlName="questionType">
         <mat-radio-button value="multipleChoice">Multiple Choice</mat-radio-button>
         <mat-radio-button value="trueOrFalse">True/False</mat-radio-button>
     </mat-radio-group><br>
