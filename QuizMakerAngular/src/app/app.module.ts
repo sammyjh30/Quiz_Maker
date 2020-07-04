@@ -1,8 +1,11 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 
 // Firebase services + enviorment module
 import { AngularFireModule } from "@angular/fire";
@@ -15,8 +18,12 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 
-// Auth service
-import { AuthService } from "./services/auth.service";
+// services
+import { AuthService } from './services/auth.service';
+import { HackermanService } from './services/hackerman.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import {TokenInterceptorService} from "./providers/token-interceptor.service";
+
 
 @NgModule({
   declarations: [
@@ -29,11 +36,19 @@ import { AuthService } from "./services/auth.service";
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    HttpClientModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService
+    ,
+    multi: true
+  },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
