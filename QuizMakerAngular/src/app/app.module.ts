@@ -8,6 +8,12 @@ import { UserProfileComponent } from './userProfile/userProfile.component';
 //import { UsernameComponent } from './username/username.component';
 import { PasswordComponent } from './password/password.component';
 import { UsernameComponent } from './username/username.component';
+import { HeaderComponent } from './header/header.component';
+import { MainComponent } from './main/main.component';
+import { NavComponent } from './nav/nav.component';
+import { FooterComponent } from './footer/footer.component';
+import { AsideComponent } from './aside/aside.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 
 @NgModule({
@@ -16,7 +22,13 @@ import { UsernameComponent } from './username/username.component';
     UserProfileComponent,
     //UsernameComponent,
     PasswordComponent,
-    UsernameComponent
+    UsernameComponent,
+    HeaderComponent,
+    MainComponent,
+    NavComponent,
+    FooterComponent,
+    AsideComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
     BrowserModule,

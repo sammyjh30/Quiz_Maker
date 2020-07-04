@@ -12,14 +12,11 @@ import {Location} from '@angular/common';
 export class UserProfileComponent implements OnInit {
 
   profileForm: FormGroup;
-  usernameForm:FormGroup;
+  Form:FormGroup;
   isSubmitted  =  false;
   selectedFile: File
   constructor(private _location: Location,private formBuilder: FormBuilder,private router: Router) {
-    this.profileForm = this.formBuilder.group({
-      password: [],
-      username: []
-    });
+
    }
 
   get formControls() { return this. profileForm.controls; }
@@ -29,25 +26,11 @@ export class UserProfileComponent implements OnInit {
       password: [],
       username: []
   });
+  this.Form = this.formBuilder.group({
+
+  });
 
   }
-
-  changePassword(data){
-    console.log(this. profileForm.value);
-    console.log(data.password);
-    console.log(data.ConfirmPassword);
-    this.isSubmitted = true;
-    if(this. profileForm.invalid){
-      return;
-    }
-    //this.router.navigateByUrl('/admin');
-  }
-
-  username(data){
-
-    console.log(data.username);
-  }
-
 
   back(){
     console.log("return to root");
