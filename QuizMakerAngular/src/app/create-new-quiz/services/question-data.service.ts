@@ -31,6 +31,5 @@ export class QuestionDataService {
 
     addQuestion(question: Question) {
         this.questions.push(question);
-        console.warn(this.questions);
     }
 }

@@ -9,13 +9,14 @@ import { from } from 'rxjs';
 import { Form1Component } from './components/form1/form1.component';
 import { Form2Component } from './components/form2/form2.component';
 import { MultipleChoiceComponent } from './components/multiple-choice/multiple-choice.component';
+import { TrueFalseComponent } from './components/true-false/true-false.component';
 
 
 @NgModule({
   declarations: [
     CreateNewQuizComponent, 
     Form1Component, 
-    Form2Component, MultipleChoiceComponent
+    Form2Component, MultipleChoiceComponent, TrueFalseComponent
   ],
   imports: [
     ReactiveFormsModule,
