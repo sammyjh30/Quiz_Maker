@@ -1,0 +1,17 @@
+<h3>Sign In</h3>
+
+<input type="text" placeholder="Username" #userName required>
+
+<input type="password" placeholder="Password" #userPassword required>
+
+<!-- Calling SignIn Api from AuthService -->
+<input type="button" value="Log in" (click)="authService.LogIn(userName.value, userPassword.value)">
+
+<!-- Calling GoogleAuth Api from AuthService -->
+<button type="button" (click)="authService.GoogleAuth()">
+  Log in with Google
+</button>
+
+<button routerLink="/forgot-password">Forgot Password?</button>
+
+<span>Don't have an account?<button routerLink="/register-user"> Sign Up</button></span>

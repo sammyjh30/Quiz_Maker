@@ -1,0 +1,14 @@
+<h3>Sign Up</h3>
+
+<input type="email" placeholder="Email Address" #userEmail required>
+
+<input type="password" placeholder="Password" #userPwd required>
+
+<input type="button" value="Sign Up" (click)="authService.SignUp(userEmail.value, userPwd.value)">
+
+<!-- Continue with Google -->
+<button type="button" (click)="authService.GoogleAuth()">
+  Continue with Google
+</button>
+
+<span>Already have an account? <button class="redirect" routerLink="log-in">Log In</button></span>
