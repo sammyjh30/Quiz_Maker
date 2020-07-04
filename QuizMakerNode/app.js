@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
-const conn = require('./Connection.js')
-const auth = require('./middleware/auth')
+
+const config = require('./config');
+
+const conn = require('./services/dbconnection.js');
+const auth = require('./middleware/auth');
 
 app.get('/', function (req, res) {
   conn.poolPromise.then((pool) => { //make sure connection is made 
@@ -21,6 +24,6 @@ app.get('/hackerman', function (req, res) {
   res.status(200).send('hackerman you got in!')
 });
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+app.listen(config.web.port, function () {
+  console.log('Example app listening on port ' + config.web.port + '!');
 });
