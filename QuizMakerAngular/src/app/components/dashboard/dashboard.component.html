@@ -1,0 +1,22 @@
+<span>Dashboard</span>
+
+<!-- Calling SignOut() Api from AuthService -->
+<li>
+  <a (click)="authService.SignOut()">
+    Log out
+  </a>
+</li>
+
+<h1>User Profile</h1>
+<!-- Show user data when logged in -->
+<div *ngIf="authService.userData as user">
+  <img src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}" alt="{{user.displayName}}">
+  <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
+  <p>User ID: <strong>{{user.uid}}</strong></p>
+  <p>Email: <strong>{{user.email}}</strong></p>
+  <p>Email Verified: <strong>{{authService.token}}</strong></p>
+</div>
+
+<div>
+  <h1>{{test}}</h1>
+</div>

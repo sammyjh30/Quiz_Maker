@@ -1,0 +1,9 @@
+USE QuizMakerDB
+GO
+
+CREATE TABLE Teams (
+teamId INT IDENTITY(1,1) PRIMARY KEY,
+teamName VARCHAR(100),
+quizId INT NOT NULL, 
+teamScore INT DEFAULT(0)
+)

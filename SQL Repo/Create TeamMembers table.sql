@@ -1,0 +1,9 @@
+USE QuizMakerDB
+GO
+
+CREATE TABLE TeamMembers (
+teamID INT NOT NULL,
+userID INT NOT NULL,
+captain BIT NOT NULL,
+PRIMARY KEY(teamID,userID)
+)
