@@ -20,13 +20,14 @@ export class QuestionDataService {
     }
 
     changeQuestionNumber() {
-        let questionNumber = this.questionNumberSource.getValue() + 1; 
+        let questionNumber = this.questionNumberSource.getValue() + 1;
         this.questionNumberSource.next(questionNumber);
     }
 
     changeRoundNumber() {
         let roundNumber = this.roundNumberSource.getValue() + 1;
-        this.roundNumberSource.next(roundNumber);
+        if (roundNumber <= this.numberOfRoundsSource.getValue())
+            this.roundNumberSource.next(roundNumber);
     }
 
     addQuestion(question: Question) {

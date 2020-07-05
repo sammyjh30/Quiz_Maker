@@ -12,6 +12,7 @@ import { QuestionDataService } from '../../services/question-data.service'
 export class MultipleChoiceComponent implements OnInit {
 
   questionNumber: number;
+  roundNumber: number;
 
   multiple = this.fb.group({
     question: [''],
@@ -37,6 +38,7 @@ export class MultipleChoiceComponent implements OnInit {
 
   ngOnInit(): void {
     this.questionData.currentQuestionNumber.subscribe(currentQuestionNumber => this.questionNumber = currentQuestionNumber);
+    this.questionData.currentRoundNumber.subscribe(currentRoundNumber => this.roundNumber = currentRoundNumber)
   }
 
   addQuestion() {
@@ -46,6 +48,10 @@ export class MultipleChoiceComponent implements OnInit {
 
     this.questionData.addQuestion(new Question(question, correctAnswer, options));
     this.questionData.changeQuestionNumber();
+  }
+
+  completeRound() {
+    this.questionData.changeRoundNumber();
   }
 
   getCorrectAnswer(): string {

@@ -30,4 +30,8 @@ export class TrueFalseComponent implements OnInit {
     this.questionData.addQuestion(new Question(question, correctAnswer))
   }
 
+  completeRound() {
+    this.questionData.changeRoundNumber();
+  }
+
 }

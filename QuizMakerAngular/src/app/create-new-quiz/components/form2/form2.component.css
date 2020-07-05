@@ -1,12 +1,10 @@
-card {
+.card {
     display: inline-block;
     width: 500px;
     height: 300px;
 }
 
-.correctAnswer {
-    width: 177px;
-    height: 21px;
-    margin-left: 0;
-    padding-left: 0;
-}
+/* .custom-question {
+    width: 500px;
+    height: 300px;
+} */
