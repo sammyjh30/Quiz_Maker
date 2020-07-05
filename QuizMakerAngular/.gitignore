@@ -49,3 +49,4 @@ Thumbs.db
 /src/environments/firebase.json
 /.vscode
 /.vscode/launch.json
+/src/environments/environment.ts

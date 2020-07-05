@@ -1,7 +1,12 @@
 const express = require('express');
 const app = express();
-const conn = require('./Connection.js')
-const auth = require('./middleware/auth')
+
+const config = require('./config');
+
+const conn = require('./services/dbconnection.js');
+const auth = require('./middleware/auth');
+
+const mailer = require('./services/mailer');
 
 app.get('/', function (req, res) {
   conn.poolPromise.then((pool) => { //make sure connection is made 
@@ -21,6 +26,18 @@ app.get('/hackerman', function (req, res) {
   res.status(200).send('hackerman you got in!')
 });
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+app.get('/sendemail', function (req, res) {
+  mailer.transport.sendMail(mailer.testMessage, function (err, info) {
+    if (err) {
+      res.status(500).send('failed to send!')
+      return false;
+    } else {
+      res.status(200).send(info)
+      return true;
+    }
+  });
+});
+
+app.listen(config.web.port, function () {
+  console.log('Example app listening on port ' + config.web.port + '!');
 });

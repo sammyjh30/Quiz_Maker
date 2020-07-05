@@ -119,3 +119,4 @@ dist
 /firebaseadmin.json
 /firebasesettings.json
 /.vscode/launch.json
+/config.js
