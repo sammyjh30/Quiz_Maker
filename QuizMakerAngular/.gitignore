@@ -50,3 +50,4 @@ Thumbs.db
 /.vscode
 /.vscode/launch.json
 /src/environments/environment.ts
+firebaseadmin.json
