@@ -53,7 +53,7 @@ export class QuizService {
     return this.http.delete(QuizService.link + '/deleteQuestion', { params: data }).toPromise();
   }
 
-  getQuestionByQuizId(quizId: number): Promise<any> {
+  getQuestionsByQuizId(quizId: number): Promise<any> {
     const data = { quizId: quizId.toString() };
     return this.http.get(QuizService.link + '/getQuestions', { params: data }).toPromise();
   }
