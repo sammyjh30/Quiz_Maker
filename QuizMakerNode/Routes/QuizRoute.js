@@ -1,12 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const conn = require('../Connection.js')
+const conn = require('../services/dbconnection')
 const messages = require('../Global/Messages')
 
 
 //#region Question
 router.post('/addQuestion',function(req,res){
-    console.log(req.body)
     conn.poolPromise.then((pool)=> {
         const request =  pool.request();
         request.input('quizId', conn.sql.Int , req.body.quizId)
@@ -22,8 +21,7 @@ router.post('/addQuestion',function(req,res){
         request.execute(`InsertQuestion`).then(() => {
             res.status(201).send({'message' : messages[201]})
         }).catch((err) => {
-            console.log(err)
-            res.status(500).send({'error':messages[500]})
+            throw err;
         })
     }).catch((err) => {
         console.log(err)
@@ -39,8 +37,7 @@ router.delete('/deleteQuestion/:questionID',function(req,res){
         WHERE QuestionID =@questionID`).then(() => {
             res.status(200).send({'message' : messages[200]})
         }).catch((err) => {
-            console.log(err)
-            res.status(500).send({'error':messages[500]})
+            throw err;
         })
     }).catch((err) => {
         console.log(err)
@@ -59,8 +56,7 @@ router.get('/getQuestions/:quizId', function(req,res){
         ORDER BY roundNumber, questionNumber`).then((data) => {
             res.status(200).send(data.recordset)
         }).catch((err) => {
-            console.log(err);
-            res.status(500).send({'error':messages[500]})
+            throw err;
         })
     }).catch((err) => {
         console.log(err)
@@ -79,13 +75,35 @@ router.get('/getQuestions/:questionId',function(req,res){
         ORDER BY roundNumber, questionNumber`).then((data) => {
             res.status(200).send(data.recordset)
         }).catch((err) => {
-            console.log(err);
-            res.status(500).send({'error':messages[500]})
+            throw err;
         })
     }).catch((err) => {
         console.log(err)
         res.status(500).send({'error':messages[500]})
     })    
+})
+
+router.put('/updateQuestion',function(req,res){
+    conn.poolPromise.then((pool)=> {
+        const request =  pool.request();
+        request.input('questionId',conn.sql.Int,req.body.questionId)
+        request.input('roundNumber', conn.sql.Int , req.body.roundNumber)
+        request.input('questionNumber', conn.sql.Int , req.body.questionNumber)
+        request.input('text', conn.sql.VarChar , req.body.text)
+        request.input('correctAnswer', conn.sql.Bit , req.body.correctAnswer)
+        request.input('rightAnswer', conn.sql.VarChar , req.body.rightAnswer)
+        request.input('wrongAnswer1', conn.sql.VarChar , req.body.wrongAnswer1)
+        request.input('wrongAnswer2', conn.sql.VarChar , req.body.wrongAnswer2)
+        request.input('wrongAnswer3', conn.sql.VarChar , req.body.wrongAnswer3)
+        request.execute(`UpdateQuestion`).then(() => {
+            res.status(201).send({'message' : messages[201]})
+        }).catch((err) => {
+            throw err;
+        })
+    }).catch((err) => {
+        console.log(err)
+        res.status(500).send({'error':messages[500]})
+    })
 })
 //#endregion
 
@@ -101,8 +119,7 @@ router.post('/addQuiz',function(req,res){
         VALUES (@quizName,@hostId,@startDateTime)`).then(()=> {
             res.status(201).send({'message' : messages[201]})
         }).catch((err) => {
-            console.log(err)
-            res.status(500).send({'error':messages[500]})
+            throw err;
         })
     }).catch((err) => {
         console.log(err)
@@ -118,8 +135,7 @@ router.delete('/deleteQuiz/:quizId',function(req,res){
         WHERE quizId =@quizId`).then(() => {
             res.status(200).send({'message' : messages[200]})
         }).catch((err) => {
-            console.log(err)
-            res.status(500).send({'error':messages[500]})
+            throw err;
         })
     }).catch((err) => {
         console.log(err)
@@ -134,8 +150,7 @@ router.get('/getQuiz/:quizId',function(req,res){
         request.query(`SELECT * FROM quiz WHERE quizId = @quizId`).then((data) => {
             res.status(200).send(data.recordset)
         }).catch((err) => {
-            console.log(err);
-            res.status(500).send({'error':messages[500]})
+            throw err;
         })
     }).catch((err) => {
         console.log(err)
@@ -150,13 +165,54 @@ router.get('/getQuizByHostId/:hostId',function(req,res){ //can be change to be l
         request.query(`SELECT * FROM quiz WHERE hostId =  @hostId`).then((data) => {
             res.status(200).send(data.recordset)
         }).catch((err) => {
-            console.log(err);
-            res.status(500).send({'error':messages[500]})
+            throw err;
         })
     }).catch((err) => {
         console.log(err)
         res.status(500).send({'error':messages[500]})
     })    
+})
+
+
+router.put('/updateQuiz',function(req,res){
+    
+    conn.poolPromise.then((pool)=>{
+        let quizName = req.body.quizName
+        let hostId = req.body.hostId
+        let startDateTime = req.body.startDateTime
+        const select = pool.request();
+        select.input('quizId', req.body.quizId)
+        select.query('SELECT * FROM Quiz WHERE quizId = @quizId').then((data)=>{
+            if(!quizName){
+                quizName = data.recordset[0].quizName
+            }
+            if(!hostId){
+                hostId = data.recordset[0].hostId
+            }
+            if(!startDateTime){
+                startDateTime = data.recordset[0].startDateTime
+            }
+            const request = pool.request();
+            request.input('quizId', req.body.quizId)
+            request.input('quizName',quizName)
+            request.input('hostId',hostId)
+            request.input('startDateTime',conn.sql.DateTime,startDateTime)
+            request.query(`UPDATE Quiz
+            SET quizName = @quizName,
+            hostId = @hostId,
+            startDateTime = @startDateTime
+            WHERE quizId = @quizId`).then(() => {
+                res.status(201).send(messages[201])
+            }).catch((err) => {
+              throw err;
+            })
+        }).catch((err) => {
+            throw err;
+        })  
+    }).catch((err) => {
+        console.log(err)
+        res.status(500).send({'error':messages[500]})
+    })  
 })
 //#endregion
 
