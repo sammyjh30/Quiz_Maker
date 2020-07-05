@@ -33,7 +33,8 @@ BEGIN TRANSACTION
 	END TRY
 	BEGIN CATCH 
 	 IF @@TRANCOUNT > 0  
-        ROLLBACK TRANSACTION;  
+        ROLLBACK TRANSACTION; 
+		THROW 50010, 'Was not able to insert double check that quiz exists and that data is correct', 1; 		
 	END CATCH 
 
 	IF @@TRANCOUNT > 0  
