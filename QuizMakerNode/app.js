@@ -8,7 +8,7 @@ const auth = require('./middleware/auth');
 
 const mailer = require('./services/mailer');
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   conn.poolPromise.then((pool) => { //make sure connection is made 
     pool.request().query('SELECT 1') //use connection to make request 
       .then(result => {
@@ -22,22 +22,22 @@ app.get('/', function (req, res) {
 
 app.use("/hackerman", auth);
 
-app.get('/hackerman', function (req, res) {
+app.get('/hackerman', (req, res)  => {
   res.status(200).send('hackerman you got in!')
 });
 
-app.get('/sendemail', function (req, res) {
-  mailer.transport.sendMail(mailer.testMessage, function (err, info) {
+app.get('/sendemail', (req, res) => {
+  mailer.transport.sendMail(mailer.testMessage, (err, info) => {
     if (err) {
       res.status(500).send('failed to send!')
-      return false;
     } else {
       res.status(200).send(info)
-      return true;
     }
   });
 });
 
-app.listen(config.web.port, function () {
-  console.log('Example app listening on port ' + config.web.port + '!');
-});
+// app.listen(config.web.port, function () {
+//   console.log('Example app listening on port ' + config.web.port + '!');
+// });
+
+exports.App = app;

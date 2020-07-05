@@ -5,7 +5,7 @@ const config = require('../config');
 
 firebase.initializeApp(config.firebase);
 
-admin.initializeApp(config.firebaseAdmin, 'other');
+admin.initializeApp();
 
 const getAuthToken = (req, res, next) => {
     if (
