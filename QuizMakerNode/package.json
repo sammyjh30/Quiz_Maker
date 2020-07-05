@@ -13,7 +13,9 @@
     "express": "^4.17.1",
     "firebase": "^7.15.5",
     "firebase-admin": "^8.13.0",
+    "googleapis": "^52.1.0",
     "mssql": "^6.2.0",
+    "nodemailer": "^6.4.10",
     "nodemon": "^2.0.4",
     "socket.io": "^2.3.0"
   }
