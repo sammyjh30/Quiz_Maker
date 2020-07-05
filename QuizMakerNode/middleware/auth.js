@@ -1,4 +1,11 @@
-const { firebase, admin } = require('../firebaseConfig');
+require("firebase/auth");
+const firebase = require('firebase')
+const admin = require('firebase-admin')
+const config = require('../config');
+
+firebase.initializeApp(config.firebase);
+
+admin.initializeApp(config.firebaseAdmin, 'other');
 
 const getAuthToken = (req, res, next) => {
     if (
