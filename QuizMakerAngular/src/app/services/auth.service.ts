@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { User } from "../services/user";
+import { User } from "../models/user";
 import { auth } from "firebase/app";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -108,8 +108,10 @@ export class AuthService {
   SetUserData(user) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     const userData: User = {
-      uid: user.uid,
-      email: user.email
+      userId: user.uid,
+      email: user.email,
+      name: user.name,
+      surname: user.surname
     }
     return userRef.set(userData, {
       merge: true
@@ -124,7 +126,7 @@ export class AuthService {
     })
   }
 
-  getAccessToken() : any {
+  getAccessToken(): any {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         return user.getIdToken();
