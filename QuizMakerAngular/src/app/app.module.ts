@@ -68,12 +68,7 @@ import {TokenInterceptorService} from "./providers/token-interceptor.service";
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptorService
-    ,
-    multi: true
-  },],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
