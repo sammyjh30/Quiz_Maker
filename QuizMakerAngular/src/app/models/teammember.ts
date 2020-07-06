@@ -1,4 +1,4 @@
-export interface Teammembers {
+export interface TeamMember {
   teamId: number;
   userId: string;
   captain: boolean;
