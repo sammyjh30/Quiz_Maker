@@ -8,6 +8,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { QuizComponent } from './components/quiz/quiz.component';
+import { TeamComponent } from './components/team/team.component';
 
 // Import canActivate guard services
 import { AuthGuard } from "./guard/auth.guard";
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'verify-email-address', component: VerifyEmailComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'quiz/:id', component: QuizComponent}
+  { path: 'quiz/:id', component: QuizComponent, canActivate: [AuthGuard]},
+  { path: 'team/:id', component: TeamComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
