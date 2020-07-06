@@ -1,9 +1,16 @@
-<section>
-  <div>
-    {{quiz.quizName}}
-  </div>
-  <div>
-    {{quiz.startDateTime | date : 'yyyy-MM-dd HH:mm'}}
-  </div>
+<h1>
+  {{quiz.quizName}}
+</h1>
+<h2>
+  Start Time: {{quiz.startDateTime | date : 'yyyy-MM-dd HH:mm'}}
+</h2>
 
-</section>
+<h3>Teams</h3>
+<ul>
+  <li *ngFor="let team of teams">
+    <a routerLink="/team/{{team.teamId}}">
+      <p>{{team.teamName}}</p>
+    </a>
+    <p>Score: {{team.teamScore}}</p>
+  </li>
+</ul>
