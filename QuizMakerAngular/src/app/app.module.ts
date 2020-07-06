@@ -52,18 +52,19 @@ import {TokenInterceptorService} from "./providers/token-interceptor.service";
     FooterComponent,
     AsideComponent,
     PrivacyPolicyComponent,
-    LandingpageComponent
+    LandingpageComponent,
+    DashboardComponent,
+    LogInComponent,
+    SignUpComponent,
+    ForgotPasswordComponent,
+    VerifyEmailComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    DashboardComponent,
-    LogInComponent,
-    SignUpComponent,
-    ForgotPasswordComponent,
-    VerifyEmailComponent,
+ 
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule
