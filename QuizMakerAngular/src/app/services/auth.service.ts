@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { User } from "../models/user";
+import { User } from '../models/user';
 import { auth } from "firebase/app";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -11,7 +11,7 @@ import { Router } from "@angular/router";
 
 export class AuthService {
   userData: any; // Save logged in user data
-  token: any;
+  token: string;
 
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
@@ -31,7 +31,8 @@ export class AuthService {
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'));
       }
-    })
+    });
+    this.getAccessToken();
   }
 
   // Log in with email/password
@@ -127,13 +128,11 @@ export class AuthService {
   }
 
   getAccessToken(): any {
-    this.afAuth.authState.subscribe(user => {
-      if (user) {
-        return user.getIdToken();
-      } else {
-        return null;
-      }
-    })
+    this.afAuth.currentUser.
+      then(user => user.getIdToken().
+        then(token => this.token = token).
+        catch(this.token = undefined)).
+      catch(this.token = undefined);
   }
 
 }
