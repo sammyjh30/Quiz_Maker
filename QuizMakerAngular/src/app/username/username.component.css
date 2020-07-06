@@ -1,19 +1,8 @@
 :host {
-    border: 2px solid #1725e6;
+    
     display: block;
     padding: 12px;
     margin-bottom: 12px;
-  }
-  html {
-    box-sizing: border-box;
-  }
-
-  *, *::before, *::after {
-    box-sizing: inherit;
-  }
-
-  label, input {
-    display: block;
   }
 
   label, .label {
@@ -21,7 +10,7 @@
     margin-bottom: .5rem;
     display: block;
   }
-  input, select, textarea {
+  /* input, select, textarea {
     margin-bottom: 2rem;
     padding: 8px;
     font-size: 16px;
@@ -29,4 +18,26 @@
     border-radius: 3px;
     min-width: 185px;
     background: linear-gradient(to bottom,#f4f4f4 0,#fff 12%);
+  } */
+
+  input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+  }
+  input[type=submit] {
+    background-color: grey;
+    color: white;
+    width: 75%;
+  }
+
+  .user-container {
+    background-color: #f1f1f1;
+    padding: 20px;
+    width: 20%;
+    margin: 0 auto;
   }

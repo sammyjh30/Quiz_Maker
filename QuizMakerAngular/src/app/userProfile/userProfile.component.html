@@ -1,4 +1,11 @@
+ <!-- <div>
 
+  
+    <app-header></app-header>
+    <app-nav></app-nav>
+ </div>
+ 
+ 
 <form [formGroup]="profileForm">
 
   <app-username name="username"></app-username>
@@ -19,4 +26,36 @@
 
   
 
+ -->
+ 
+ <div class="container">
+  <app-header></app-header>
 
+  <app-nav></app-nav>
+ 
+  
+  <form [formGroup]="profileForm">
+
+
+      
+    <div [hidden]="!onClickOpenForm()"> 
+    <app-username name="username"></app-username>
+    </div>
+    <div [hidden]="!onClickOpenForm()"> 
+    <app-password name="password"></app-password>
+    </div>
+  
+  
+  
+  </form>
+    
+  <section>
+    <form [formGroup]="Form" class="return" (ngSubmit)="back()">
+      <button>back</button>
+    </form>
+  </section>
+
+  
+
+  
+</div>

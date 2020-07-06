@@ -1,4 +1,4 @@
-/* Style all input fields */
+/* Style all input fields
 input {
     width: 100%;
     padding: 12px;
@@ -59,4 +59,4 @@ input[type=submit] {
     position: relative;
     left: -35px;
     content: "✖";
-  }
+  } 

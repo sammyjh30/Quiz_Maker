@@ -1,4 +1,5 @@
-<form [formGroup]="detailsForm"  class="pswd-container" (ngSubmit)="updateUserProfile(detailsForm.value)">
+<form [formGroup]="detailsForm"  class="user-container" (ngSubmit)="updateUserProfile(detailsForm.value)">
+  <h2 class="change-psw">Update User Details</h2>
     <p [ngClass]="{ 'has-error': isSubmitted && formControls.firstname.errors }">
       <input type="text" placeholder="firstname" formControlName="firstname">
     </p>

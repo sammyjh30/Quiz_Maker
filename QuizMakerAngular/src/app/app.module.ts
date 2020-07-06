@@ -14,6 +14,7 @@ import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
 import { AsideComponent } from './aside/aside.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { LandingpageComponent } from './landingpage/landingpage.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
     NavComponent,
     FooterComponent,
     AsideComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    LandingpageComponent
   ],
   imports: [
     BrowserModule,

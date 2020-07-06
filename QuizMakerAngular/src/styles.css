@@ -4,7 +4,6 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background-color: #E4F0FF;
 }
 
 .container {
@@ -20,35 +19,34 @@ body {
   }
 
 app-header {
-    color: white;
+    color:black;
     font-size: 14px;
+    background-color: grey;
     grid-area: header;
-    text-align: center;
-    background-color: #FA7D44;
   }
   
   app-nav {
     grid-area: nav;
-    margin-left: 0.6rem;
-    background-color: #2A92BF;
+    margin-left: 0.9rem;
+    background-color: darkgrey;
   }
   
   app-privacy-policy,
   app-main {
     grid-area: content;
-    background-color: #F4CE46;
     padding: 25px;
+    width: 1000%;
   }
   
   app-aside {
     grid-area: side;
     margin-right: 0.6rem;
-    background-color: #2A92BF;
+    width: 110%;
+    background-color: darkgrey;
   }
   
   app-footer {
     grid-area: footer;
-    background-color:#2BB961;
     color: white;
     text-align: center;
     padding: 25px 0;

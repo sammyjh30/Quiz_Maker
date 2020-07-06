@@ -1,0 +1,75 @@
+/* table, th, td {
+    border: 1px solid black;
+  } */
+
+  .container {
+	text-align: center;
+	
+}
+h3{
+    margin-left: 420px;
+}
+  table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 700px;
+    align-self: center;
+    margin-left: 150px;
+  }
+  
+  table td, table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  table tr:nth-child(even){background-color: #f2f2f2;}
+  
+  table tr:hover {background-color: #ddd;}
+  
+  table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  /* style for buttons*/
+  /* .btn {
+    border: none;
+    background-color: inherit;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    display: block;
+  }
+  
+  .btn:hover {background: #eee;}
+  
+  .success {color: green;}
+  .info {color: dodgerblue;}
+  .warning {color: orange;}
+  .danger {color: red;}
+  .default {color: black;} */
+
+
+  .button:hover {background: #eee;}
+  
+  .container {
+    float: left;
+  }
+  
+  .buttons {
+    margin-left: 920px;
+    
+  }
+  .buttons button{
+    display: block;
+    cursor: pointer;
+    border: none;
+    padding: 14px 28px;
+    background-color: inherit;
+  }
+  .Create {color: green;}
+  .Join {color:blueviolet;}
+ 
