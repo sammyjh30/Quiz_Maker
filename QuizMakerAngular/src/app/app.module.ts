@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChatService } from '../chat/chat.service';
 
-
 // Firebase services + enviorment module
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
@@ -23,26 +22,9 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { AuthService } from './services/auth.service';
 import { HackermanService } from './services/hackerman.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import {TokenInterceptorService} from "./providers/token-interceptor.service";
-
-
-
-// Firebase services + enviorment module
-import { AngularFireModule } from "@angular/fire";
-import { AngularFireAuthModule } from "@angular/fire/auth";
-import { environment } from '../environments/environment';
-
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { LogInComponent } from './components/log-in/log-in.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
-
-// services
-import { AuthService } from './services/auth.service';
-import { HackermanService } from './services/hackerman.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import {TokenInterceptorService} from "./providers/token-interceptor.service";
+import { TokenInterceptorService } from "./providers/token-interceptor.service";
+import { QuizSessionComponent } from './components/quiz-session/quiz-session.component';
+import { ChatInboxComponent } from './components/chat-inbox/chat-inbox.component';
 
 
 @NgModule({
@@ -52,7 +34,9 @@ import {TokenInterceptorService} from "./providers/token-interceptor.service";
     LogInComponent,
     SignUpComponent,
     ForgotPasswordComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    QuizSessionComponent,
+    ChatInboxComponent
   ],
   imports: [
     BrowserModule,
@@ -63,11 +47,12 @@ import {TokenInterceptorService} from "./providers/token-interceptor.service";
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptorService
-    ,
-    multi: true
+  providers: [
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
   },],
   bootstrap: [AppComponent]
 })

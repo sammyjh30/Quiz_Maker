@@ -8,6 +8,23 @@ const auth = require('./middleware/auth');
 
 const mailer = require('./services/mailer');
 
+// Socket
+var http = require('http').createServer(app);
+var io = require('socket.io')(http);
+
+io.on('connection', (socket) => {  
+  console.log('a user connected for roomId:' + socket.handshake.query['roomId']); 
+  socket.on('message', (msg) => {
+    console.log(msg);
+    socket.broadcast.emit('message-broadcast', msg);
+  });
+});
+
+http.listen(3001, () => {
+  console.log('listening on *:3000');
+});
+// 
+
 app.get('/', function (req, res) {
   conn.poolPromise.then((pool) => { //make sure connection is made 
     pool.request().query('SELECT 1') //use connection to make request 
