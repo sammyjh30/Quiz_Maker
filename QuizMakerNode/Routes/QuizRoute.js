@@ -47,7 +47,7 @@ router.delete('/deleteQuestion/:questionID',function(req,res){
     })
 })
 
-router.get('/getQuestions/:quizId', function(req,res){
+router.get('/getQuestionsByQuizId/:quizId', function(req,res){
     conn.poolPromise.then((pool)=>{
         const request = pool.request();
         request.input('quizId',req.params.quizId)
@@ -67,7 +67,7 @@ router.get('/getQuestions/:quizId', function(req,res){
     })
 })
 
-router.get('/getQuestions/:questionId',function(req,res){
+router.get('/getQuestionsByQuestionId/:questionId',function(req,res){
     conn.poolPromise.then((pool)=>{
         const request = pool.request();
         request.input('questionId',req.params.questionId)

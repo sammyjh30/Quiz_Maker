@@ -193,7 +193,7 @@ router.get('/getTeam/:teamId',function(req,res){
     })
 })
 
-router.get('/getTeamByQuizId/:quizId',function(req,res){
+router.get('/getTeamsByQuizId/:quizId',function(req,res){
     conn.poolPromise.then((pool)=> {
         const request = pool.request();
         request.input('quizId', req.params.quizId);
