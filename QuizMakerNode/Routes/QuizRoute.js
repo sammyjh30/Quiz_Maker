@@ -18,8 +18,8 @@ router.post('/addQuestion',function(req,res){
         request.input('wrongAnswer1', conn.sql.VarChar , req.body.wrongAnswer1)
         request.input('wrongAnswer2', conn.sql.VarChar , req.body.wrongAnswer2)
         request.input('wrongAnswer3', conn.sql.VarChar , req.body.wrongAnswer3)
-        request.execute(`InsertQuestion`).then(() => {
-            res.status(201).send({'message' : messages[201]})
+        request.execute(`InsertQuestion`).then((data) => {
+            res.status(201).send({'message' : messages[200], 'recordSet':data.recordset})
         }).catch((err) => {
             console.log(err)
             res.status(500).send({'error':messages[500]})
@@ -121,8 +121,10 @@ router.post('/addQuiz',function(req,res){
         request.input('hostId',req.body.hostId)
         request.input('startDateTime',conn.sql.DateTime,req.body.startDateTime)
         request.query(`INSERT INTO Quiz(quizName,HostId,startDateTime) 
-        VALUES (@quizName,@hostId,@startDateTime)`).then(()=> {
-            res.status(201).send({'message' : messages[201]})
+        VALUES (@quizName,@hostId,@startDateTime); 
+           
+        SELECT SCOPE_IDENTITY() AS id;`).then((data)=> {
+            res.status(201).send({'message' : messages[201], 'recordSet':data.recordset})
         }).catch((err) => {
             console.log(err)
             res.status(500).send({'error':messages[500]})
