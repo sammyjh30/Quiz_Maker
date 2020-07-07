@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'verify-email-address', component: VerifyEmailComponent, canActivate: [SecureInnerPagesGuard] },
   {path:'username',component:UsernameComponent},
-  { path: 'home', component: LandingpageComponent },
+  { path: 'signedIn', component: LandingpageComponent },
   { path: 'userProfile', component: UserProfileComponent },
 ];
 

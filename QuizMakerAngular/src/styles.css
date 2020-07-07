@@ -29,6 +29,7 @@ app-header {
     grid-area: nav;
     margin-left: 0.9rem;
     background-color: darkgrey;
+    width: 400px;
   }
   
   app-privacy-policy,

@@ -14,7 +14,7 @@ h3{
     border-collapse: collapse;
     width: 700px;
     align-self: center;
-    margin-left: 150px;
+    margin-left: 250px;
   }
   
   table td, table th {
@@ -60,7 +60,7 @@ h3{
   }
   
   .buttons {
-    margin-left: 920px;
+    margin-left: 1020px;
     
   }
   .buttons button{
