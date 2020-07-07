@@ -21,7 +21,8 @@ router.post('/addQuestion',function(req,res){
         request.execute(`InsertQuestion`).then(() => {
             res.status(201).send({'message' : messages[201]})
         }).catch((err) => {
-            throw err;
+            console.log(err)
+            res.status(500).send({'error':messages[500]})
         })
     }).catch((err) => {
         console.log(err)
@@ -37,7 +38,8 @@ router.delete('/deleteQuestion/:questionID',function(req,res){
         WHERE QuestionID =@questionID`).then(() => {
             res.status(200).send({'message' : messages[200]})
         }).catch((err) => {
-            throw err;
+            console.log(err)
+            res.status(500).send({'error':messages[500]})
         })
     }).catch((err) => {
         console.log(err)
@@ -54,9 +56,10 @@ router.get('/getQuestions/:quizId', function(req,res){
         LEFT JOIN MultipleChoiceQuestions ON Questions.questionId = MultipleChoiceQuestions.questionId
         WHERE quizId = @quizId
         ORDER BY roundNumber, questionNumber`).then((data) => {
-            res.status(200).send(data.recordset)
+            res.status(200).send({'message' : messages[200], 'recordSet':data.recordset})
         }).catch((err) => {
-            throw err;
+            console.log(err)
+            res.status(500).send({'error':messages[500]})
         })
     }).catch((err) => {
         console.log(err)
@@ -73,9 +76,10 @@ router.get('/getQuestions/:questionId',function(req,res){
         LEFT JOIN MultipleChoiceQuestions ON Questions.questionId = MultipleChoiceQuestions.questionId
         WHERE Questions.questionId = @questionId
         ORDER BY roundNumber, questionNumber`).then((data) => {
-            res.status(200).send(data.recordset)
+            res.status(200).send({'message' : messages[200], 'recordSet':data.recordset})
         }).catch((err) => {
-            throw err;
+            console.log(err)
+            res.status(500).send({'error':messages[500]})
         })
     }).catch((err) => {
         console.log(err)
@@ -98,7 +102,8 @@ router.put('/updateQuestion',function(req,res){
         request.execute(`UpdateQuestion`).then(() => {
             res.status(201).send({'message' : messages[201]})
         }).catch((err) => {
-            throw err;
+            console.log(err)
+            res.status(500).send({'error':messages[500]})
         })
     }).catch((err) => {
         console.log(err)
@@ -119,7 +124,8 @@ router.post('/addQuiz',function(req,res){
         VALUES (@quizName,@hostId,@startDateTime)`).then(()=> {
             res.status(201).send({'message' : messages[201]})
         }).catch((err) => {
-            throw err;
+            console.log(err)
+            res.status(500).send({'error':messages[500]})
         })
     }).catch((err) => {
         console.log(err)
@@ -135,7 +141,8 @@ router.delete('/deleteQuiz/:quizId',function(req,res){
         WHERE quizId =@quizId`).then(() => {
             res.status(200).send({'message' : messages[200]})
         }).catch((err) => {
-            throw err;
+            console.log(err)
+            res.status(500).send({'error':messages[500]})
         })
     }).catch((err) => {
         console.log(err)
@@ -148,9 +155,10 @@ router.get('/getQuiz/:quizId',function(req,res){
         const request = pool.request();
         request.input('quizId',req.params.quizId)
         request.query(`SELECT * FROM quiz WHERE quizId = @quizId`).then((data) => {
-            res.status(200).send(data.recordset)
+            res.status(200).send({'message' : messages[200], 'recordSet':data.recordset})
         }).catch((err) => {
-            throw err;
+            console.log(err)
+            res.status(500).send({'error':messages[500]})
         })
     }).catch((err) => {
         console.log(err)
@@ -163,9 +171,10 @@ router.get('/getQuizByHostId/:hostId',function(req,res){ //can be change to be l
         const request = pool.request();
         request.input('hostId',req.params.hostId)
         request.query(`SELECT * FROM quiz WHERE hostId =  @hostId`).then((data) => {
-            res.status(200).send(data.recordset)
+            res.status(200).send({'message' : messages[200], 'recordSet':data.recordset})
         }).catch((err) => {
-            throw err;
+            console.log(err)
+            res.status(500).send({'error':messages[500]})
         })
     }).catch((err) => {
         console.log(err)
@@ -202,12 +211,14 @@ router.put('/updateQuiz',function(req,res){
             hostId = @hostId,
             startDateTime = @startDateTime
             WHERE quizId = @quizId`).then(() => {
-                res.status(201).send(messages[201])
+                res.status(201).send({'message' : messages[201]})
             }).catch((err) => {
-              throw err;
+                console.log(err)
+                res.status(500).send({'error':messages[500]})
             })
         }).catch((err) => {
-            throw err;
+            console.log(err)
+            res.status(500).send({'error':messages[500]})
         })  
     }).catch((err) => {
         console.log(err)
