@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "QuizMakerAngular"
+    }
+  },
+  "defaultProject": "QuizMakerAngular",
+  "cli": {
+    "analytics": false
+  }
 }
