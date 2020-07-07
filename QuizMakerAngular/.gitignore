@@ -44,3 +44,10 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Config files
+/src/environments/firebase.json
+/.vscode
+/.vscode/launch.json
+/src/environments/environment.ts
+firebaseadmin.json
