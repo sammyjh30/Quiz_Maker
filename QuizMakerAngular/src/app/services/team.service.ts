@@ -22,35 +22,40 @@ export class TeamService {
     userId: '1',
     email: 'email@mail.com',
     name: 'name',
-    surname: 'surname'
+    surname: 'surname',
+    invitation: true
   }, {
     teamId: 1,
     captain: false,
     userId: '2',
     email: 'email2@mail.com',
     name: 'name2',
-    surname: 'surname2'
+    surname: 'surname2',
+    invitation: true
   }, {
     teamId: 1,
     captain: false,
     userId: '3',
     email: 'email3@mail.com',
     name: 'name3',
-    surname: 'surname3'
+    surname: 'surname3',
+    invitation: true
   }, {
     teamId: 4,
     captain: true,
     userId: '4',
     email: 'email4@mail.com',
     name: 'name4',
-    surname: 'surname4'
+    surname: 'surname4',
+    invitation: true
   }, {
     teamId: 4,
     captain: false,
     userId: '5',
     email: 'email5@mail.com',
     name: 'name5',
-    surname: 'surname5'
+    surname: 'surname5',
+    invitation: true
   }]
 
   constructor() { }

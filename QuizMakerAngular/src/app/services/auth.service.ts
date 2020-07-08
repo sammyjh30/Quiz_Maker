@@ -4,11 +4,11 @@ import { auth } from "firebase/app";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
+import { of, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class AuthService {
   userData: any; // Save logged in user data
   token: string;
@@ -23,7 +23,7 @@ export class AuthService {
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe(user => {
       if (user) {
-        user.getIdToken().then(token => this.token = token);
+        user.getIdToken().then(idToken => { localStorage.setItem("idToken", idToken) });
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
@@ -32,7 +32,6 @@ export class AuthService {
         JSON.parse(localStorage.getItem('user'));
       }
     });
-    this.getAccessToken();
   }
 
   // Log in with email/password
@@ -125,14 +124,6 @@ export class AuthService {
       localStorage.removeItem('user');
       this.router.navigate(['log-in']);
     })
-  }
-
-  getAccessToken(): any {
-    this.afAuth.currentUser.
-      then(user => user.getIdToken().
-        then(token => this.token = token).
-        catch(this.token = undefined)).
-      catch(this.token = undefined);
   }
 
 }
