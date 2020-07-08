@@ -1,4 +1,7 @@
 const express = require('express');
+const bodyParser = require('body-parser')
+var cors = require('cors');
+
 const app = express();
 
 const config = require('./config');
@@ -7,6 +10,8 @@ const conn = require('./services/dbconnection.js');
 const auth = require('./middleware/auth');
 
 const mailer = require('./services/mailer');
+
+app.use(cors());
 
 app.get('/', function (req, res) {
   conn.poolPromise.then((pool) => { //make sure connection is made 
@@ -26,14 +31,16 @@ app.get('/hackerman', function (req, res) {
   res.status(200).send('hackerman you got in!')
 });
 
-app.get('/sendemail', function (req, res) {
-  mailer.transport.sendMail(mailer.testMessage, function (err, info) {
+app.use("/sendemail", auth);
+app.use("/sendemail", bodyParser.json());
+app.use("/sendemail", express.json());
+app.post('/sendemail', function (req, res) {
+  var mailOptions = req.body;
+  mailer.transport.sendMail(mailOptions, function (err, info) {
     if (err) {
-      res.status(500).send('failed to send!')
-      return false;
+      res.status(500).send(err);
     } else {
-      res.status(200).send(info)
-      return true;
+      res.status(200).send(info);
     }
   });
 });

@@ -12,8 +12,6 @@ const testMessage = {
     text: 'Have the most fun you can in a car. Get your Tesla today!' // Plain text body
 };
 
-transport.sendMail
-
 module.exports = {
     transport, testMessage
 }
