@@ -60,23 +60,31 @@ export class TeamService {
 
   constructor() { }
 
-  getTeam(teamId: number): Observable<Team> {
-    return of(this.team);
+  getTeam(teamId: number): Promise<Team> {
+    return new Promise((resolve) => {
+      resolve(this.team);
+    });
   }
 
-  getTeamMembers(teamId: number): Observable<TeamUser[]> {
-    return of(this.teamMembers.filter(member => member.teamId === teamId));
+  getTeamMembers(teamId: number): Promise<TeamUser[]> {
+    return new Promise((resolve) => {
+      resolve(this.teamMembers.filter(member => member.teamId === teamId));
+    });
   }
 
-  getCaptain(teamId: number): Observable<TeamUser> {
-    return of(this.teamMembers.find(user => user.captain === true && user.teamId === teamId));
+  getCaptain(teamId: number): Promise<TeamUser> {
+    return new Promise((resolve) => {
+      resolve(this.teamMembers.find(user => user.captain === true && user.teamId === teamId));
+    });
   }
 
-  removeMember(member: TeamUser): Observable<TeamUser> {
-    throw new Error("Method not implemented.");
+  removeMember(member: TeamUser): Promise<TeamUser[]> {
+    return new Promise((resolve) => {
+      resolve(this.teamMembers.filter(m => m.teamId === member.teamId && m.userId !== member.userId));
+    });
   }
 
-  addMember(email: string): Observable<TeamUser> {
+  addMember(email: string, teamId: number): Promise<TeamUser> {
     throw new Error("Method not implemented.");
   }
 

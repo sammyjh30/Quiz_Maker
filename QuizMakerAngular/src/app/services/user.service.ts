@@ -1,10 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Quiz } from '../models/quiz';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
+  getQuiz(id: number): Promise<Quiz> {
+    throw new Error("Method not implemented.");
+  }
+
+  getUserByEmail(email: string): Promise<User> {
+    throw new Error("Method not implemented.");
+  }
+
   private static link = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
@@ -19,7 +30,7 @@ export class UserService {
     return this.http.post(UserService.link + '/addUser', data).toPromise();
   }
 
-  updateUser(userId: number, name: string, surname: string, email: string): Promise<any> {  // set null for the stuff you don't want to change 
+  updateUser(userId: number, name: string, surname: string, email: string): Promise<any> {  // set null for the stuff you don't want to change
     const data = {
       name,
       surname,

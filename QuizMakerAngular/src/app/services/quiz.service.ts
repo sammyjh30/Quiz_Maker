@@ -6,6 +6,11 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class QuizService {
+
+  getUserByEmail(valid: boolean) {
+    throw new Error("Method not implemented.");
+  }
+
   private static link = 'http://localhost:3000';
   public static questionTypes: any = {
     TF: 1,
