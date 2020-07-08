@@ -14,22 +14,15 @@
 </section>
 
 <h3>Members</h3>
+<p *ngIf="teamMembers.length === 0">No members in team</p>
 <ul>
   <li *ngFor="let member of teamMembers">
     <p>{{member.captain}}</p>
     <p>{{member.name}}</p>
     <p>{{member.surname}}</p>
     <p>{{member.email}}</p>
-    <button class="delete" title="delete hero" (click)="removeMember(member)">Remove</button>
+    <button title="delete member" (click)="removeMember(member)">Remove</button>
   </li>
 </ul>
 
-<div>
-  <label>Member email:
-    <input #email />
-  </label>
-  <!-- (click) passes input value to add() and then clears the input -->
-  <button (click)="addMember(email.value); email.value=''">
-    add
-  </button>
-</div>
+<app-team-add-member [team]="team"></app-team-add-member>
