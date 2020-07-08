@@ -11,7 +11,6 @@ import { of, Observable } from 'rxjs';
 })
 export class AuthService {
   userData: any; // Save logged in user data
-  token: string;
 
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
@@ -23,7 +22,9 @@ export class AuthService {
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe(user => {
       if (user) {
-        user.getIdToken().then(idToken => { localStorage.setItem("idToken", idToken) });
+        user.getIdToken().then(idToken => {
+          localStorage.setItem("idToken", idToken)
+        });
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
@@ -122,6 +123,7 @@ export class AuthService {
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
+      localStorage.removeItem("idToken");
       this.router.navigate(['log-in']);
     })
   }
