@@ -6,11 +6,15 @@
 </h2>
 
 <h3>Teams</h3>
+<p *ngIf="teams.length === 0">No teams in quiz/p>
 <ul>
   <li *ngFor="let team of teams">
     <a routerLink="/team/{{team.teamId}}">
       <p>{{team.teamName}}</p>
     </a>
     <p>Score: {{team.teamScore}}</p>
+    <button title="delete team" (click)="removeTeam(team)">Remove</button>
   </li>
 </ul>
+
+<app-quiz-add-team [quiz]="quiz"></app-quiz-add-team>

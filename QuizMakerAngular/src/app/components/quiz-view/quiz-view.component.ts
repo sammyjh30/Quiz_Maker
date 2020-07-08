@@ -7,13 +7,14 @@ import { Team } from '../../models/team';
 
 import { QuizService } from '../../services/quiz.service';
 import { TeamService } from 'src/app/services/team.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-quiz',
-  templateUrl: './quiz.component.html',
-  styleUrls: ['./quiz.component.css']
+  selector: 'app-quiz-view',
+  templateUrl: './quiz-view.component.html',
+  styleUrls: ['./quiz-view.component.css']
 })
-export class QuizComponent implements OnInit {
+export class QuizViewComponent implements OnInit {
   quiz: Quiz;
   teams: Team[];
 
@@ -21,7 +22,8 @@ export class QuizComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private quizService: QuizService,
-    private teamService: TeamService
+    private teamService: TeamService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
@@ -31,14 +33,20 @@ export class QuizComponent implements OnInit {
 
   getQuiz(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.quizService.getQuizByQuizId(id)
+    this.userService.getQuiz(id)
       .then(quiz => this.quiz = quiz)
   }
 
   getTeams(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.teamService.getTeamsByQuizId(id)
+    this.userService.getTeamsByQuizId(id)
       .then(teams => this.teams = teams);
+  }
+
+  removeTeam(team: Team): void {
+    this.userService.deleteTeam(team.teamId)
+      .then()
+      .catch();
   }
 
   goBack(): void {
