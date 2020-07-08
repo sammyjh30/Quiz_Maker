@@ -30,6 +30,7 @@ BEGIN TRANSACTION
 				VALUES(@questionId,@text,@rightAnswer,@wrongAnswer1,@wrongAnswer2,@wrongAnswer3)
 		ELSE
 		 THROW 50010, 'Incorrect question type', 1; 
+	SELECT @questionId as Id
 	END TRY
 	BEGIN CATCH 
 	 IF @@TRANCOUNT > 0  
