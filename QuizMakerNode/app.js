@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const quizRouter = require('./routes/QuizRoute')
+const userRouter = require('./routes/UserRoute')
 
 const config = require('./config');
 
@@ -11,6 +12,7 @@ const mailer = require('./services/mailer');
 
 app.use(express.json());
 app.use('/quiz',quizRouter)//how to add a route to the system
+app.use('/user',userRouter)
 app.get('/', function (req, res) {
   conn.poolPromise.then((pool) => { //make sure connection is made 
     pool.request().query('SELECT 1') //use connection to make request 
