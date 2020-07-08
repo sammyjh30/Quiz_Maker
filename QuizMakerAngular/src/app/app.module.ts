@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,8 +15,10 @@ import { LogInComponent } from './components/log-in/log-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
-import { QuizComponent } from './components/quiz/quiz.component';
-import { TeamComponent } from './components/team/team.component';
+import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
+import { TeamViewComponent } from './components/team-view/team-view.component';
+import { TeamAddMemberComponent } from './components/team-add-member/team-add-member.component';
+import { QuizAddTeamComponent } from './components/quiz-add-team/quiz-add-team.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +28,10 @@ import { TeamComponent } from './components/team/team.component';
     SignUpComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
-    QuizComponent,
-    TeamComponent
+    QuizViewComponent,
+    TeamViewComponent,
+    TeamAddMemberComponent,
+    QuizAddTeamComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,8 @@ import { TeamComponent } from './components/team/team.component';
     HttpClientModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
