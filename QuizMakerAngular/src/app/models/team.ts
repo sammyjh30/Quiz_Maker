@@ -1,6 +1,6 @@
 export interface Team {
-  teamId: number;
+  teamId?: number;
   teamName: string;
   quizId: number;
-  teamScore: number;
+  teamScore?: number;
 }

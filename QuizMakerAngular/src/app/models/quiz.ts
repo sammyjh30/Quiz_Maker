@@ -1,6 +1,6 @@
 export interface Quiz {
-  quizId: number;
+  quizId?: number;
   quizName: string;
-  hostId: string;
+  hostId?: string;
   startDateTime: Date;
 }
