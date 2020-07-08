@@ -1,0 +1,15 @@
+<h3>Add Teams</h3>
+
+<label>
+  Team Name:
+  <input type="text" [formControl]="teamNameFC">
+</label>
+
+<label>
+  Captain Email:
+  <input type="email" [formControl]="captainEmailFC">
+</label>
+
+<p>
+  <button (click)="addTeam()">Add</button>
+</p>
