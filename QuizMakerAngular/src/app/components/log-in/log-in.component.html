@@ -1,17 +1,29 @@
-<h3>Sign In</h3>
+<!DOCTYPE html>
 
-<input type="text" placeholder="Username" #userName required>
-
-<input type="password" placeholder="Password" #userPassword required>
-
-<!-- Calling SignIn Api from AuthService -->
-<input type="button" value="Log in" (click)="authService.LogIn(userName.value, userPassword.value)">
-
-<!-- Calling GoogleAuth Api from AuthService -->
-<button type="button" (click)="authService.GoogleAuth()">
-  Log in with Google
-</button>
-
-<button routerLink="/forgot-password">Forgot Password?</button>
-
-<span>Don't have an account?<button routerLink="/register-user"> Sign Up</button></span>
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" routerLink="/register-user">
+    <meta name="Dirco Liebenberg" content="Quizz web landing page">
+</head>
+<div class="topnav">
+    <a routerLink="/register-user">Sign Up</a>
+</div>
+<body class="login_body" [ngStyle]="{background: 'url(assets/img/login.jpg)'}">
+    <div class="login_form">
+        <img src="assets/img/avatar.png" class="avatar">
+        <h1>Login Here</h1>
+        <form action="">
+            <p>Username</p>
+            <input type="text" name="" placeholder="Enter Username" #userName required>
+            <p>Password</p>
+            <input type="password" name="" placeholder="Enter Password" #userPassword required>
+            <input type="submit" name="" value="Sign In" (click)="authService.LogIn(userName.value, userPassword.value)"><br>
+            <button class="btn google" data-provider="google" (click)="authService.GoogleAuth()"><i class="fab fa-google"></i><span>Google</span></button><br>
+            <br>
+            <a routerLink="/register-user">Don't have an account? Click here to sign up!</a><br>
+            <br>
+            <a routerLink="/register-user">Forgot your password? Click here to fix that!</a>
+        </form>
+    </div>
+</body>

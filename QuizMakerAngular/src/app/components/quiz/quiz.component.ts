@@ -6,6 +6,7 @@ import { Quiz } from '../../models/quiz';
 import { Team } from '../../models/team';
 
 import { QuizService } from '../../services/quiz.service';
+import { TeamService } from 'src/app/services/team.service';
 
 @Component({
   selector: 'app-quiz',
@@ -19,7 +20,8 @@ export class QuizComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-    private quizService: QuizService
+    private quizService: QuizService,
+    private teamService: TeamService
   ) { }
 
   ngOnInit() {
@@ -29,14 +31,14 @@ export class QuizComponent implements OnInit {
 
   getQuiz(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.quizService.getQuiz(id)
-      .subscribe(quiz => this.quiz = quiz);
+    this.quizService.getQuizByQuizId(id)
+      .then(quiz => this.quiz = quiz)
   }
 
   getTeams(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.quizService.getTeams(id)
-      .subscribe(teams => this.teams = teams);
+    this.teamService.getTeamsByQuizId(id)
+      .then(teams => this.teams = teams);
   }
 
   goBack(): void {

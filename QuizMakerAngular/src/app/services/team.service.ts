@@ -72,15 +72,15 @@ export class TeamService {
     return of(this.teamMembers.find(user => user.captain === true && user.teamId === teamId));
   }
 
-  getMembers(teamId: number): Observable<TeamUser[]> {
-    return of(this.teamMembers.filter(user => user.captain === false && user.teamId === teamId));
-  }
-
   removeMember(member: TeamUser): Observable<TeamUser> {
     throw new Error("Method not implemented.");
   }
 
-  addMember(email: string): Observable<TeamUser[]> {
+  addMember(email: string): Observable<TeamUser> {
+    throw new Error("Method not implemented.");
+  }
+
+  getTeamsByQuizId(id: number): Promise<Team[]> {
     throw new Error("Method not implemented.");
   }
 

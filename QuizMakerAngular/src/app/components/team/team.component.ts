@@ -26,7 +26,6 @@ export class TeamComponent implements OnInit {
   ngOnInit() {
     this.getQuiz();
     this.getCaptain();
-    this.getMembers();
   }
 
   getQuiz(): void {
@@ -39,12 +38,6 @@ export class TeamComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.teamService.getCaptain(id)
       .subscribe(captain => this.captain = captain);
-  }
-
-  getMembers(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.teamService.getMembers(id)
-      .subscribe(teamMembers => this.teamMembers = teamMembers);
   }
 
   removeMember(member: TeamUser): void {

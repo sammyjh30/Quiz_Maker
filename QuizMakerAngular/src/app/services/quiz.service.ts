@@ -1,67 +1,133 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Quiz } from '../models/quiz';
-import { Team } from '../models/team';
+import { Injectable, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuizService {
-
-  quiz: Quiz = {
-    quizId: 1,
-    hostId: 'abc',
-    quizName: 'The Best Quiz',
-    startDateTime: new Date(Date.now())
+  private static link = 'http://localhost:3000';
+  public static questionTypes: any = {
+    TF: 1,
+    Multi: 2
   };
 
-  teams: Team[] = [{
-    teamId: 1,
-    teamName: 'The best',
-    quizId: 1,
-    teamScore: 1000000,
-  }, {
-    teamId: 2,
-    teamName: 'Second best',
-    quizId: 1,
-    teamScore: 50000,
-  }, {
-    teamId: 3,
-    teamName: 'Worse!',
-    quizId: 1,
-    teamScore: 0,
-  }, {
-    teamId: 4,
-    teamName: 'Equal',
-    quizId: 2,
-    teamScore: 100000,
-  }, {
-    teamId: 5,
-    teamName: 'The same',
-    quizId: 2,
-    teamScore: 100000,
-  }]
+  constructor(private http: HttpClient) { }
 
-  constructor() { }
+  addQuestionTF(quizId: number, roundNumber: number, questionNumber: number, text: string, correctAnswer: boolean): Promise<any> {
+    const data = {
+      quizId,
+      roundNumber,
+      questionType: QuizService.questionTypes.Multi,
+      questionNumber,
+      text,
+      correctAnswer
+    };
 
-  getQuiz(quizId: number): Observable<Quiz> {
-    return of(this.quiz);
+    return this.http.post(QuizService.link + '/addQuestion', data).toPromise();
   }
 
-  getTeams(quizId: number): Observable<Team[]> {
-    return of(this.teams.filter(team => team.quizId == quizId));
+  addQuestionMultipleChoice(quizId: number, roundNumber: number, questionNumber: number, text: string, rightAnswer: string, wrongAnswer1: string, wrongAnswer2: string, wrongAnswer3: string): Promise<any> {
+
+    const data = {
+      quizId,
+      roundNumber,
+      questionType: QuizService.questionTypes.Multi,
+      questionNumber,
+      text,
+      rightAnswer,
+      wrongAnswer1,
+      wrongAnswer2,
+      wrongAnswer3
+    };
+
+    return this.http.post(QuizService.link + '/addQuestion', data).toPromise();
   }
 
-  removeTeam(team: Team): Observable<Team> {
-    throw new Error("Method not implemented.");
+  deleteQuestion(questionId: number): Promise<any> {
+    const data = { questionId: questionId.toString() };
+    return this.http.delete(QuizService.link + '/deleteQuestion', { params: data }).toPromise();
   }
 
-  addTeam(email: string): Observable<Team> {
-    throw new Error("Method not implemented.");
+  getQuestionsByQuizId(quizId: number): Promise<any> {
+    const data = { quizId: quizId.toString() };
+    return this.http.get(QuizService.link + '/getQuestionsByQuizId', { params: data }).toPromise();
   }
 
-  isUserPartOfQuiz(email: string, quizId): Observable<boolean> {
-    throw new Error("Method not implemented.");
+  getQuestionsByQuestionId(questionId: number): Promise<any> {
+    const data = { questionId: questionId.toString() };
+    return this.http.get(QuizService.link + '/getQuestionsByQuestionId', { params: data }).toPromise();
+  }
+
+  updateQuestionTF(questionId: number, quizId: number, roundNumber: number, questionNumber: number, text: string, correctAnswer: boolean): Promise<any> { //set the stuff you dont wanna change to null
+    const data = {
+      questionId,
+      quizId,
+      roundNumber,
+      questionType: QuizService.questionTypes.Multi,
+      questionNumber,
+      text,
+      correctAnswer
+    };
+
+    return this.http.put(QuizService.link + '/updateQuestion', data).toPromise();
+  }
+
+  updateQuestionMultipleChoice(questionId: number, quizId: number, roundNumber: number, questionNumber: number, text: string, rightAnswer: string, wrongAnswer1: string, wrongAnswer2: string, wrongAnswer3: string): Promise<any> {//set the stuff you dont wanna change to null
+
+    const data = {
+      questionId,
+      quizId,
+      roundNumber,
+      questionType: QuizService.questionTypes.Multi,
+      questionNumber,
+      text,
+      rightAnswer,
+      wrongAnswer1,
+      wrongAnswer2,
+      wrongAnswer3
+    };
+
+    return this.http.put(QuizService.link + '/updateQuestion', data).toPromise();
+  }
+
+  addQuiz(quizName: string, hostId: number, startDateTime: Date): Promise<any> {
+
+    const data = {
+      quizName,
+      hostId,
+      startDateTime
+    };
+
+    return this.http.post(QuizService.link + '/addQuiz', data).toPromise();
+  }
+
+
+  deleteQuiz(quizId: number): Promise<any> {
+    const data = { quizId: quizId.toString() };
+    return this.http.delete(QuizService.link + '/deleteQuiz', { params: data }).toPromise();
+  }
+
+  getQuizByQuizId(quizId: number): Promise<any> {
+    const data = { quizId: quizId.toString() };
+    return this.http.get(QuizService.link + '/getQuiz', { params: data }).toPromise();
+  }
+
+  getQuizByHostId(hostId: number): Promise<any> {
+    const data = { hostId: hostId.toString() };
+    return this.http.get(QuizService.link + '/getQuizByHostId', { params: data }).toPromise();
+  }
+
+  updateQuiz(quizId: number, quizName: string, hostId: number, startDateTime: Date): Promise<any> { //set the stuff you dont wanna change to null
+
+    const data = {
+      quizId,
+      quizName,
+      hostId,
+      startDateTime
+    };
+
+    return this.http.post(QuizService.link + '/updateQuiz', data).toPromise();
   }
 
 }
