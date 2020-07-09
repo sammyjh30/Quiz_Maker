@@ -1,0 +1,18 @@
+.quiz-session {
+    content: "";
+    /* display: table; */
+    clear: both;
+}
+
+.quiz-chat, .team-chat {
+    float: left;
+    width: 20%;
+}
+
+.quiz-chat {
+    float: right;
+}
+
+.team-chat{
+    float: left;
+}

@@ -1,10 +1,13 @@
-<div *ngIf="authService.userData as user">
-  <div style="display: flex; width: 10%;" *ngIf="teamId">  
-    <app-chat-inbox roomId="{{teamId}}" [socket]="socket"></app-chat-inbox>
+<div class="quiz-session" *ngIf="authService.userData as user">
+  <div class="">
+    <div class="team-chat" *ngIf="teamId">  
+      <app-chat-inbox roomId="{{teamId}}" [socket]="socket"></app-chat-inbox>
+    </div>
   </div>
   
-  {{user.displayName}}
-  <div style="display: flex; width: 10%;" *ngIf="socket">  
+  
+  {{user.uid}}
+  <div class="quiz-chat" *ngIf="socket">  
     <app-chat-inbox roomId="{{quizId}}" [socket]="socket"></app-chat-inbox>
   </div> 
 </div>
