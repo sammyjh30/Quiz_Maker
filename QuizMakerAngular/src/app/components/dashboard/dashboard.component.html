@@ -20,3 +20,10 @@
 <div>
   <h1>{{test}}</h1>
 </div>
+
+
+<div>
+  <!-- <button type="button" [routerLink]="['newquiz']">New Quiz</button>
+  <router-outlet></router-outlet> -->
+  <app-new-quiz [formContent]="formContent" (formSubmit)="onFormSubmit($event)"></app-new-quiz>
+</div>

@@ -1,0 +1,240 @@
+<div>
+    <h2 class="form-heading">Create a new Quiz!</h2>
+
+    <ng-container *ngFor="let form of masterForm; let i = index; trackBy: trackByFn">
+        <form action="" [formGroup]="masterForm[i]" *ngIf="i === activeStepIndex || masterForm.length === 1">
+            <div>
+                <!-- FRAME 1 -->
+                <div *ngIf="i === 0">
+                    <div
+                        *ngFor="let field of formFields[i]; trackBy: trackByFn"
+                        [ngSwitch]="currentFormContent[i][field].type"
+                    >
+                        <ng-container *ngSwitchCase="'datetime'">
+                            <label class="field-label text-bold" [for]="field">{{ field | formatTitle }}</label>
+
+                            <input 
+                                [type]="datetime-local"
+                                [formControlName]="field"
+                                [id]="field"
+                            >
+                        </ng-container>
+
+                        <ng-container *ngSwitchCase="'checkbox'">
+                            <div class="checkbox">
+                                <input 
+                                type="checkbox"
+                                [formControlName]="field"
+                                [id]="field"
+                                >
+                                <label class="field-label text-bold" [for]="field">{{ field | formatTitle }}</label>
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngSwitchDefault>
+                            <label class="field-label text-bold" [for]="field">{{ field | formatTitle }}</label>
+
+                            <input 
+                                [type]="currentFormContent[i][field].type"
+                                [formControlName]="field"
+                                [id]="field"
+                                (change)="onInputChange()"
+                            >
+                        </ng-container>
+
+                        <p
+                            class="validation-error"
+                            *ngIf="(masterForm[i].get(field).dirty || masterForm[i].get(field).touched) &&
+                                masterForm[i].get(field).invalid &&
+                                masterForm[i].get(field).errors
+                            "
+                        >
+                            {{ getValidationMessage(i, field) }}
+                        </p>
+                    </div>
+                </div>
+                <!-- FRAME 1 -->
+
+                <!-- FRAME 2 -->
+                <div *ngIf="i === 1">
+                    <h3>Round {{ roundNumer }} of {{ numberOfRounds }}</h3>
+                    <div
+                        *ngFor="let field of formFields[i]; trackBy: trackByFn"
+                        [ngSwitch]="currentFormContent[i][field].type"
+                    >
+                        <ng-container *ngSwitchCase="'button'">
+                            <button type="button" (click)="save(field)">
+                                {{ field | formatTitle }}
+                            </button>
+                        </ng-container>
+
+                        <ng-container *ngSwitchDefault>
+                            <label class="field-label text-bold" [for]="field">{{ field | formatTitle }}</label>
+
+                            <input 
+                                [type]="currentFormContent[i][field].type"
+                                [formControlName]="field"
+                                [id]="field"
+                            >
+                        </ng-container>
+
+                        <p
+                            class="validation-error"
+                            *ngIf="(masterForm[i].get(field).dirty || masterForm[i].get(field).touched) &&
+                                masterForm[i].get(field).invalid &&
+                                masterForm[i].get(field).errors
+                            "
+                        >
+                            {{ getValidationMessage(i, field) }}
+                        </p>
+                    </div>
+                </div>
+                <!-- FRAME 2 -->
+
+                <!-- FRAME 3 -->
+                <div *ngIf="i === 2">
+                    <div
+                        *ngFor="let field of formFields[i]; trackBy: trackByFn"
+                        [ngSwitch]="currentFormContent[i][field].type"
+                    >
+                        <ng-container *ngSwitchCase="'button'">
+                            <button type="button">
+                                {{ field | formatTitle }}
+                            </button>
+                        </ng-container>
+
+                        <ng-container *ngSwitchCase="'checkbox'">
+                            <div class="checkbox">
+                                <input 
+                                type="checkbox"
+                                (change)="checkOption('field')"
+                                [formControlName]="field"
+                                [id]="field"
+                                >
+                                <label class="field-label text-bold" [for]="field">{{ field | formatTitle }}</label>
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngSwitchDefault>
+                            <label class="field-label text-bold" [for]="field">{{ field | formatTitle }}</label>
+
+                            <input 
+                                [type]="currentFormContent[i][field].type"
+                                [formControlName]="field"
+                                [id]="field"
+                                (change)="onInputChange()"
+                            >
+                        </ng-container>
+
+                        <p
+                            class="validation-error"
+                            *ngIf="(masterForm[i].get(field).dirty || masterForm[i].get(field).touched) &&
+                                masterForm[i].get(field).invalid &&
+                                masterForm[i].get(field).errors
+                            "
+                        >
+                            {{ getValidationMessage(i, field) }}
+                        </p>
+                    </div>
+                </div>
+                <!-- FRAME 3 -->
+                
+                <!-- <div class="fields-container">
+                    <div
+                        *ngFor="let field of formFields[i]; trackBy: trackByFn"
+                        [ngSwitch]="currentFormContent[i][field].type"
+                    >
+
+                        <ng-container *ngSwitchCase="'button'">
+                            <button type="button">
+                                {{ field | formatTitle }}
+                            </button>
+                        </ng-container>
+
+                        
+                        <ng-container *ngSwitchCase="'datetime'">
+                            <label class="field-label text-bold" [for]="field">{{ field | formatTitle }}</label>
+
+                            <input 
+                                [type]="datetime-local"
+                                [formControlName]="field"
+                                [id]="field"
+                            >
+                        </ng-container>
+
+                        <ng-container *ngSwitchCase="'checkbox'">
+                            <div class="checkbox">
+                                <input 
+                                type="checkbox"
+                                (change)="checkOption('field')"
+                                [formControlName]="field"
+                                [id]="field"
+                                >
+                                <label class="field-label text-bold" [for]="field">{{ field | formatTitle }}</label>
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngSwitchDefault>
+                            <label class="field-label text-bold" [for]="field">{{ field | formatTitle }}</label>
+
+                            <input 
+                                [type]="currentFormContent[i][field].type"
+                                [formControlName]="field"
+                                [id]="field"
+                                (change)="onInputChange()"
+                            >
+                        </ng-container>
+
+                        <p
+                            class="validation-error"
+                            *ngIf="(masterForm[i].get(field).dirty || masterForm[i].get(field).touched) &&
+                                masterForm[i].get(field).invalid &&
+                                masterForm[i].get(field).errors
+                            "
+                        >
+                            {{ getValidationMessage(i, field) }}
+                        </p>
+                    </div>
+                </div> -->
+
+                <!-- FRAME 4 -->
+                <div
+                class="preview-container"
+                *ngIf="activeStepIndex === stepItems.length - 1">
+                    <ul>
+                        <li
+                            class="form-details-list"
+                            *ngFor="let field of masterFormFields; trackBy: trackByFn">
+                            <span class="text-bold">{{ field | formatTitle }}</span>
+                            <span>{{ formData[field] || 'N/A' }}</span>
+                        </li>
+                    </ul>
+                </div>
+
+            
+                <div class="button-container">
+                    <button
+                        type="button"
+                        [disabled]="!activeStepIndex"
+                        (click)="goToStep('prev')"
+                    >Previous
+                    </button>
+
+                    <button
+                        *ngIf="activeStepIndex === stepItems.length - 1"
+                        type="button"
+                        (click)="onFormSubmit()"
+                    >Submit
+                    </button>
+
+                    <button
+                        type="button"
+                        [disabled]="activeStepIndex === stepItems.length - 1 || masterForm[i].invalid"
+                        (click)="goToStep('next')"
+                    >Next
+                    </button>
+                </div>
+            </div>
+        </form>
+    </ng-container>
+</div>
