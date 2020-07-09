@@ -129,10 +129,11 @@ export class UserService {
     throw new Error("Method not implemented.");
   }
 
-  getTeamUserByEmail(arg0: string): TeamUser {
+  getTeamUserByEmail(email: string): TeamUser {
     throw new Error("Method not implemented.");
   }
-  getTeamUser(hostId: string): TeamUser {
+
+  getTeamUser(userId: string): TeamUser {
     throw new Error("Method not implemented.");
   }
 

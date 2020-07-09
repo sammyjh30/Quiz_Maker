@@ -5,11 +5,10 @@ import { User as FireUser } from "firebase/app";
 
 import { Team } from '../../models/team';
 import { TeamUser } from '../../models/teamUser';
-import { User } from 'src/app/models/user';
 
-import { UserService } from 'src/app/services/user.service';
-import { Quiz } from 'src/app/models/quiz';
-import { QuizService } from 'src/app/services/quiz.service';
+import { UserService } from '../../services/user.service';
+import { Quiz } from '../../models/quiz';
+import { QuizService } from '../../services/quiz.service';
 
 @Component({
   selector: 'app-team-view',

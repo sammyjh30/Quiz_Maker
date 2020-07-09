@@ -2,11 +2,11 @@ import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Location } from '@angular/common';
 
-import { MailerService } from 'src/app/services/mailer.service';
+import { MailerService } from '../../services/mailer.service';
 
-import { Team } from 'src/app/models/team';
-import { Quiz } from 'src/app/models/quiz';
-import { TeamUser } from 'src/app/models/teamUser';
+import { Team } from '../../models/team';
+import { Quiz } from '../../models/quiz';
+import { TeamUser } from '../../models/teamUser';
 
 @Component({
   selector: 'app-team-add-member',

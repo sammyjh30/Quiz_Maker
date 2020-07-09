@@ -7,8 +7,9 @@ import { Quiz } from '../../models/quiz';
 import { Team } from '../../models/team';
 
 import { QuizService } from '../../services/quiz.service';
-import { UserService } from 'src/app/services/user.service';
-import { TeamUser } from 'src/app/models/teamUser';
+import { UserService } from '../../services/user.service';
+import { TeamUser } from '../../models/teamUser';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-quiz-view',
@@ -16,7 +17,7 @@ import { TeamUser } from 'src/app/models/teamUser';
   styleUrls: ['./quiz-view.component.css']
 })
 export class QuizViewComponent implements OnInit {
-  host: TeamUser;
+  host: User;
   quiz: Quiz;
   teams: Team[];
   currentUser: TeamUser;
@@ -38,12 +39,10 @@ export class QuizViewComponent implements OnInit {
   async getQuiz(): Promise<void> {
     const quizId = +this.route.snapshot.paramMap.get('id');
     this.quiz = await this.quizService.getQuizByQuizId(quizId);
-    this.host = await this.userService.getTeamUser(this.quiz.hostId);
+    this.host = await this.userService.getUser(this.quiz.hostId);
     const fireUser: FireUser = JSON.parse(localStorage.getItem('user'));
     this.isHost = this.host.userId === this.quiz.hostId;
-    if (this.isHost) {
-      this.currentUser = this.host;
-    } else {
+    if (!this.isHost) {
       this.currentUser = await this.userService.getUserByEmail(fireUser.email);
     }
   }

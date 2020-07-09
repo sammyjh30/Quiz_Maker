@@ -27,7 +27,7 @@
   </li>
 </ul>
 
-<div *ngIf="currentUser.captain">
+<section *ngIf="currentUser.captain">
   <app-team-add-member [team]="team" [currentUser]="currentUser" [captain]="captain" [quiz]="quiz">
   </app-team-add-member>
-</div>
+</section>

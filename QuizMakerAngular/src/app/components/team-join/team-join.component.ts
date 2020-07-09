@@ -9,7 +9,6 @@ import { User } from '../../models/user';
 
 import { UserService } from '../../services/user.service';
 import { MailerService } from '../../services/mailer.service';
-import { TeamMember } from '../../models/teammember';
 import { QuizService } from '../../services/quiz.service';
 
 @Component({
