@@ -8,4 +8,5 @@ export class TeamUser implements User, TeamMember  {
   email?: string;
   name?: string;
   surname?: string;
+
 }

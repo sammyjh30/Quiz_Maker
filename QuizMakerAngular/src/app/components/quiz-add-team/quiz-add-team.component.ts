@@ -3,11 +3,11 @@ import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { QuizService } from 'src/app/services/quiz.service';
-import { UserService } from 'src/app/services/user.service';
+import { QuizService } from '../../services/quiz.service';
+import { UserService } from '../../services/user.service';
 
-import { Quiz } from 'src/app/models/quiz';
-import { Team } from 'src/app/models/team';
+import { Quiz } from '../../models/quiz';
+import { TeamUser } from '../../models/teamUser';
 
 @Component({
   selector: 'app-quiz-add-team',
@@ -27,13 +27,8 @@ export class QuizAddTeamComponent {
   }
 
   async addTeam() {
-    let captain = await this.userService.getUserByEmail(this.captainEmailFC.value);
-    let team: Team = {
-      teamName: this.teamNameFC.value,
-      quizId: this.quiz.quizId,
-      captainId: captain.userId
-    }
-    this.userService.createCaptainAndTheirTeam(team, captain);
+    let captain: TeamUser = await this.userService.getUserByEmail(this.captainEmailFC.value);
+    this.userService.createCaptainAndTheirTeam(captain.userId, captain.name, captain.surname, captain.email, this.teamNameFC.value, this.quiz.quizId);
   }
 
   goBack(): void {

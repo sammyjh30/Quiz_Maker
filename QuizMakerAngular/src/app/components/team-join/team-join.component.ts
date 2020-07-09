@@ -3,14 +3,14 @@ import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { User as FireUser } from "firebase/app";
 
-import { Quiz } from 'src/app/models/quiz';
-import { Team } from 'src/app/models/team';
-import { User } from 'src/app/models/user';
+import { Quiz } from '../../models/quiz';
+import { Team } from '../../models/team';
+import { User } from '../../models/user';
 
-import { UserService } from 'src/app/services/user.service';
-import { MailerService } from 'src/app/services/mailer.service';
-import { TeamMember } from 'src/app/models/teammember';
-import { QuizService } from 'src/app/services/quiz.service';
+import { UserService } from '../../services/user.service';
+import { MailerService } from '../../services/mailer.service';
+import { TeamMember } from '../../models/teammember';
+import { QuizService } from '../../services/quiz.service';
 
 @Component({
   selector: 'app-team-join',
@@ -63,18 +63,13 @@ export class TeamJoinComponent implements OnInit {
   }
 
   getCaptain(): void {
-    this.userService.getUserByEmail(this.team.captainId)
+    this.userService.getUser(this.team.captainId)
       .then(captain => this.captain = captain)
       .catch(error => console.log(error));
   }
 
   acceptInvitation(): void {
-    let teamMember: TeamMember = {
-      teamId: this.team.teamId,
-      userId: this.currentUser.userId,
-      captain: false
-    }
-    this.userService.addTeamMember(teamMember)
+    this.userService.addTeamMember(this.team.teamId, this.currentUser.userId, false)
       .then(accept => this.mailerService.sendAcceptEmail(this.currentUser, this.captain))
       .catch(error => console.log(error));
   }
