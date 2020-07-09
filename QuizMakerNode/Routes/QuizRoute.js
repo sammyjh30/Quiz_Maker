@@ -7,6 +7,7 @@ const messages = require('../Global/Messages')
 //#region Question
 router.post('/addQuestion',function(req,res){
     conn.poolPromise.then((pool)=> {
+        console.log(req.body)
         const request =  pool.request();
         request.input('quizId', conn.sql.Int , req.body.quizId)
         request.input('roundNumber', conn.sql.Int , req.body.roundNumber)
