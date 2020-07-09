@@ -6,21 +6,22 @@ const messages = require('../Global/Messages');
 router.post('/addUser',function(req,res){
     conn.poolPromise.then((pool)=> {
         const request = pool.request();
+        request.input('userId',req.body.userId)
         request.input('name', req.body.name);
         request.input('surname', req.body.surname);
         request.input('email', req.body.email);
         request.query(`INSERT INTO [dbo].[Users]
-           ([name]
+           ([userId],
+            [name]
            ,[surname]
            ,[email])
         VALUES
-           (@name
+           (@userId
+            ,@name
            ,@surname
-           ,@email); 
-           
-           SELECT SCOPE_IDENTITY() AS id;
+           ,@email)
         `).then((data) => {
-            res.status(201).send({'message' : messages[201], 'recordSet':data.recordset})
+            res.status(201).send({'message' : messages[201]})
         }).catch((err) => {
             console.log(err)
             res.status(500).send({'error':messages[500]})
@@ -102,7 +103,7 @@ router.get('/getUser/:userId',function(req,res){
         request.query(`
         SELECT * FROM Users 
         WHERE userId = @userId`).then((data) => {
-                res.status(200).send({'message' : messages[200], 'recordSet':data.recordset})
+                res.status(200).send(data.recordset)
             }).catch((err) => {
                 console.log(err)
                 res.status(500).send({'error':messages[500]})
@@ -315,6 +316,7 @@ router.delete('/removeTeamMember', function(req,res){
 router.post('/createCaptainAndTeam',function(req,res){
     conn.poolPromise.then((pool)=> {
         const request = pool.request();
+        request.input('userId',req.body.userId)
         request.input('name', req.body.name);
         request.input('surname',req.body.surname)
         request.input('email',req.body.email)
