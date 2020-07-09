@@ -1,6 +1,6 @@
 .Register_body{
   height: 100vh;
-  width: 200vh;
+  width: 100%;
   margin: 0;
   padding: 0;
   background-image: url('/../assets/img/login.jpg');
@@ -27,8 +27,8 @@
 
 .register_form{
   width: 400px;
-  height: 820px;
-  background: #000;
+  height: 730px;
+  background: rgba(0, 0, 0, 0.7);
   color: #fff;
   top: 50%;
   left: 50%;
@@ -77,7 +77,7 @@ h1{
   margin-bottom: 20px;
 }
 
-.register_form input[type="text"], input[type="password"]{
+.register_form input[type="text"], input[type="password"], input[type="email"]{
   margin: 10px;
   border: none;
   border-bottom: 1px solid #fff;
