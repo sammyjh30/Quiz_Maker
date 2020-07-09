@@ -46,6 +46,9 @@ import { QuizComponent } from './quiz/quiz.component';
 import { CreateQuizComponent } from './components/create-quiz/create-quiz.component';
 import { TFquestionComponent } from './components/create-quiz/Questions/tfquestion/tfquestion.component';
 import { MultipleChoiceQuestionsComponent } from './components/create-quiz/Questions/multiple-choice-questions/multiple-choice-questions.component';
+import { HostViewComponent } from './components/quiz-session/QuizViews/host-view/host-view.component';
+import { PlayerViewComponent } from './components/quiz-session/QuizViews/player-view/player-view.component';
+import { CaptainViewComponent } from './components/quiz-session/QuizViews/captain-view/captain-view.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +81,10 @@ import { MultipleChoiceQuestionsComponent } from './components/create-quiz/Quest
     QuizComponent,
     CreateQuizComponent,
     TFquestionComponent,
-    MultipleChoiceQuestionsComponent
+    MultipleChoiceQuestionsComponent,
+    HostViewComponent,
+    PlayerViewComponent,
+    CaptainViewComponent
   ],
   imports: [
     BrowserModule,

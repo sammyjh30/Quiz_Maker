@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import { AuthService } from "../../services/auth.service";
 import * as io from 'socket.io-client'
+// import { User } from 'firebase';
+import { User } from '../../models/user';
 
 const SOCKET_ENDPOINT = 'localhost:3001';
 
@@ -13,6 +15,7 @@ const SOCKET_ENDPOINT = 'localhost:3001';
 export class QuizSessionComponent implements OnInit {
   quizId: string;
   teamId: string;
+  user: User;
   public socket: SocketIOClient.Socket;
 
   constructor(
