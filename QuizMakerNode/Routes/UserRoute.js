@@ -6,21 +6,22 @@ const messages = require('../Global/Messages');
 router.post('/addUser',function(req,res){
     conn.poolPromise.then((pool)=> {
         const request = pool.request();
+        request.input('userId',req.body.userId)
         request.input('name', req.body.name);
         request.input('surname', req.body.surname);
         request.input('email', req.body.email);
         request.query(`INSERT INTO [dbo].[Users]
-           ([name]
+           ([userId],
+            [name]
            ,[surname]
            ,[email])
         VALUES
-           (@name
+           (@userId
+            ,@name
            ,@surname
-           ,@email); 
-           
-           SELECT SCOPE_IDENTITY() AS id;
+           ,@email)
         `).then((data) => {
-            res.status(201).send({'message' : messages[201], 'recordSet':data.recordset})
+            res.status(201).send({'message' : messages[201]})
         }).catch((err) => {
             console.log(err)
             res.status(500).send({'error':messages[500]})
@@ -102,6 +103,24 @@ router.get('/getUser/:userId',function(req,res){
         request.query(`
         SELECT * FROM Users 
         WHERE userId = @userId`).then((data) => {
+                res.status(200).send(data.recordset)
+            }).catch((err) => {
+                console.log(err)
+                res.status(500).send({'error':messages[500]})
+            })
+    }).catch((err) => {
+        console.log(err)
+        res.status(500).send({'error':messages[500]})
+    })
+})
+
+router.get('/getUserByEmail',function(req,res){
+    conn.poolPromise.then((pool)=> {
+        const request = pool.request();
+        request.input('email', req.body.email);
+        request.query(`
+        SELECT * FROM Users 
+        WHERE email = @email`).then((data) => {
                 res.status(200).send({'message' : messages[200], 'recordSet':data.recordset})
             }).catch((err) => {
                 console.log(err)
@@ -297,6 +316,7 @@ router.delete('/removeTeamMember', function(req,res){
 router.post('/createCaptainAndTeam',function(req,res){
     conn.poolPromise.then((pool)=> {
         const request = pool.request();
+        request.input('userId',req.body.userId)
         request.input('name', req.body.name);
         request.input('surname',req.body.surname)
         request.input('email',req.body.email)
@@ -304,6 +324,29 @@ router.post('/createCaptainAndTeam',function(req,res){
         request.input('quizId',req.body.quizId)
         request.execute('InsertCaptain').then(() => {
                 res.status(201).send({'message' : messages[201]})
+            }).catch((err) => {
+                console.log(err)
+                res.status(500).send({'error':messages[500]})
+            })
+    }).catch((err) => {
+        console.log(err)
+        res.status(500).send({'error':messages[500]})
+    })
+})
+
+router.get('/dashBoard/:userId',function(req,res){
+    conn.poolPromise.then((pool)=> {
+        const request = pool.request();
+        request.input('userId', req.params.userId);
+        request.query(`SELECT Quiz.quizId , 0 as hostBool ,TeamMembers.captain,Teams.teamId ,Quiz.quizName as quizName, Quiz.startDateTime FROM Users 
+        INNER JOIN TeamMembers ON Users.userId = TeamMembers.userID
+        INNER JOIN Teams ON TeamMembers.teamID = Teams.teamId
+        INNER JOIN Quiz  ON Teams.quizId = Quiz.quizId
+        WHERE Users.userId = @userId
+        UNION 
+        SELECT Quiz.quizId, 1 as hostBool, 0 as captain,null, Quiz.quizName, Quiz.startDateTime  FROM Quiz
+        WHERE Quiz.hostId = @userId`).then((data) => {
+                res.status(200).send({'message' : messages[200], 'recordSet':data.recordset})
             }).catch((err) => {
                 console.log(err)
                 res.status(500).send({'error':messages[500]})

@@ -7,13 +7,16 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+import { UserProfileComponent } from './userProfile/userProfile.component';
+import { UsernameComponent } from './username/username.component';
+import { LandingpageComponent } from './landingpage/landingpage.component';
+import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
+import { TeamViewComponent } from './components/team-view/team-view.component';
+import { TeamJoinComponent } from './components/team-join/team-join.component';
 
 // Import canActivate guard services
 import { AuthGuard } from "./guard/auth.guard";
 import { SecureInnerPagesGuard } from "./guard/secure-inner-pages.guard";
-import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
-import { TeamViewComponent } from './components/team-view/team-view.component';
-import { TeamJoinComponent } from './components/team-join/team-join.component';
 
 // Include route guard in routes array
 const routes: Routes = [
@@ -25,7 +28,10 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'quiz/:id', component: QuizViewComponent, canActivate: [AuthGuard] },
   { path: 'team/:id', component: TeamViewComponent, canActivate: [AuthGuard] },
-  { path: 'join', component: TeamJoinComponent, canActivate: [AuthGuard] }
+  { path: 'join', component: TeamJoinComponent, canActivate: [AuthGuard] },
+  { path: 'username', component: UsernameComponent },
+  { path: 'signedIn', component: LandingpageComponent },
+  { path: 'userProfile', component: UserProfileComponent },
 ];
 
 @NgModule({

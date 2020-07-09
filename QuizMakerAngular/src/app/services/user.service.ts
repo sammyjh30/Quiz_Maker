@@ -15,10 +15,9 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  // User  methods
-
-  addUser(name: string, surname: string, email: string): Promise<any> {
+  addUser(userId: string, name: string, surname: string, email: string): Promise<any> {
     const data = {
+      userId,
       name,
       surname,
       email
@@ -27,17 +26,9 @@ export class UserService {
     return this.http.post(UserService.link + '/addUser', data).toPromise();
   }
 
-  getUser(userId: number): Promise<any> {
-    const data = { userId: userId.toString() };
-    return this.http.get(UserService.link + '/getUser', { params: data }).toPromise();
-  }
-
-  getUserByEmail(email: string): Promise<User> {
-    throw new Error("Method not implemented.");
-  }
-
-  updateUser(userId: number, name: string, surname: string, email: string): Promise<any> {  // set null for the stuff you don't want to change
+  updateUser(userId: string, name: string, surname: string, email: string): Promise<any> {  // set null for the stuff you don't want to change
     const data = {
+      userId,
       name,
       surname,
       email
@@ -46,12 +37,22 @@ export class UserService {
     return this.http.put(UserService.link + '/updateUser', data).toPromise();
   }
 
-  deleteUser(userId: number): Promise<any> {
+  deleteUser(userId: string): Promise<any> {
     const data = { userId: userId.toString() };
     return this.http.delete(UserService.link + '/deleteUser', { params: data }).toPromise();
   }
 
-  // Team methods
+  getUser(userId: string): Promise<any> {
+    const data = { userId: userId.toString() };
+    return this.http.get(UserService.link + '/getUser', { params: data }).toPromise();
+  }
+
+  getUserByEmail(emailAddress: string): Promise<any> {
+    const data = {
+      email: emailAddress
+    };
+    return this.http.get(UserService.link + '/getUserByEmail', { params: data }).toPromise();
+  }
 
   addTeam(teamName: string, quizId: number): Promise<any> {
     const data = {
@@ -95,14 +96,6 @@ export class UserService {
 
   // Team member methods
 
-  createCaptainAndTheirTeam(team: Team, captain: TeamMember): Promise<any> {
-    throw new Error("Method not implemented.");
-  }
-
-  addTeamMember(teamMember: TeamMember): Promise<any> {
-    return this.http.post(UserService.link + '/addTeamMember', teamMember).toPromise();
-  }
-
   getTeamMembers(teamId: number): Promise<TeamUser[]> {
     const data = { teamId: teamId.toString() };
     return this.http.get<TeamUser[]>(UserService.link + '/getTeamMembers', { params: data }).toPromise();
@@ -112,7 +105,16 @@ export class UserService {
     throw new Error("Method not implemented.");
   }
 
-  removeTeamMember(teamId: number, userId: number): Promise<any> {
+  addTeamMember(teamId: number, userId: string, captain: boolean): Promise<any> {
+    const data = {
+      teamId,
+      userId,
+      captain
+    };
+    return this.http.post(UserService.link + '/addTeamMember', data).toPromise();
+  }
+
+  removeTeamMember(teamId: number, userId: string): Promise<any> {
     const data = {
       teamId,
       userId
@@ -132,6 +134,23 @@ export class UserService {
   }
   getTeamUser(hostId: string): TeamUser {
     throw new Error("Method not implemented.");
+  }
+
+  createCaptainAndTheirTeam(userId: string, name: string, surname: string, email: string, teamName: string, quizId: number): Promise<any> {
+    const data = {
+      userId,
+      name,
+      surname,
+      email,
+      teamName,
+      quizId
+    };
+    return this.http.post(UserService.link + '/removeTeamMember', data).toPromise();
+  }
+
+  getUserDashboard(userId: number): Promise<any> {
+    const data = { userId: userId.toString() };
+    return this.http.get(UserService.link + '/getTeamMembers', { params: data }).toPromise();
   }
 
 }
