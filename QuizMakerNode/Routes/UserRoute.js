@@ -121,7 +121,7 @@ router.get('/getUserByEmail',function(req,res){
         request.query(`
         SELECT * FROM Users 
         WHERE email = @email`).then((data) => {
-                res.status(200).send({'message' : messages[200], 'recordSet':data.recordset})
+                res.status(200).send(data.recordset)
             }).catch((err) => {
                 console.log(err)
                 res.status(500).send({'error':messages[500]})
@@ -346,7 +346,7 @@ router.get('/dashBoard/:userId',function(req,res){
         UNION 
         SELECT Quiz.quizId, 1 as hostBool, 0 as captain,null, Quiz.quizName, Quiz.startDateTime  FROM Quiz
         WHERE Quiz.hostId = @userId`).then((data) => {
-                res.status(200).send({'message' : messages[200], 'recordSet':data.recordset})
+                res.status(200).send(data.recordset)
             }).catch((err) => {
                 console.log(err)
                 res.status(500).send({'error':messages[500]})
