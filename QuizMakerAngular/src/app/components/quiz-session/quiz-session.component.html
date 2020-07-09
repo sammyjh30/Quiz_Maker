@@ -4,9 +4,15 @@
       <app-chat-inbox roomId="{{teamId}}" [socket]="socket"></app-chat-inbox>
     </div>
   </div>
+  <a routerLink="/dashboard">Error</a>
   
+  <!-- ngif host -->
+    <!-- host view -->
   
-  {{user.uid}}
+  <!-- Ngif captain -->
+    <!-- Captain view (can click answers) -->
+  <!-- else player view (can see answers) -->
+  
   <div class="quiz-chat" *ngIf="socket">  
     <app-chat-inbox roomId="{{quizId}}" [socket]="socket"></app-chat-inbox>
   </div> 

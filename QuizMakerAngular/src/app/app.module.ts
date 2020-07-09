@@ -42,6 +42,7 @@ import { ChatInboxComponent } from './components/chat-inbox/chat-inbox.component
 // Landing Carousal
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { QuizComponent } from './quiz/quiz.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
     TeamJoinComponent,
     AppComponent,
     CarouselComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    QuizComponent
   ],
   imports: [
     BrowserModule,

@@ -18,11 +18,11 @@
  }
  .chat-messages-create-input {
     padding: 12px;
-    margin: 29px 30px;
+    margin: 1.75rem 0.2rem;
     flex:2
  }
  .chat-messages-create-button {
     height: 50px;
-    margin: auto 40px;
+    margin: auto 0.2rem;
     width: 100px;
  }
