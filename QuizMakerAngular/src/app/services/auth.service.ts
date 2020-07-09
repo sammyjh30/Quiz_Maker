@@ -107,8 +107,8 @@ export class AuthService {
         })
         let fUser: FireUser = result.user;
         let user: User = {
-          name: fUser.displayName,
-          surname: fUser.displayName,
+          name: fUser.displayName.split(" ", 2)[0],
+          surname: fUser.displayName.split(" ", 2)[1],
           email: fUser.email,
           userId: fUser.uid
         }
