@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { User } from '../Models/user';
+import { Team } from '../Models/team';
+import { TeamMember } from '../Models/teammember';
+import { TeamUser } from '../Models/teamUser';
 
 @Injectable({
   providedIn: 'root'
@@ -36,16 +40,16 @@ export class UserService {
     return this.http.delete(UserService.link + '/deleteUser', { params: data }).toPromise();
   }
 
-  getUser(userId: string): Promise<any> {
+  getUser(userId: string): Promise<User> {
     const data = { userId: userId.toString() };
-    return this.http.get(UserService.link + '/getUser', { params: data }).toPromise();
+    return this.http.get<User>(UserService.link + '/getUser', { params: data }).toPromise();
   }
 
-  getUserByEmail(emailAddress: string): Promise<any> {
+  getUserByEmail(emailAddress: string): Promise<User> {
     const data = {
       email: emailAddress
     };
-    return this.http.get(UserService.link + '/getUserByEmail', data).toPromise();
+    return this.http.put<User>(UserService.link + '/getUserByEmail', data).toPromise();
   }
 
   addTeam(teamName: string, quizId: number): Promise<any> {
@@ -69,14 +73,14 @@ export class UserService {
     return this.http.delete(UserService.link + '/deleteTeam', { params: data }).toPromise();
   }
 
-  getTeam(teamId: number): Promise<any> {
+  getTeam(teamId: number): Promise<Team> {
     const data = { teamId: teamId.toString() };
-    return this.http.get(UserService.link + '/getTeam', { params: data }).toPromise();
+    return this.http.get<Team>(UserService.link + '/getTeam', { params: data }).toPromise();
   }
 
-  getTeamsByQuizId(quizId: number): Promise<any> {
+  getTeamsByQuizId(quizId: number): Promise<Team[]> {
     const data = { quizId: quizId.toString() };
-    return this.http.get(UserService.link + '/getTeamsByQuizId', { params: data }).toPromise();
+    return this.http.get<Team[]>(UserService.link + '/getTeamsByQuizId', { params: data }).toPromise();
   }
 
   increaseTeamScore(teamId: number, amountToAdd: number): Promise<any> {
@@ -88,9 +92,9 @@ export class UserService {
     return this.http.put(UserService.link + '/increaseScore', data).toPromise();
   }
 
-  getTeamMembers(teamId: number): Promise<any> {
+  getTeamMembers(teamId: number): Promise<TeamMember[]> {
     const data = { teamId: teamId.toString() };
-    return this.http.get(UserService.link + '/getTeamMembers', { params: data }).toPromise();
+    return this.http.get<TeamMember[]>(UserService.link + '/getTeamMembers', { params: data }).toPromise();
   }
 
   addTeamMember(teamId: number, userId: string, captain: boolean): Promise<any> {
@@ -108,7 +112,8 @@ export class UserService {
       userId
     };
     const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }), body: data
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      body: data
     };
     return this.http.delete(UserService.link + '/removeTeamMember', httpOptions).toPromise();
   }
@@ -129,5 +134,39 @@ export class UserService {
     const data = { userId: userId.toString() };
     return this.http.get(UserService.link + '/getTeamMembers', { params: data }).toPromise();
   }
+
+
+  removeMember(member: TeamUser): Promise<TeamUser[]> {
+    return this.removeTeamMember(member.teamId, member.userId).then((data) => {
+      return this.getTeamUsersByTeamId(member.teamId);
+    }).catch((err) => {
+      console.log(err);
+      return this.getTeamUsersByTeamId(member.teamId);
+    });
+  }
+
+  getUserByEmailandTeamId(email: string, teamId: number): Promise<TeamUser> {
+    const data = { email, teamId: teamId.toString() };
+    return this.http.get<TeamUser>(UserService.link + '/getTeamsByQuizId', { params: data }).toPromise();
+  }
+
+  getTeamUsersByTeamId(teamId: number): Promise<TeamUser[]> {
+    const data = { teamId: teamId.toString() };
+    return this.http.get<TeamUser[]>(UserService.link + '/getTeamUserByTeamId', { params: data }).toPromise();
+  }
+
+  changeCaptainRandom(teamId: number): Promise<any> {
+    const data = { teamId: teamId.toString() };
+    return this.http.put(UserService.link + '/changeCaptainRandom', { params: data }).toPromise();
+  }
+
+  changeCaptain(teamId: number, userId: string): Promise<any> {
+    const data = {
+      teamId,
+      userId
+    };
+    return this.http.put(UserService.link + '/changeCaptain', data).toPromise();
+  }
+
 
 }
