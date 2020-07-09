@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -43,6 +43,9 @@ import { ChatInboxComponent } from './components/chat-inbox/chat-inbox.component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { QuizComponent } from './quiz/quiz.component';
+import { CreateQuizComponent } from './components/create-quiz/create-quiz.component';
+import { TFquestionComponent } from './components/create-quiz/Questions/tfquestion/tfquestion.component';
+import { MultipleChoiceQuestionsComponent } from './components/create-quiz/Questions/multiple-choice-questions/multiple-choice-questions.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +75,10 @@ import { QuizComponent } from './quiz/quiz.component';
     AppComponent,
     CarouselComponent,
     LandingPageComponent,
-    QuizComponent
+    QuizComponent,
+    CreateQuizComponent,
+    TFquestionComponent,
+    MultipleChoiceQuestionsComponent
   ],
   imports: [
     BrowserModule,

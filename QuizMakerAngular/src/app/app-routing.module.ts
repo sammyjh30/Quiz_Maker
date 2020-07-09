@@ -15,6 +15,7 @@ import { LandingpageComponent } from './components/landingpage/landingpage.compo
 import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
 import { TeamViewComponent } from './components/team-view/team-view.component';
 import { TeamJoinComponent } from './components/team-join/team-join.component';
+import { CreateQuizComponent } from './components/create-quiz/create-quiz.component';
 
 // Import canActivate guard services
 import { AuthGuard } from "./guard/auth.guard";
@@ -38,6 +39,7 @@ const routes: Routes = [
   { path: 'username', component: UsernameComponent },
   { path: 'signedIn', component: LandingpageComponent },
   { path: 'userProfile', component: UserProfileComponent },
+  { path: 'createQuiz', component: CreateQuizComponent }
 ];
 
 @NgModule({
