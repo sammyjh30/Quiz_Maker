@@ -32,6 +32,17 @@ export class MailerService {
       });
   }
 
+  sendTestEmail(): void {
+    let email: Email = {
+      to: "kevinjulius97@gmail.com",
+      subject: "Quiz: Test Email",
+      html:
+        `<p>Hi Test</p>` +
+        `<p>This is a test email</p>`
+    };
+    this.sendEmail(email);
+  }
+
   sendInvitationEmail(quiz: Quiz, team: Team, captain: TeamUser, user: TeamUser): void {
     let email: Email = {
       to: user.email,
