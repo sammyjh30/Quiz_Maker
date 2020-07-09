@@ -39,6 +39,13 @@ export class UserService {
     return this.http.get(UserService.link + '/getUser', { params: data }).toPromise();
   }
 
+  getUserByEmail(emailAddress: string): Promise<any> {
+    const data = {
+      email: emailAddress
+    };
+    return this.http.get(UserService.link + '/getUserByEmail', data).toPromise();
+  }
+
   addTeam(teamName: string, quizId: number): Promise<any> {
     const data = {
       teamName,
@@ -113,6 +120,11 @@ export class UserService {
       quizId
     };
     return this.http.post(UserService.link + '/removeTeamMember', data).toPromise();
+  }
+
+  getUserDashboard(userId: number): Promise<any> {
+    const data = { userId: userId.toString() };
+    return this.http.get(UserService.link + '/getTeamMembers', { params: data }).toPromise();
   }
 
 }
