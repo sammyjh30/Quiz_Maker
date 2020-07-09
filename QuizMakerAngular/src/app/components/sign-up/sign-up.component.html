@@ -1,7 +1,7 @@
 <div class="topnav">
-	<a class="active" href="C:/Users/liebenbergd03/Desktop/Quizz Website/Login.html">Login</a>
+	<a routerLink="/log-in">Login</a>
 </div>
-<body class="login_body">
+<body class="Register_body">
 
 	<form class="register_form">
 		<h1>Register Here</h1>
@@ -24,5 +24,6 @@
 		</div>
         <button class="btn google" data-provider="google" (click)="authService.GoogleAuth()"><i class="fab fa-google"></i><span>Google</span></button><br>
         <br>
-		<a class="redirect" routerLink="log-in">Already have an account?</a>
-	</form>
+		<a routerLink="/log-in">Already have an account?</a>
+  </form>
+</body>
