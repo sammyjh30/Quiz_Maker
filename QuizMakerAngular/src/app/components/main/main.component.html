@@ -12,25 +12,19 @@
             
           </tr>
       </thead>
-      <tbody>
+      <tbody *ngFor="let quiz of quizzes">
         <tr>
-          <td>Quizz night</td>
-          <td>Player</td>
-          <td>Now</td>
-          
+          <td><a routerLink="/quiz-session/{{quiz.quizId}}">{{quiz.quizName}}</a></td>
+          <td>
+            <div *ngIf="quiz.hostBool == 1; else playerContent">
+              Host
+            </div>
+            <ng-template #playerContent>
+              Player
+            </ng-template>
+          </td>      
+          <td>{{quiz.startDateTime}}</td>
         </tr>
-        <tr>
-            <td>Quizz night</td>
-            <td>Player</td>
-            <td>Now</td>
-            
-          </tr>
-          <tr>
-            <td>Quizz night</td>
-            <td>Player</td>
-            <td>Now</td>
-            
-          </tr>
       </tbody>
     </table>
   </div>
