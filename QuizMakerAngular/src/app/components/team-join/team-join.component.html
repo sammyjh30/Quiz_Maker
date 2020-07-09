@@ -1,0 +1,19 @@
+<h1>
+  Quiz Name: {{quiz.quizName}}
+</h1>
+
+<h2>
+  Start Time: {{quiz.startDateTime | date : 'HH:mm yyyy-MM-dd'}}
+</h2>
+
+<h2>
+  Team Name: {{team.teamName}}
+</h2>
+
+<h2>
+  Team Captain: {{captain.name}} {{captain.surname}}
+</h2>
+
+<button title="join team" (click)="acceptInvitation()">Accept Invitation</button>
+
+<button title="reject team" (click)="rejectInvitation()">Reject Invitation</button>

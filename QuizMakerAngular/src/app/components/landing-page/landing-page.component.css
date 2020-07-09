@@ -1,9 +1,9 @@
 .main{
-  width: 100%;
-  height: 100%;
+  width: 200vh;
+  height: 100vh;
   padding: 0;
-  margin: 0;
-  background-image: url("C:/Users/liebenbergd03/Desktop/GitHub/Quiz_Maker/QuizMakerAngular/src/assets/img/login.jpg");
+  margin: 20;
+  background-image: url("/src/assets/img/login.jpg");
   background-color: black;
   background-size: cover;
   background-position: center center;
@@ -72,4 +72,11 @@
   margin: 100px;
   font-weight: bold;
   font-family: sans-serif;
+}
+
+.container {
+  display: block;
+  height: 100%;
+  width: 40%;
+  padding: 10px;
 }
