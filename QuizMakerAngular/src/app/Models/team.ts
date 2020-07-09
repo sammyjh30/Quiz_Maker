@@ -3,4 +3,5 @@ export interface Team {
   teamName: string;
   quizId: number;
   teamScore?: number;
+  teamCaptainId?: number;
 }

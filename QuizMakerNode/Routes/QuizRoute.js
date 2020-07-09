@@ -127,7 +127,7 @@ router.get('/getQuestionsByQuestionId/:questionId',function(req,res){
                     wrongAnswer3: data.wrongAnswer3
                 });
             }
-            res.status(200).send(response)
+            res.status(200).send(response[0])
         }).catch((err) => {
             console.log(err)
             res.status(500).send({'error':messages[500]})
@@ -175,7 +175,7 @@ router.post('/addQuiz',function(req,res){
         VALUES (@quizName,@hostId,@startDateTime); 
            
         SELECT SCOPE_IDENTITY() AS quizId;`).then((data)=> {
-            res.status(201).send(data.recordset)
+            res.status(201).send(data.recordset[0])
         }).catch((err) => {
             console.log(err)
             res.status(500).send({'error':messages[500]})
