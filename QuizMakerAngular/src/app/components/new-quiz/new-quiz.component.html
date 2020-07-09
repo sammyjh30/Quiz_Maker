@@ -11,7 +11,7 @@
                         [ngSwitch]="currentFormContent[i][field].type"
                     >
                         <ng-container *ngSwitchCase="'datetime'">
-                            <label class="field-label text-bold" [for]="field">{{ field | formatTitle }}</label>
+                            <label class="field-label" [for]="field">{{ field | formatTitle }}</label>
 
                             <input 
                                 [type]="datetime-local"
@@ -27,12 +27,12 @@
                                 [formControlName]="field"
                                 [id]="field"
                                 >
-                                <label class="field-label text-bold" [for]="field">{{ field | formatTitle }}</label>
+                                <label class="field-label" [for]="field">{{ field | formatTitle }}</label>
                             </div>
                         </ng-container>
 
                         <ng-container *ngSwitchDefault>
-                            <label class="field-label text-bold" [for]="field">{{ field | formatTitle }}</label>
+                            <label class="field-label" [for]="field">{{ field | formatTitle }}</label>
 
                             <input 
                                 [type]="currentFormContent[i][field].type"
@@ -57,7 +57,10 @@
 
                 <!-- FRAME 2 -->
                 <div *ngIf="i === 1">
-                    <h3>Round {{ roundNumer }} of {{ numberOfRounds }}</h3>
+                    <h3>Round {{ roundNumber }} of {{ numberOfRounds }}</h3>
+                    <div>
+                        <mat-slide-toggle [ngModel]="isChecked">{{ isChecked }}</mat-slide-toggle>
+                    </div>
                     <div
                         *ngFor="let field of formFields[i]; trackBy: trackByFn"
                         [ngSwitch]="currentFormContent[i][field].type"
@@ -69,7 +72,18 @@
                         </ng-container>
 
                         <ng-container *ngSwitchDefault>
-                            <label class="field-label text-bold" [for]="field">{{ field | formatTitle }}</label>
+                            <ng-template [ngIf]="isQuestion(field)" [ngIfElse]="notQuestion">
+                                <label class="field-label" [for]="field">
+                                    {{ field | formatTitle }}  {{ questionNumber }}
+                                </label>
+                            </ng-template>
+
+                            <ng-template #notQuestion>
+                                <label class="field-label"
+                                      [for]="field">
+                                      {{ field | formatTitle }}
+                                </label>
+                            </ng-template>
 
                             <input 
                                 [type]="currentFormContent[i][field].type"
@@ -77,6 +91,7 @@
                                 [id]="field"
                             >
                         </ng-container>
+                        
 
                         <p
                             class="validation-error"
@@ -92,7 +107,7 @@
                 <!-- FRAME 2 -->
 
                 <!-- FRAME 3 -->
-                <div *ngIf="i === 2">
+                <div class="fields-container" *ngIf="i === 2">
                     <div
                         *ngFor="let field of formFields[i]; trackBy: trackByFn"
                         [ngSwitch]="currentFormContent[i][field].type"
@@ -111,12 +126,12 @@
                                 [formControlName]="field"
                                 [id]="field"
                                 >
-                                <label class="field-label text-bold" [for]="field">{{ field | formatTitle }}</label>
+                                <label class="field-label" [for]="field">{{ field | formatTitle }}</label>
                             </div>
                         </ng-container>
 
                         <ng-container *ngSwitchDefault>
-                            <label class="field-label text-bold" [for]="field">{{ field | formatTitle }}</label>
+                            <label class="field-label" [for]="field">{{ field | formatTitle }}</label>
 
                             <input 
                                 [type]="currentFormContent[i][field].type"
@@ -139,64 +154,6 @@
                 </div>
                 <!-- FRAME 3 -->
                 
-                <!-- <div class="fields-container">
-                    <div
-                        *ngFor="let field of formFields[i]; trackBy: trackByFn"
-                        [ngSwitch]="currentFormContent[i][field].type"
-                    >
-
-                        <ng-container *ngSwitchCase="'button'">
-                            <button type="button">
-                                {{ field | formatTitle }}
-                            </button>
-                        </ng-container>
-
-                        
-                        <ng-container *ngSwitchCase="'datetime'">
-                            <label class="field-label text-bold" [for]="field">{{ field | formatTitle }}</label>
-
-                            <input 
-                                [type]="datetime-local"
-                                [formControlName]="field"
-                                [id]="field"
-                            >
-                        </ng-container>
-
-                        <ng-container *ngSwitchCase="'checkbox'">
-                            <div class="checkbox">
-                                <input 
-                                type="checkbox"
-                                (change)="checkOption('field')"
-                                [formControlName]="field"
-                                [id]="field"
-                                >
-                                <label class="field-label text-bold" [for]="field">{{ field | formatTitle }}</label>
-                            </div>
-                        </ng-container>
-
-                        <ng-container *ngSwitchDefault>
-                            <label class="field-label text-bold" [for]="field">{{ field | formatTitle }}</label>
-
-                            <input 
-                                [type]="currentFormContent[i][field].type"
-                                [formControlName]="field"
-                                [id]="field"
-                                (change)="onInputChange()"
-                            >
-                        </ng-container>
-
-                        <p
-                            class="validation-error"
-                            *ngIf="(masterForm[i].get(field).dirty || masterForm[i].get(field).touched) &&
-                                masterForm[i].get(field).invalid &&
-                                masterForm[i].get(field).errors
-                            "
-                        >
-                            {{ getValidationMessage(i, field) }}
-                        </p>
-                    </div>
-                </div> -->
-
                 <!-- FRAME 4 -->
                 <div
                 class="preview-container"

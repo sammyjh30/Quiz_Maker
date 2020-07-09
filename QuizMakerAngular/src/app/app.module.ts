@@ -18,7 +18,8 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { NewQuizComponent } from './components/new-quiz/new-quiz.component';
-import { FormatTitlePipe } from './pipes/format-title.pipe.pipe'
+import { FormatTitlePipe } from './pipes/format-title.pipe.pipe';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 // services
 import { AuthService } from './services/auth.service';
@@ -41,6 +42,7 @@ import {TokenInterceptorService} from "./providers/token-interceptor.service";
   imports: [
     BrowserModule,
     FormsModule,
+    MatSlideToggleModule,
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,

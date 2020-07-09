@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 
+import { QuizDataService } from '../../services/quiz-data.service'
+import { VirtualTimeScheduler } from 'rxjs';
+
 @Component({
   selector: 'app-new-quiz',
   templateUrl: './new-quiz.component.html',
@@ -15,6 +18,9 @@ export class NewQuizComponent implements OnInit {
   questionNumber: number;
   roundNumber: number;
   numberOfRounds: number;
+  isChecked = true;
+
+  
 
   activeStepIndex: number;
   currentFormContent: Array<any>;
@@ -24,7 +30,7 @@ export class NewQuizComponent implements OnInit {
   stepItems: Array<any>;
   masterForm: Array<FormGroup>;
 
-  constructor(private readonly formBuilder: FormBuilder) { }
+  constructor(private readonly formBuilder: FormBuilder, private quizData: QuizDataService) { }
 
   ngOnInit(): void {
 
@@ -45,128 +51,155 @@ export class NewQuizComponent implements OnInit {
     });
   }
 
-   buildForm(currentFormContent: any): FormGroup {
-      const formDetails = Object.keys(currentFormContent).reduce(
-        (obj, key) => {
-          obj[key] = ['', this.getValidators(currentFormContent[key])];
+  buildForm(currentFormContent: any): FormGroup {
+    const formDetails = Object.keys(currentFormContent).reduce(
+      (obj, key) => {
+        obj[key] = ['', this.getValidators(currentFormContent[key])];
 
-          return obj;
-        },
-        {}
-      );
+        return obj;
+      },
+      {}
+    );
 
-      return this.formBuilder.group(formDetails);
+    return this.formBuilder.group(formDetails);
+  }
+
+  getValidators(formField: any): Validators {
+    if (formField.validations) {
+      const fieldValidators = Object.keys(formField.validations).map(validator => {
+        if (validator === 'required') {
+          return Validators[validator];
+        } else {
+          return Validators[validator](formField.validations[validator]);
+        }
+      });
+
+      return fieldValidators;
     }
 
-    getValidators(formField: any): Validators {
-      if (formField.validations) {
-        const fieldValidators = Object.keys(formField.validations).map(validator => {
-          if (validator === 'required') {
-            return Validators[validator];
-          } else {
-            return Validators[validator](formField.validations[validator]);
-          }
-        });
+  }
 
-        return fieldValidators;
+  getValidationMessage(formIndex: number, formFieldName: string): string {
+    const formErrors = this.masterForm[formIndex].get(formFieldName).errors;
+    const errorMessages = this.currentFormContent[formIndex][formFieldName]
+      .errors;
+    const validationError = errorMessages[Object.keys(formErrors)[0]];
+
+    return validationError;
+  }
+
+  goToStep(step: string): void {
+    this.activeStepIndex =
+      step === 'prev' ? this.activeStepIndex - 1 : this.activeStepIndex + 1;
+
+    this.setFormPreview();
+  }
+
+  setFormPreview(): void {
+    this.formData = this.masterForm.reduce(
+      (masterForm, currentForm) => ({ ...masterForm, ...currentForm.value }),
+      {}
+    );
+
+    this.masterFormFields = Object.keys(this.formData);
+  }
+
+  onFormSubmit(): void {
+    this.formSubmit.emit(this.formData);
+  }
+
+  trackByFn(index: number): number {
+    return index;
+  }
+
+  //uncheck other multiple options
+  enableControl(control: AbstractControl, enabled: Boolean) {
+    if (enabled) {
+      control.enable();
+    } else {
+      control.disable();
+    }
+  }
+
+  isQuestion(field) {
+    return field === 'question';
+  }
+
+  save(action) {
+    if (action === 'nextQuestion') {
+      //add question to list 
+      console.warn('adding question to list...')
+      let question = {
+        roundNumber: this.roundNumber,
+        questionType: this.getQuestionType(),
+        questionNumber: this.questionNumber,
+        text: this.masterForm[1].get('question').value,
+        rightAnswer: this.getRightAnswer(),
+        wrongAnswer1: '',
+        wrongAnswer2: '',
+        wrongAnswer3: ''
       }
 
+      this.quizData.addQuestion(question);
+      this.incrementQuestionNumber();
     }
 
-    getValidationMessage(formIndex: number, formFieldName: string): string {
-      const formErrors = this.masterForm[formIndex].get(formFieldName).errors;
-      const errorMessages = this.currentFormContent[formIndex][formFieldName]
-        .errors;
-      const validationError = errorMessages[Object.keys(formErrors)[0]];
-  
-      return validationError;
+    if (action === 'completeRound') {
+      //complete round
+      console.warn('...round complete')
+      this.incrementRoundNumber();
+      this.resetQuestionNumber();
     }
+  }
 
-    goToStep(step: string): void {
-      this.activeStepIndex =
-        step === 'prev' ? this.activeStepIndex - 1 : this.activeStepIndex + 1;
-      
-      this.setFormPreview();
-    }
+  getQuestionType() {
 
-    setFormPreview(): void {
-      this.formData = this.masterForm.reduce(
-        (masterForm, currentForm) => ({ ...masterForm, ...currentForm.value }),
-        {}
-      );
-  
-      this.masterFormFields = Object.keys(this.formData);
-    }
-  
-    onFormSubmit(): void {
-      this.formSubmit.emit(this.formData);
-    }
-  
-    trackByFn(index: number): number {
-      return index;
-    }
+  }
 
-    //uncheck other multiple options
-    enableControl(control: AbstractControl, enabled: Boolean) {
-      if (enabled) {
-        control.enable();
-      } else {
-        control.disable();
-      }
-    }
+  getRightAnswer() {
 
-    save(action) {
-      if (action === 'nextQuestion') {
-        //add question to list 
-        console.warn('adding question to list...')
-      }
+  }
 
-      if (action === 'completeRound') {
-        //complete round
-        console.warn('...round complete')
-      }
-    }
+  incrementQuestionNumber() {
+    ++this.questionNumber;
+  }
 
-    incrementQuestionNumber() {
-      ++this.questionNumber;
-    }
+  incrementRoundNumber() {
+    if (this.roundNumber < this.numberOfRounds) ++this.roundNumber;
+  }
 
-    incrementRoundNumber() {
-      ++this.roundNumber;
-    }
+  resetQuestionNumber() {
+    this.questionNumber = 1;
+  }
 
-    resetQuestionNumber() {
-      this.questionNumber = 1;
-    }
+  resetRoundNumber() {
+    this.roundNumber = 1;
+  }
 
-    resetRoundNumber() {
-      this.roundNumber = 1;
-    }
-    
-    asnswerChecked(answer: string) {
-      // if (aswer)
-    }
+  asnswerChecked(answer: string) {
+    // if (aswer)
+  }
 
-    isMultipleChoiceSelected() {
-      return this.masterForm[0].get('multipleChoice').value;
-    }
+  isMultipleChoiceSelected() {
+    return this.masterForm[0].get('multipleChoice').value;
+  }
 
-    isTrueFalseSelected() {
-      return this.masterForm[0].get('trueFalse').value;
-    }
+  isTrueFalseSelected() {
+    return this.masterForm[0].get('trueFalse').value;
+  }
 
-    onInputChange() {
-      if (this.isNumberOfRounds()) {
-        this.updateNumberOfRounds();
-      }
+  onInputChange() {
+    if (this.isNumberOfRounds()) {
+      this.updateNumberOfRounds();
     }
+  }
 
-    isNumberOfRounds() {
-      return this.masterForm[0].get('numberOfRounds').value;
-    }
+  isNumberOfRounds() {
+    return this.masterForm[0].get('numberOfRounds').value;
+  }
 
-    updateNumberOfRounds() {
-      this.numberOfRounds = this.masterForm[0].get('numberOfRounds').value;
-    }
+  updateNumberOfRounds() {
+    this.numberOfRounds = this.masterForm[0].get('numberOfRounds').value;
+  }
 
 }
