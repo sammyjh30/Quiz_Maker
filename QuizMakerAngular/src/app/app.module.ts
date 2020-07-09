@@ -22,8 +22,8 @@ import { LandingpageComponent } from './landingpage/landingpage.component';
 
 
 // Firebase services + enviorment module
-import { AngularFireModule } from "@angular/fire";
-import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -36,7 +36,12 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { AuthService } from './services/auth.service';
 import { HackermanService } from './services/hackerman.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import {TokenInterceptorService} from "./providers/token-interceptor.service";
+import {TokenInterceptorService} from './providers/token-interceptor.service';
+import { CarouselComponent } from './components/carousel/carousel.component';
+
+// Landing Carousal
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 
 
 @NgModule({
@@ -58,18 +63,25 @@ import {TokenInterceptorService} from "./providers/token-interceptor.service";
     SignUpComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
+    CarouselComponent,
+    AppComponent,
+    CarouselComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
- 
+
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    BrowserModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
