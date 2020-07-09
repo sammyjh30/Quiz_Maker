@@ -37,6 +37,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 // Landing Carousal
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { CreateQuizComponent } from './components/create-quiz/create-quiz.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
     TeamJoinComponent,
     AppComponent,
     CarouselComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    CreateQuizComponent
   ],
   imports: [
     BrowserModule,

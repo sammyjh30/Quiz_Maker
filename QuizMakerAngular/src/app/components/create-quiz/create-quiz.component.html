@@ -1,0 +1,19 @@
+<p>create-quiz works!</p>
+
+<form [formGroup]="quizForm" (ngSubmit)="onSubmit(quizForm.value)">
+    <div>
+        <label for="quizName">
+            QuizName
+        </label>
+        <input id="quizName" type="text" formControlName="quizName">
+    </div>
+
+    <div>
+        <label for="startDateTime">
+            Start Date Time
+        </label>
+        <input id="startDateTime" type="datetime-local" formControlName="startDateTime">
+    </div>
+
+    <button class="button" type="submit">create</button>
+</form>
