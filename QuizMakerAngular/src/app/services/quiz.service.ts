@@ -10,9 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class QuizService {
 
-  private static link = 'http://localhost:3000';
-
-  mailerUrl = environment.endpoints.mailerEndpoint;
+  link = environment.endpoints.quizEndpoint;
   httpOptions = {
     headers: new HttpHeaders({
       Authorization: `Bearer ${localStorage.getItem('idToken')}`
@@ -36,7 +34,7 @@ export class QuizService {
       correctAnswer
     };
 
-    return this.http.post(QuizService.link + '/addQuestion', data).toPromise();
+    return this.http.post(this.link + '/addQuestion', data, this.httpOptions).toPromise();
   }
 
   addQuestionMultipleChoice(quizId: number, roundNumber: number, questionNumber: number, question: string, rightAnswer: string, wrongAnswer1: string, wrongAnswer2: string, wrongAnswer3: string): Promise<any> {
@@ -53,22 +51,22 @@ export class QuizService {
       wrongAnswer3
     };
 
-    return this.http.post(QuizService.link + '/addQuestion', data).toPromise();
+    return this.http.post(this.link + '/addQuestion', data, this.httpOptions).toPromise();
   }
 
   deleteQuestion(questionId: number): Promise<any> {
-    const data = { questionId: questionId.toString() };
-    return this.http.delete(QuizService.link + '/deleteQuestion', { params: data }).toPromise();
+    let url = `${this.link}/deleteQuestion/${questionId}`;
+    return this.http.delete(url, this.httpOptions).toPromise();
   }
 
   getQuestionsByQuizId(quizId: number): Promise<Question[]> {
-    const data = { quizId: quizId.toString() };
-    return this.http.get<Question[]>(QuizService.link + '/getQuestionsByQuizId', { params: data }).toPromise();
+    let url = `${this.link}/getQuestionsByQuizId/${quizId}`;
+    return this.http.get<Question[]>(url, this.httpOptions).toPromise();
   }
 
   getQuestionsByQuestionId(questionId: number): Promise<Question> {
-    const data = { questionId: questionId.toString() };
-    return this.http.get<Question>(QuizService.link + '/getQuestionsByQuestionId', { params: data }).toPromise();
+    let url = `${this.link}/getQuestionsByQuestionId/${questionId}`;
+    return this.http.get<Question>(url, this.httpOptions).toPromise();
   }
 
   updateQuestionTF(questionId: number, quizId: number, roundNumber: number, questionNumber: number, question: string, correctAnswer: boolean): Promise<any> { //set the stuff you dont wanna change to null
@@ -81,8 +79,7 @@ export class QuizService {
       text: question,
       correctAnswer
     };
-
-    return this.http.put(QuizService.link + '/updateQuestion', data).toPromise();
+    return this.http.put(this.link + '/updateQuestion', data, this.httpOptions).toPromise();
   }
 
   updateQuestionMultipleChoice(questionId: number, quizId: number, roundNumber: number, questionNumber: number, question: string, rightAnswer: string, wrongAnswer1: string, wrongAnswer2: string, wrongAnswer3: string): Promise<any> {//set the stuff you dont wanna change to null
@@ -100,7 +97,7 @@ export class QuizService {
       wrongAnswer3
     };
 
-    return this.http.put(QuizService.link + '/updateQuestion', data).toPromise();
+    return this.http.put(this.link + '/updateQuestion', data, this.httpOptions).toPromise();
   }
 
   addQuiz(quizName: string, hostId: string, startDateTime: Date): Promise<any> {
@@ -111,23 +108,23 @@ export class QuizService {
       startDateTime
     };
 
-    return this.http.post(QuizService.link + '/addQuiz', data).toPromise();
+    return this.http.post(this.link + '/addQuiz', data, this.httpOptions).toPromise();
   }
 
 
   deleteQuiz(quizId: number): Promise<any> {
-    const data = { quizId: quizId.toString() };
-    return this.http.delete(QuizService.link + '/deleteQuiz', { params: data }).toPromise();
+    let url = `${this.link}/deleteQuiz/${quizId}`;
+    return this.http.delete(url, this.httpOptions).toPromise();
   }
 
   getQuizByQuizId(quizId: number): Promise<Quiz> {
-    const data = { quizId: quizId.toString() };
-    return this.http.get<Quiz>(QuizService.link + '/getQuiz', { params: data }).toPromise();
+    let url = `${this.link}/getQuiz/${quizId}`;
+    return this.http.get<Quiz>(url, this.httpOptions).toPromise();
   }
 
   getQuizByHostId(hostId: string): Promise<Quiz> {
-    const data = { hostId: hostId.toString() };
-    return this.http.get<Quiz>(QuizService.link + '/getQuizByHostId', { params: data }).toPromise();
+    let url = `${this.link}/getQuizByHostId/${hostId}`;
+    return this.http.get<Quiz>(url, this.httpOptions).toPromise();
   }
 
   updateQuiz(quizId: number, quizName: string, hostId: string, startDateTime: Date): Promise<any> { //set the stuff you dont wanna change to null
@@ -139,7 +136,7 @@ export class QuizService {
       startDateTime
     };
 
-    return this.http.post(QuizService.link + '/updateQuiz', data).toPromise();
+    return this.http.post(this.link + '/updateQuiz', data, this.httpOptions).toPromise();
   }
 
 }
