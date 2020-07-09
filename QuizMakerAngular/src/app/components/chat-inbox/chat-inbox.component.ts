@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as io from 'socket.io-client'
+import { AuthService } from "../../services/auth.service";
 
 const SOCKET_ENDPOINT = 'localhost:3001';
 
@@ -9,43 +10,35 @@ const SOCKET_ENDPOINT = 'localhost:3001';
   styleUrls: ['./chat-inbox.component.css']
 })
 export class ChatInboxComponent implements OnInit {
-  socket;
   message: string;
+  messages: string[] = [];
   // Room id (either quiz or team)
-  @Input()
-  public roomId: string;
+  @Input() public roomId: string;
+  @Input() public socket: SocketIOClient.Socket;
 
-  constructor() { }
+  constructor(public authService: AuthService) {}
 
   ngOnInit(): void {
-    this.setupSocketConnection();
+    if (this.socket != null) {
+      this.setupRoomConnection();
+    }
   }
 
-  setupSocketConnection() {
-    console.log("ROOM ID: " + this.roomId)
-    this.socket = io(SOCKET_ENDPOINT, {query: 'roomId='+ this.roomId});
+  setupRoomConnection() {
+    this.socket.emit('join', this.roomId);
 
-    this.socket.on('message-broadcast', (data: string) => {
-      if (data) {
-       const element = document.createElement('li');
-       element.innerHTML = data;
-       element.style.background = 'white';
-       element.style.padding =  '15px 30px';
-       element.style.margin = '10px';
-       document.getElementById('message-list').appendChild(element);
+    this.socket.on('message-broadcast', (data) => {
+      if (data.roomId === this.roomId && data.msg) {
+        this.messages.push(data.username + ": " + data.msg + "\t" + data.timeStamp);
        }
      });
   }
 
   SendMessage() {
-    this.socket.emit('message', this.message);
-    const element = document.createElement('li');
-    element.innerHTML = this.message;
-    element.style.background = 'white';
-    element.style.padding =  '15px 30px';
-    element.style.margin = '10px';
-    element.style.textAlign = 'right';
-    document.getElementById('message-list').appendChild(element);
+    var date = new Date();
+    var time = date.getHours() + ":" + date.getMinutes()
+    this.socket.emit('message', this.message, this.roomId, time);
+    this.messages.push( this.authService.userData.displayName + ": " + this.message + "\t" + time);
     this.message = '';
   }
 

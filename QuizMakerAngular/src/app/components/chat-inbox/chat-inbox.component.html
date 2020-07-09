@@ -1,6 +1,7 @@
 <div class="chat-messages">
     <div class="chat-messages-show-container">
-      <ul class="chat-messages-show-list" id="message-list">
+      <ul class="chat-messages-show-list" id="message-list" *ngFor="let message of messages">
+          <li style="background: white; padding: 15px 30px; margin: 10px;">{{message}}</li>
       </ul>
     </div>
     <div class="chat-messages-create-container"> 
