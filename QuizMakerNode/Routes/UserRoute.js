@@ -6,15 +6,18 @@ const messages = require('../Global/Messages');
 router.post('/addUser',function(req,res){
     conn.poolPromise.then((pool)=> {
         const request = pool.request();
+        request.input('userId',req.body.userId)
         request.input('name', req.body.name);
         request.input('surname', req.body.surname);
         request.input('email', req.body.email);
         request.query(`INSERT INTO [dbo].[Users]
-           ([name]
+           ([userId],
+            [name]
            ,[surname]
            ,[email])
         VALUES
-           (@name
+           (@userId
+            ,@name
            ,@surname
            ,@email); 
            
@@ -297,6 +300,7 @@ router.delete('/removeTeamMember', function(req,res){
 router.post('/createCaptainAndTeam',function(req,res){
     conn.poolPromise.then((pool)=> {
         const request = pool.request();
+        request.input('userId',req.body.userId)
         request.input('name', req.body.name);
         request.input('surname',req.body.surname)
         request.input('email',req.body.email)

@@ -95,7 +95,7 @@ export class QuizService {
     return this.http.put(QuizService.link + '/updateQuestion', data).toPromise();
   }
 
-  addQuiz(quizName: string, hostId: number, startDateTime: Date): Promise<any> {
+  addQuiz(quizName: string, hostId: string, startDateTime: Date): Promise<any> {
 
     const data = {
       quizName,
@@ -117,12 +117,12 @@ export class QuizService {
     return this.http.get(QuizService.link + '/getQuiz', { params: data }).toPromise();
   }
 
-  getQuizByHostId(hostId: number): Promise<any> {
+  getQuizByHostId(hostId: string): Promise<any> {
     const data = { hostId: hostId.toString() };
     return this.http.get(QuizService.link + '/getQuizByHostId', { params: data }).toPromise();
   }
 
-  updateQuiz(quizId: number, quizName: string, hostId: number, startDateTime: Date): Promise<any> { //set the stuff you dont wanna change to null
+  updateQuiz(quizId: number, quizName: string, hostId: string, startDateTime: Date): Promise<any> { //set the stuff you dont wanna change to null
 
     const data = {
       quizId,
