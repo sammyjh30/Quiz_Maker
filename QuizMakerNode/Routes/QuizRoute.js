@@ -19,7 +19,7 @@ router.post('/addQuestion',function(req,res){
         request.input('wrongAnswer2', conn.sql.VarChar , req.body.wrongAnswer2)
         request.input('wrongAnswer3', conn.sql.VarChar , req.body.wrongAnswer3)
         request.execute(`InsertQuestion`).then((data) => {
-            res.status(201).send({'message' : messages[200], 'recordSet':data.recordset})
+            res.status(201).send(data.recordset[0])
         }).catch((err) => {
             console.log(err)
             res.status(500).send({'error':messages[500]})
@@ -56,7 +56,34 @@ router.get('/getQuestionsByQuizId/:quizId', function(req,res){
         LEFT JOIN MultipleChoiceQuestions ON Questions.questionId = MultipleChoiceQuestions.questionId
         WHERE quizId = @quizId
         ORDER BY roundNumber, questionNumber`).then((data) => {
-            res.status(200).send({'message' : messages[200], 'recordSet':data.recordset})
+            data = data.recordset; 
+            const response = [];
+            data.forEach(element => {
+                if(element.questionType === 1){
+                    response.push({
+                        questionId: element.questionId,
+                        roundNumber: element.roundNumber,
+                        questionType: element.questionType,
+                        questionNumber: element.questionNumber,
+                        correctAnswer: element.correctAnswer,
+                        question: element.text
+                    });
+                }else {
+                    response.push({
+                        questionId: element.questionId,
+                        roundNumber: element.roundNumber,
+                        questionType: element.questionType,
+                        questionNumber: element.questionNumber,
+                        question: element.multiText ,
+                        rightAnswer: element.rightAnswer,
+                        wrongAnswer1:element.wrongAnswer1,
+                        wrongAnswer2: element.wrongAnswer2,
+                        wrongAnswer3: element.wrongAnswer3
+                    });
+                }
+        }); 
+            res.status(200).send(response)
+            
         }).catch((err) => {
             console.log(err)
             res.status(500).send({'error':messages[500]})
@@ -76,7 +103,31 @@ router.get('/getQuestionsByQuestionId/:questionId',function(req,res){
         LEFT JOIN MultipleChoiceQuestions ON Questions.questionId = MultipleChoiceQuestions.questionId
         WHERE Questions.questionId = @questionId
         ORDER BY roundNumber, questionNumber`).then((data) => {
-            res.status(200).send({'message' : messages[200], 'recordSet':data.recordset})
+            data = data.recordset[0]; 
+            const response = [];
+            if(data.questionType === 1){
+                response.push({
+                    questionId: data.questionId,
+                    roundNumber: data.roundNumber,
+                    questionType: data.questionType,
+                    questionNumber: data.questionNumber,
+                    correctAnswer: data.correctAnswer,
+                    question: data.text
+                });
+            }else {
+                response.push({
+                    questionId: data.questionId,
+                    roundNumber: data.roundNumber,
+                    questionType: data.questionType,
+                    questionNumber: data.questionNumber,
+                    question: data.multiText ,
+                    rightAnswer: data.rightAnswer,
+                    wrongAnswer1:data.wrongAnswer1,
+                    wrongAnswer2: data.wrongAnswer2,
+                    wrongAnswer3: data.wrongAnswer3
+                });
+            }
+            res.status(200).send(response)
         }).catch((err) => {
             console.log(err)
             res.status(500).send({'error':messages[500]})
@@ -123,8 +174,8 @@ router.post('/addQuiz',function(req,res){
         request.query(`INSERT INTO Quiz(quizName,HostId,startDateTime) 
         VALUES (@quizName,@hostId,@startDateTime); 
            
-        SELECT SCOPE_IDENTITY() AS id;`).then((data)=> {
-            res.status(201).send({'message' : messages[201], 'recordSet':data.recordset})
+        SELECT SCOPE_IDENTITY() AS quizId;`).then((data)=> {
+            res.status(201).send(data.recordset)
         }).catch((err) => {
             console.log(err)
             res.status(500).send({'error':messages[500]})
@@ -157,7 +208,7 @@ router.get('/getQuiz/:quizId',function(req,res){
         const request = pool.request();
         request.input('quizId',req.params.quizId)
         request.query(`SELECT * FROM quiz WHERE quizId = @quizId`).then((data) => {
-            res.status(200).send({'message' : messages[200], 'recordSet':data.recordset})
+            res.status(200).send(data.recordset)
         }).catch((err) => {
             console.log(err)
             res.status(500).send({'error':messages[500]})
@@ -173,7 +224,7 @@ router.get('/getQuizByHostId/:hostId',function(req,res){ //can be change to be l
         const request = pool.request();
         request.input('hostId',req.params.hostId)
         request.query(`SELECT * FROM quiz WHERE hostId =  @hostId`).then((data) => {
-            res.status(200).send({'message' : messages[200], 'recordSet':data.recordset})
+            res.status(200).send(data.recordset)
         }).catch((err) => {
             console.log(err)
             res.status(500).send({'error':messages[500]})

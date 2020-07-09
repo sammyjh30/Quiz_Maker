@@ -9,8 +9,9 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  addUser(name: string, surname: string, email: string): Promise<any> {
+  addUser(userId: string, name: string, surname: string, email: string): Promise<any> {
     const data = {
+      userId,
       name,
       surname,
       email
@@ -19,8 +20,9 @@ export class UserService {
     return this.http.post(UserService.link + '/addUser', data).toPromise();
   }
 
-  updateUser(userId: number, name: string, surname: string, email: string): Promise<any> {  // set null for the stuff you don't want to change 
+  updateUser(userId: string, name: string, surname: string, email: string): Promise<any> {  // set null for the stuff you don't want to change 
     const data = {
+      userId,
       name,
       surname,
       email
@@ -29,14 +31,21 @@ export class UserService {
     return this.http.put(UserService.link + '/updateUser', data).toPromise();
   }
 
-  deleteUser(userId: number): Promise<any> {
+  deleteUser(userId: string): Promise<any> {
     const data = { userId: userId.toString() };
     return this.http.delete(UserService.link + '/deleteUser', { params: data }).toPromise();
   }
 
-  getUser(userId: number): Promise<any> {
+  getUser(userId: string): Promise<any> {
     const data = { userId: userId.toString() };
     return this.http.get(UserService.link + '/getUser', { params: data }).toPromise();
+  }
+
+  getUserByEmail(emailAddress: string): Promise<any> {
+    const data = {
+      email: emailAddress
+    };
+    return this.http.get(UserService.link + '/getUserByEmail', data).toPromise();
   }
 
   addTeam(teamName: string, quizId: number): Promise<any> {
@@ -84,7 +93,7 @@ export class UserService {
     return this.http.get(UserService.link + '/getTeamMembers', { params: data }).toPromise();
   }
 
-  addTeamMember(teamId: number, userId: number, captain: boolean): Promise<any> {
+  addTeamMember(teamId: number, userId: string, captain: boolean): Promise<any> {
     const data = {
       teamId,
       userId,
@@ -93,7 +102,7 @@ export class UserService {
     return this.http.post(UserService.link + '/addTeamMember', data).toPromise();
   }
 
-  removeTeamMember(teamId: number, userId: number): Promise<any> {
+  removeTeamMember(teamId: number, userId: string): Promise<any> {
     const data = {
       teamId,
       userId
@@ -104,8 +113,9 @@ export class UserService {
     return this.http.delete(UserService.link + '/removeTeamMember', httpOptions).toPromise();
   }
 
-  createCaptainAndTheirTeam(name: string, surname: string, email: string, teamName: string, quizId: number): Promise<any> {
+  createCaptainAndTheirTeam(userId: string, name: string, surname: string, email: string, teamName: string, quizId: number): Promise<any> {
     const data = {
+      userId,
       name,
       surname,
       email,
@@ -113,6 +123,11 @@ export class UserService {
       quizId
     };
     return this.http.post(UserService.link + '/removeTeamMember', data).toPromise();
+  }
+
+  getUserDashboard(userId: number): Promise<any> {
+    const data = { userId: userId.toString() };
+    return this.http.get(UserService.link + '/getTeamMembers', { params: data }).toPromise();
   }
 
 }

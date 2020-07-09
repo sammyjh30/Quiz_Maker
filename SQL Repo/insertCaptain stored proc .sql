@@ -2,23 +2,23 @@ USE QuizMakerDB
 GO
 
 CREATE PROCEDURE InsertCaptain(
+@userId VARCHAR(128),
 @name VARCHAR(100),
 @surname VARCHAR(100),
 @email VARCHAR(255),
 @teamName VARCHAR(100),
 @quizId INT 
 ) AS 
-DECLARE @UserId INT, @TeamId INT
+DECLARE @TeamId INT
 
 BEGIN TRANSACTION 
 SET NOCOUNT ON;  
 	
 	BEGIN TRY
 		INSERT INTO [Users]
-		([name],surname,email)
+		([userId],[name],surname,email)
 		VALUES
-		(@name,@surname,@email)
-		SET @UserId = SCOPE_IDENTITY()
+		(@userId,@name,@surname,@email)
 
 		INSERT INTO [Teams]
 		(teamName, quizId, teamScore)
