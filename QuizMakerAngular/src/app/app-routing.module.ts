@@ -13,6 +13,7 @@ import { AuthGuard } from "./guard/auth.guard";
 import { SecureInnerPagesGuard } from "./guard/secure-inner-pages.guard";
 import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
 import { TeamViewComponent } from './components/team-view/team-view.component';
+import { TeamJoinComponent } from './components/team-join/team-join.component';
 
 // Include route guard in routes array
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'verify-email-address', component: VerifyEmailComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'quiz/:id', component: QuizViewComponent, canActivate: [AuthGuard] },
-  { path: 'team/:id', component: TeamViewComponent, canActivate: [AuthGuard] }
+  { path: 'team/:id', component: TeamViewComponent, canActivate: [AuthGuard] },
+  { path: 'join', component: TeamJoinComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

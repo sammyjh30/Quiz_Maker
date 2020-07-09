@@ -19,6 +19,7 @@ import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
 import { TeamViewComponent } from './components/team-view/team-view.component';
 import { TeamAddMemberComponent } from './components/team-add-member/team-add-member.component';
 import { QuizAddTeamComponent } from './components/quiz-add-team/quiz-add-team.component';
+import { TeamJoinComponent } from './components/team-join/team-join.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { QuizAddTeamComponent } from './components/quiz-add-team/quiz-add-team.c
     QuizViewComponent,
     TeamViewComponent,
     TeamAddMemberComponent,
-    QuizAddTeamComponent
+    QuizAddTeamComponent,
+    TeamJoinComponent
   ],
   imports: [
     BrowserModule,
