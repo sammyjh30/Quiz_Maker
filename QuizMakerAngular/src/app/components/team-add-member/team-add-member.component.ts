@@ -1,9 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { TeamService } from 'src/app/services/team.service';
-import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+
+import { MailerService } from 'src/app/services/mailer.service';
+
 import { Team } from 'src/app/models/team';
+import { Quiz } from 'src/app/models/quiz';
+import { TeamUser } from 'src/app/models/teamUser';
 
 @Component({
   selector: 'app-team-add-member',
@@ -11,22 +14,21 @@ import { Team } from 'src/app/models/team';
   styleUrls: ['./team-add-member.component.css']
 })
 export class TeamAddMemberComponent {
+
+  @Input() currentUser: TeamUser;
+  @Input() quiz: Quiz;
   @Input() team: Team;
+  @Input() captain: TeamUser;
+
   emailFormControl = new FormControl('');
 
   constructor(
-    private route: ActivatedRoute,
     private location: Location,
-    public teamService: TeamService) {
+    private mailerService: MailerService) {
   }
 
-  addMember() {
-    this.teamService.addMember(this.emailFormControl.value, this.team.teamId)
-      .then(this.goBack)
-      .catch(error => {
-        this.emailFormControl.hasError("Could not add member to team")
-        console.log("could not add member to team: " + error)
-      });
+  inviteMember(): void {
+    this.mailerService.sendInvitationEmail(this.quiz, this.team, this.captain, this.currentUser);
   }
 
   goBack(): void {

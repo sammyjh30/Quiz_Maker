@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { User as FireUser } from "firebase/app";
 
 import { Team } from '../../models/team';
 import { TeamUser } from '../../models/teamUser';
+import { User } from 'src/app/models/user';
 
-import { TeamService } from '../../services/team.service';
+import { UserService } from 'src/app/services/user.service';
+import { Quiz } from 'src/app/models/quiz';
+import { QuizService } from 'src/app/services/quiz.service';
 
 @Component({
   selector: 'app-team-view',
@@ -13,6 +17,9 @@ import { TeamService } from '../../services/team.service';
   styleUrls: ['./team-view.component.css']
 })
 export class TeamViewComponent implements OnInit {
+
+  currentUser: TeamUser;
+  quiz: Quiz;
   team: Team;
   captain: TeamUser;
   teamMembers: TeamUser[];
@@ -20,36 +27,57 @@ export class TeamViewComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-    private teamService: TeamService
-  ) { }
+    private userService: UserService,
+    private quizService: QuizService
+  ) {
+    this.getCurrentUser();
+    this.getQuiz();
+    this.getTeam();
+  }
 
   ngOnInit() {
-    this.getQuiz();
-    this.getCaptain();
-    this.getTeamMembers();
+  }
+
+  getCurrentUser(): void {
+    const fireUser: FireUser = JSON.parse(localStorage.getItem('user'));
+    this.userService.getUserByEmailandTeamId(fireUser.email, this.team.teamId)
+      .then(user => this.currentUser = user)
+      .catch(error => console.log(error));
   }
 
   getQuiz(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.teamService.getTeam(id)
-      .then(team => this.team = team);
+    this.quizService.getQuizByQuizId(id)
+      .then(quiz => this.quiz = quiz)
   }
 
-  getCaptain(): void {
+  getTeam(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.teamService.getCaptain(id)
-      .then(captain => this.captain = captain);
+    this.userService.getTeam(id)
+      .then(team => {
+        this.team = team;
+        this.getTeamMembers();
+      });
   }
 
   getTeamMembers(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.teamService.getTeamMembers(id)
-      .then(teamMembers => this.teamMembers = teamMembers);
+    this.userService.getTeamMembers(id)
+      .then(teamMembers => {
+        this.teamMembers = teamMembers.filter(t => t.captain !== true);
+        this.captain = teamMembers.find(t => t.captain === true);
+      })
+      .catch(error => console.log(error));
   }
 
   removeMember(member: TeamUser): void {
-    this.teamService.removeMember(member)
-    .then(teamMembers => this.teamMembers = teamMembers);
+    this.userService.removeMember(member)
+      .then(teamMembers => this.teamMembers = teamMembers)
+      .catch(error => console.log(error));
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
 }

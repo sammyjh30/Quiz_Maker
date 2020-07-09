@@ -13,8 +13,12 @@
       <p>{{team.teamName}}</p>
     </a>
     <p>Score: {{team.teamScore}}</p>
-    <button title="delete team" (click)="removeTeam(team)">Remove</button>
+    <div *ngIf="isHost">
+      <button title="delete team" (click)="removeTeam(team)">Remove</button>
+    </div>
   </li>
 </ul>
 
-<app-quiz-add-team [quiz]="quiz"></app-quiz-add-team>
+<div *ngIf="isHost">
+  <app-quiz-add-team [quiz]="quiz"></app-quiz-add-team>
+</div>

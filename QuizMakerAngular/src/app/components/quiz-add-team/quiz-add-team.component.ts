@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { TeamService } from 'src/app/services/team.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Quiz } from 'src/app/models/quiz';
+
 import { QuizService } from 'src/app/services/quiz.service';
 import { UserService } from 'src/app/services/user.service';
+
+import { Quiz } from 'src/app/models/quiz';
 import { Team } from 'src/app/models/team';
 
 @Component({
@@ -27,7 +28,12 @@ export class QuizAddTeamComponent {
 
   async addTeam() {
     let captain = await this.userService.getUserByEmail(this.captainEmailFC.value);
-    let retVal = await this.userService.addTeam(this.teamNameFC.value, this.quiz.quizId);
+    let team: Team = {
+      teamName: this.teamNameFC.value,
+      quizId: this.quiz.quizId,
+      captainId: captain.userId
+    }
+    this.userService.createCaptainAndTheirTeam(team, captain);
   }
 
   goBack(): void {

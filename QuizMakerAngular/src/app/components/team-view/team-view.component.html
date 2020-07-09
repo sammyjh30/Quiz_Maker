@@ -21,8 +21,13 @@
     <p>{{member.name}}</p>
     <p>{{member.surname}}</p>
     <p>{{member.email}}</p>
-    <button title="delete member" (click)="removeMember(member)">Remove</button>
+    <div *ngIf="currentUser.captain">
+      <button title="delete member" (click)="removeMember(member)">Remove</button>
+    </div>
   </li>
 </ul>
 
-<app-team-add-member [team]="team"></app-team-add-member>
+<div *ngIf="currentUser.captain">
+  <app-team-add-member [team]="team" [currentUser]="currentUser" [captain]="captain" [quiz]="quiz">
+  </app-team-add-member>
+</div>
