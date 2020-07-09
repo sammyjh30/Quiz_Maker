@@ -1,14 +1,29 @@
 const express = require('express');
+const bodyParser = require('body-parser')
+const cors = require('cors');
 const app = express();
-
 const config = require('./config');
-
-const conn = require('./services/dbconnection.js');
 const auth = require('./middleware/auth');
+const conn = require('./services/dbconnection.js');
+const quizRouter = require('./routes/QuizRoute')
+const userRouter = require('./routes/UserRoute')
+const mailer = require('./routes/MailerRoute');
 
-const mailer = require('./services/mailer');
+app.use(cors());
 
-app.get('/', (req, res) => {
+//app.use(auth);  // enable request authentication
+app.use(express.json());
+app.use(bodyParser.json());
+
+app.get("/", (req, res) => {
+  res.status(200).send("<h1>Quiz Maker Backend</h1>")
+});
+
+app.use('/quiz', quizRouter);  //how to add a route to the system
+app.use('/user', userRouter);
+app.use('/mailer', mailer);
+
+app.get('/testDB', function (req, res) {
   conn.poolPromise.then((pool) => { //make sure connection is made 
     pool.request().query('SELECT 1') //use connection to make request 
       .then(result => {
@@ -20,24 +35,6 @@ app.get('/', (req, res) => {
   }).catch(err => res.status(500).send(err)) //do shit with error
 });
 
-app.use("/hackerman", auth);
-
-app.get('/hackerman', (req, res)  => {
-  res.status(200).send('hackerman you got in!')
+app.listen(config.web.port, function () {
+  console.log('Example app listening on port ' + config.web.port + '!');
 });
-
-app.get('/sendemail', (req, res) => {
-  mailer.transport.sendMail(mailer.testMessage, (err, info) => {
-    if (err) {
-      res.status(500).send('failed to send!')
-    } else {
-      res.status(200).send(info)
-    }
-  });
-});
-
-// app.listen(config.web.port, function () {
-//   console.log('Example app listening on port ' + config.web.port + '!');
-// });
-
-exports.App = app;
