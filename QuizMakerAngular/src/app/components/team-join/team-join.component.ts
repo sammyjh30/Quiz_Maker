@@ -62,7 +62,7 @@ export class TeamJoinComponent implements OnInit {
   }
 
   getCaptain(): void {
-    this.userService.getUser(this.team.captainId)
+    this.userService.getUser(this.team.teamCaptainId)
       .then(captain => this.captain = captain)
       .catch(error => console.log(error));
   }

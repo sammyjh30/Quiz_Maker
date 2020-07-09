@@ -8,8 +8,8 @@ import { AppComponent } from './app.component';
 
 
 // Firebase services + enviorment module
-import { AngularFireModule } from "@angular/fire";
-import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -32,6 +32,11 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AsideComponent } from './components/aside/aside.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { LandingpageComponent } from './components/landingpage/landingpage.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
+
+// Landing Carousal
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -55,20 +60,24 @@ import { LandingpageComponent } from './components/landingpage/landingpage.compo
     TeamViewComponent,
     TeamAddMemberComponent,
     QuizAddTeamComponent,
-    TeamJoinComponent
+    TeamJoinComponent,
+    AppComponent,
+    CarouselComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

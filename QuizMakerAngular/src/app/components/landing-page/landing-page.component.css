@@ -1,0 +1,82 @@
+.main{
+  width: 200vh;
+  height: 100vh;
+  padding: 0;
+  margin: 20;
+  background-image: url("/src/assets/img/login.jpg");
+  background-color: black;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.left{
+  width: 50%;
+  height: 100%;
+  float: left;
+  text-align: center;
+
+}
+
+.right{
+  margin: 0;
+  width: 50%;
+  height: 100%;
+  float: right;
+}
+
+.leftContent, .rightContent{
+  margin: 20px;
+  height: 90%;
+  overflow: hidden;
+  background:rgba(0, 0, 0, 0.3);
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.topnav {
+  background-color: #000;
+  overflow: hidden;
+
+}
+
+.topnav a{
+  float: right;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.logo{
+  width: 300px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 30%;
+  margin: 20px;
+}
+
+.leftContent h1{
+  font-size: 50px;
+  color: white;
+  font-weight: bold;
+  margin: 100px;
+  font-family: sans-serif;
+}
+
+.leftContent p{
+  font-size: 30px;
+  color: white;
+  margin: 100px;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+
+.container {
+  display: block;
+  height: 100%;
+  width: 40%;
+  padding: 10px;
+}
