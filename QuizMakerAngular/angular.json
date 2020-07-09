@@ -13,6 +13,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "lodash"
+            ],
             "outputPath": "dist/QuizMakerAngular",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -119,6 +122,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "QuizMakerAngular"
+    }
+  },
+  "defaultProject": "QuizMakerAngular",
+  "cli": {
+    "analytics": false
+  }
 }

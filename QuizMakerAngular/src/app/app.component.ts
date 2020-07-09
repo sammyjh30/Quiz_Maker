@@ -4,11 +4,16 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
+
 })
 export class AppComponent {
-  title = 'Quiz Maker';
+  title = 'QuizMakerAngular';
 
-  constructor() {}
-
-  ngOnInit() {}
+  public slides = [
+    { src: '../img/one.jpg' },
+    { src: '../img/two.jpg' },
+    { src: '../img/three.jpg' },
+    { src: '../img/four.jpg' }
+  ];
 }
+

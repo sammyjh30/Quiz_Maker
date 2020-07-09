@@ -1,0 +1,33 @@
+<h1>
+  {{team.teamName}}
+</h1>
+<h2>
+  Score: {{team.teamScore}}
+</h2>
+
+<h3>Captain</h3>
+<section *ngIf="captain">
+  <p>{{captain.captain}}</p>
+  <p>{{captain.name}}</p>
+  <p>{{captain.surname}}</p>
+  <p>{{captain.email}}</p>
+</section>
+
+<h3>Members</h3>
+<p *ngIf="teamMembers.length === 0">No members in team</p>
+<ul>
+  <li *ngFor="let member of teamMembers">
+    <p>{{member.captain}}</p>
+    <p>{{member.name}}</p>
+    <p>{{member.surname}}</p>
+    <p>{{member.email}}</p>
+    <div *ngIf="currentUser.captain">
+      <button title="delete member" (click)="removeMember(member)">Remove</button>
+    </div>
+  </li>
+</ul>
+
+<section *ngIf="currentUser.captain">
+  <app-team-add-member [team]="team" [currentUser]="currentUser" [captain]="captain" [quiz]="quiz">
+  </app-team-add-member>
+</section>

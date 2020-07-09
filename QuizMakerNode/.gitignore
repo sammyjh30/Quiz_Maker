@@ -116,6 +116,7 @@ dist
 .pnp.*
 
 # Config files
+/.vscode/launch.json
 /firebaseadmin.json
 /firebasesettings.json
 /.vscode/launch.json

@@ -3,7 +3,7 @@ GO
 
 CREATE TABLE TeamMembers (
 teamID INT NOT NULL,
-userID INT NOT NULL,
+userID VARCHAR(128) NOT NULL,
 captain BIT NOT NULL,
 PRIMARY KEY(teamID,userID)
 )

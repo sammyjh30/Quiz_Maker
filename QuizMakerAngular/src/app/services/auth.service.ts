@@ -1,17 +1,16 @@
 import { Injectable, NgZone } from '@angular/core';
-import { User } from "../services/user";
+import { User } from '../models/user';
 import { auth } from "firebase/app";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
+import { of, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class AuthService {
   userData: any; // Save logged in user data
-  token: any;
 
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
@@ -23,7 +22,9 @@ export class AuthService {
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe(user => {
       if (user) {
-        user.getIdToken().then(token => this.token = token);
+        user.getIdToken().then(idToken => {
+          localStorage.setItem("idToken", idToken)
+        });
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
@@ -31,7 +32,7 @@ export class AuthService {
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'));
       }
-    })
+    });
   }
 
   // Log in with email/password
@@ -39,7 +40,7 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['signedIn']);
         });
         this.SetUserData(result.user);
       }).catch((error) => {
@@ -108,8 +109,10 @@ export class AuthService {
   SetUserData(user) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     const userData: User = {
-      uid: user.uid,
-      email: user.email
+      userId: user.uid,
+      email: user.email,
+      name: user.name,
+      surname: user.surname
     }
     return userRef.set(userData, {
       merge: true
@@ -120,17 +123,8 @@ export class AuthService {
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
+      localStorage.removeItem("idToken");
       this.router.navigate(['log-in']);
-    })
-  }
-
-  getAccessToken() : any {
-    this.afAuth.authState.subscribe(user => {
-      if (user) {
-        return user.getIdToken();
-      } else {
-        return null;
-      }
     })
   }
 

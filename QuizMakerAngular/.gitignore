@@ -46,7 +46,9 @@ testem.log
 Thumbs.db
 
 # Config files
-/src/environments/firebase.json
 /.vscode
 /.vscode/launch.json
+/src/environments/firebase.json
 /src/environments/environment.ts
+firebaseadmin.json
+
