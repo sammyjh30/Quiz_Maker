@@ -8,10 +8,10 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 
-import { UserProfileComponent } from './userProfile/userProfile.component';
-import { MainComponent } from './main/main.component';
-import { UsernameComponent } from './username/username.component';
-import { LandingpageComponent } from './landingpage/landingpage.component';
+import { UserProfileComponent } from './components/userProfile/userProfile.component';
+import { MainComponent } from './components/main/main.component';
+import { UsernameComponent } from './components/username/username.component';
+import { LandingpageComponent } from './components/landingpage/landingpage.component';
 
 import { AuthGuard } from "./guard/auth.guard";
 import { SecureInnerPagesGuard } from "./guard/secure-inner-pages.guard";

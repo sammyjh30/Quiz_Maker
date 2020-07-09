@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { UserService } from "../services/user.service";
+import { UserService } from "../../services/user.service";
 
 @Component({
   selector: 'app-username',
@@ -28,7 +28,7 @@ export class UsernameComponent implements OnInit {
     console.log(data.lastname);
     console.log(data.email);
 
-    this.userService.addUser(data.firstname,data.lastname,data.email);
+    this.userService.addUser('321',data.firstname,data.lastname,data.email);
 
   }
 

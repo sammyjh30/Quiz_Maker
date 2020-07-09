@@ -41,12 +41,12 @@ export class UserService {
     return this.http.get(UserService.link + '/getUser', { params: data }).toPromise();
   }
 
-  getUserByEmail(emailAddress: string): Promise<any> {
-    const data = {
-      email: emailAddress
-    };
-    return this.http.get(UserService.link + '/getUserByEmail', data).toPromise();
-  }
+  // getUserByEmail(emailAddress: string): Promise<any> {
+  //   const data = {
+  //     email: emailAddress
+  //   };
+  //   return this.http.get(UserService.link + '/getUserByEmail', data).toPromise();
+  // }
 
   addTeam(teamName: string, quizId: number): Promise<any> {
     const data = {
