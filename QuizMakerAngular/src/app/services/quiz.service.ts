@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Question } from '../Models/question';
 import { Quiz } from '../Models/quiz';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -10,6 +11,14 @@ import { Quiz } from '../Models/quiz';
 export class QuizService {
 
   private static link = 'http://localhost:3000';
+
+  mailerUrl = environment.endpoints.mailerEndpoint;
+  httpOptions = {
+    headers: new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('idToken')}`
+    })
+  };
+
   public static questionTypes: any = {
     TF: 1,
     Multi: 2
