@@ -28,7 +28,7 @@ export class UsernameComponent implements OnInit {
     console.log(data.lastname);
     console.log(data.email);
 
-    this.userService.addUser('321',data.firstname,data.lastname,data.email);
+    this.userService.updateUser('321',data.firstname,data.lastname,data.email);
 
   }
 

@@ -31,6 +31,10 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'verify-email-address', component: VerifyEmailComponent, canActivate: [SecureInnerPagesGuard] },
+  {path:'username',component:UsernameComponent},
+  { path: 'signedIn', component: LandingpageComponent },
+  { path: 'userProfile', component: UserProfileComponent }
+  
 ];
 
 @NgModule({
