@@ -21,16 +21,11 @@
     </div>
     <div class="right">
         <div class="rightContent">
-            <br>
-            <br>
-            <h1 class="logoHeader">
-                Welcome to QuizAway.
-            </h1>
-            <br>
-            <br>
-            <p class="logoPar">
-                Create your own Quiz Night with ease, or join one either solo or with a team. No Matter the size of your event, Quiz Night Online makes it easy!
-            </p>
+          <div class="container">
+            <app-carousel [slides]="slides"></app-carousel>
+          </div>
+          <a  routerLink="/log-in">Already have an account? Cick here to login</a>
+          <a  routerLink="/register-user">Don't have an account? Sign up here.</a>
         </div>
     </div>
   </div>
