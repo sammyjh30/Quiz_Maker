@@ -1,10 +1,24 @@
 import { NgModule } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { UserProfileComponent } from './userProfile/userProfile.component';
+//import { UsernameComponent } from './username/username.component';
+import { PasswordComponent } from './password/password.component';
+import { UsernameComponent } from './username/username.component';
+import { HeaderComponent } from './header/header.component';
+import { MainComponent } from './main/main.component';
+import { NavComponent } from './nav/nav.component';
+import { FooterComponent } from './footer/footer.component';
+import { AsideComponent } from './aside/aside.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { LandingpageComponent } from './landingpage/landingpage.component';
+
 
 
 // Firebase services + enviorment module
@@ -33,6 +47,17 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 @NgModule({
   declarations: [
     AppComponent,
+    UserProfileComponent,
+    //UsernameComponent,
+    PasswordComponent,
+    UsernameComponent,
+    HeaderComponent,
+    MainComponent,
+    NavComponent,
+    FooterComponent,
+    AsideComponent,
+    PrivacyPolicyComponent,
+    LandingpageComponent,
     DashboardComponent,
     LogInComponent,
     SignUpComponent,
@@ -45,21 +70,17 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     FormsModule,
-    AppRoutingModule,
+    ReactiveFormsModule,
+
     HttpClientModule,
-    AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     BrowserModule,
     BrowserAnimationsModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptorService
-    ,
-    multi: true
-  }],
+  providers: [],
   bootstrap: [AppComponent]
 })
 

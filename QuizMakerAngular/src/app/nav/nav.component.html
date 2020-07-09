@@ -1,0 +1,10 @@
+<nav>
+    <ul>
+        <li><a routerLink="/LoggedIn">Home</a></li>
+    </ul>
+</nav>
+<div *ngIf="authService.userData as user">
+    
+    <p><strong>{{user.email}}</strong></p>
+
+  </div>
