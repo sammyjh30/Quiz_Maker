@@ -19,11 +19,9 @@ router.post('/addUser',function(req,res){
            (@userId
             ,@name
            ,@surname
-           ,@email); 
-           
-           SELECT SCOPE_IDENTITY() AS id;
+           ,@email)
         `).then((data) => {
-            res.status(201).send({'message' : messages[201], 'recordSet':data.recordset})
+            res.status(201).send({'message' : messages[201]})
         }).catch((err) => {
             console.log(err)
             res.status(500).send({'error':messages[500]})
@@ -105,7 +103,7 @@ router.get('/getUser/:userId',function(req,res){
         request.query(`
         SELECT * FROM Users 
         WHERE userId = @userId`).then((data) => {
-                res.status(200).send({'message' : messages[200], 'recordSet':data.recordset})
+                res.status(200).send(data.recordset)
             }).catch((err) => {
                 console.log(err)
                 res.status(500).send({'error':messages[500]})
