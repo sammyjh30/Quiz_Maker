@@ -1,10 +1,8 @@
-.root {
-  background-image: url("/assets/img/login.jpg");
-}
 
 .login_body{
   margin: 0;
   padding: 0;
+  height: 100vh;
   background-image: url('/../assets/img/login.jpg');
   background-size: cover;
   background-position: center center;
