@@ -22,7 +22,7 @@ import { SecureInnerPagesGuard } from "./guard/secure-inner-pages.guard";
 
 // Include route guard in routes array
 const routes: Routes = [
-  { path: '', redirectTo: '/landing', pathMatch: 'full'},
+  { path: '', redirectTo: '/signedIn', pathMatch: 'full'},
   { path: 'landing', component: LandingPageComponent, canActivate: [SecureInnerPagesGuard]},
   { path: 'log-in', component: LogInComponent, canActivate: [SecureInnerPagesGuard]},
   { path: 'register-user', component: SignUpComponent, canActivate: [SecureInnerPagesGuard] },
