@@ -1,6 +1,6 @@
 <p>create-quiz works!</p>
 
-<form [formGroup]="quizForm" (ngSubmit)="onSubmit(quizForm.value)">
+<form [formGroup]="quizForm" (ngSubmit)="onSubmit(quizForm.value)" *ngIf="!created">
     <div>
         <label for="quizName">
             QuizName
@@ -17,3 +17,17 @@
 
     <button class="button" type="submit">create</button>
 </form>
+
+<div *ngIf="showChoice">
+    <button class="button" (click)="showTF()">add True False Question </button>
+    <button class="button" (click)="showMultiple()">add Multiple Choice Question </button>
+    <button class="button" routerLink="/dashboard" routerLinkActive="active">End Quiz </button>
+
+</div>
+<div *ngIf="enterTF">
+    <app-tfquestion (data)="addTFQuestion($event)"> </app-tfquestion>
+</div>
+
+<div *ngIf="enterMulti">
+    <app-multiple-choice-questions (data)="addMultipleChoiceQuestion($event)"> </app-multiple-choice-questions>
+</div>
