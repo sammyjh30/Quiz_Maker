@@ -30,31 +30,42 @@ export class CreateQuizComponent implements OnInit {
 
 
   onSubmit(formdata) {
-    console.log(formdata)
+    console.log(formdata);
     this.quizService.addQuiz(formdata.quizName, this.authService.userData.uid, formdata.startDateTime).then((data) => {
       this.quizId = data.quizId;
-      console.log(data);
+      console.log('Data', data, this.quizId);
       this.created = true;
     }).catch((err) => {
       console.log(err);
     });
-    this.created = true;
     this.showChoice = true;
   }
 
   addTFQuestion(formdata): void {
     console.log(formdata);
-    this.showChoice = true;
-    this.enterMulti = false;
-    this.enterTF = false;
-    //this.quizService.addQuestionTF()
+    console.log(this.quizId);
+    this.quizService.addQuestionTF(this.quizId, formdata.roundNumber, formdata.questionNumber, formdata.question, formdata.answer).then((data) => {
+      console.log(data)
+      this.showChoice = true;
+      this.enterMulti = false;
+      this.enterTF = false;
+    }).catch((err) => {
+      console.log(err);
+    })
   }
 
   addMultipleChoiceQuestion(formdata): void {
-    console.log(formdata)
-    this.showChoice = true;
-    this.enterMulti = false;
-    this.enterTF = false;
+    console.log(formdata);
+    this.quizService.addQuestionMultipleChoice(this.quizId, formdata.roundNumber, formdata.questionNumber, formdata.question, formdata.answer, formdata.wrongAnswer1, formdata.wrongAnswer2, formdata.wrongAnswer3).then((data) => {
+      console.log(data);
+      this.showChoice = true;
+      this.enterMulti = false;
+      this.enterTF = false;
+    }).catch((err) => {
+      console.log(err);
+    })
+
+
   }
 
   showMultiple(): void {
