@@ -21,9 +21,9 @@ SET NOCOUNT ON;
 		(@userId,@name,@surname,@email)
 
 		INSERT INTO [Teams]
-		(teamName, quizId, teamScore)
+		(teamName, quizId, teamScore,teamCaptainId)
 		VALUES
-		(@teamName,@quizId,0)
+		(@teamName,@quizId,0,@userId)
 		SET @TeamId = SCOPE_IDENTITY()
 
 		INSERT INTO [TeamMembers]
