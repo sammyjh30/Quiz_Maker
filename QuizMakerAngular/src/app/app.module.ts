@@ -43,6 +43,9 @@ import { ChatInboxComponent } from './components/chat-inbox/chat-inbox.component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { QuizComponent } from './quiz/quiz.component';
+import { HostViewComponent } from './components/quiz-session/QuizViews/host-view/host-view.component';
+import { PlayerViewComponent } from './components/quiz-session/QuizViews/player-view/player-view.component';
+import { CaptainViewComponent } from './components/quiz-session/QuizViews/captain-view/captain-view.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +75,10 @@ import { QuizComponent } from './quiz/quiz.component';
     AppComponent,
     CarouselComponent,
     LandingPageComponent,
-    QuizComponent
+    QuizComponent,
+    HostViewComponent,
+    PlayerViewComponent,
+    CaptainViewComponent
   ],
   imports: [
     BrowserModule,

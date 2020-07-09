@@ -1,7 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { AuthService } from "../../services/auth.service";
 import * as io from 'socket.io-client'
+import { CaptainViewComponent } from './QuizViews/captain-view/captain-view.component';
+import { HostViewComponent } from './QuizViews/host-view/host-view.component';
+import { PlayerViewComponent } from './QuizViews/player-view/player-view.component';
 
 const SOCKET_ENDPOINT = 'localhost:3001';
 
@@ -16,10 +19,10 @@ export class QuizSessionComponent implements OnInit {
   public socket: SocketIOClient.Socket;
 
   constructor(
-    private route: ActivatedRoute, 
-    public authService: AuthService) { 
+    private route: ActivatedRoute,
+    public authService: AuthService) {
 
-    this.route.params.subscribe( params => {
+    this.route.params.subscribe(params => {
       console.log(params);
       this.quizId = params.id;
       if (params.teamId) {
@@ -40,7 +43,7 @@ export class QuizSessionComponent implements OnInit {
   }
 
   setupSocketConnection() {
-    this.socket = io(SOCKET_ENDPOINT, {query: 'user=' + this.authService.userData.displayName});
+    this.socket = io(SOCKET_ENDPOINT, { query: 'user=' + this.authService.userData.displayName });
     console.log("Quiz socket: " + this.socket)
   }
 
