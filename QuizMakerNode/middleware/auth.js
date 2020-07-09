@@ -5,7 +5,14 @@ const config = require('../config');
 
 firebase.initializeApp(config.firebase);
 
-admin.initializeApp();
+// Fetch the service account key JSON file contents
+var serviceAccount = require("../firebaseadmin.json");
+
+// Initialize the app with a service account, granting admin privileges
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://quiz-maker-9667f.firebaseio.com"
+});
 
 const getAuthToken = (req, res, next) => {
     if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer'

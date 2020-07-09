@@ -52,3 +52,4 @@ Thumbs.db
 /src/environments/environment.ts
 firebaseadmin.json
 
+/src/environments/environment.prod.ts
