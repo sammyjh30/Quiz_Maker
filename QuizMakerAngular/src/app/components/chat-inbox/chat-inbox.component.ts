@@ -25,6 +25,7 @@ export class ChatInboxComponent implements OnInit {
   }
 
   setupRoomConnection() {
+    console.log("Room ID: " + this.roomId);
     this.socket.emit('join', this.roomId);
 
     this.socket.on('message-broadcast', (data) => {

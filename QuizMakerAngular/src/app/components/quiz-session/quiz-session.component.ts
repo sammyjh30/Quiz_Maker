@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import { AuthService } from "../../services/auth.service";
 import * as io from 'socket.io-client'
-import { ChatInboxComponent } from '../chat-inbox/chat-inbox.component';
 
 const SOCKET_ENDPOINT = 'localhost:3001';
 
@@ -13,6 +12,7 @@ const SOCKET_ENDPOINT = 'localhost:3001';
 })
 export class QuizSessionComponent implements OnInit {
   quizId: string;
+  teamId: string;
   public socket: SocketIOClient.Socket;
 
   constructor(
@@ -22,6 +22,9 @@ export class QuizSessionComponent implements OnInit {
     this.route.params.subscribe( params => {
       console.log(params);
       this.quizId = params.id;
+      if (params.teamId) {
+        this.teamId = params.teamId;
+      }
     });
   }
 
@@ -30,6 +33,7 @@ export class QuizSessionComponent implements OnInit {
       console.log(this.authService.userData.displayName);
       console.log("Connecting to socket");
       this.setupSocketConnection();
+      console.log("TEAM ID: " + this.teamId);
     } else {
       console.log("No user")
     }

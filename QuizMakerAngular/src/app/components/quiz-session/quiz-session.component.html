@@ -1,21 +1,10 @@
 <div *ngIf="authService.userData as user">
-
-  <!-- <div style="width: 100%;"> -->
-    <!-- <div style="display: flex; max-width: 10%;">  
-      <app-chat-inbox roomId="teamId"></app-chat-inbox>  -->
-      <!-- <app-chat-inbox [roomId]="roomId"></app-chat-inbox>  -->
-    <!-- </div> -->
+  <div style="display: flex; width: 10%;" *ngIf="teamId">  
+    <app-chat-inbox roomId="{{teamId}}" [socket]="socket"></app-chat-inbox>
+  </div>
+  
   {{user.displayName}}
-
-    
-    <div style="display: flex; width: 10%;" *ngIf="socket">  
-      {{socket.id}}
-      {{quizId}}
-      <app-chat-inbox roomId="{{quizId}}" [socket]="socket"></app-chat-inbox>
-      <!-- <app-chat-inbox [roomId]="roomId"></app-chat-inbox>  -->
-    </div> 
+  <div style="display: flex; width: 10%;" *ngIf="socket">  
+    <app-chat-inbox roomId="{{quizId}}" [socket]="socket"></app-chat-inbox>
+  </div> 
 </div>
-
-  <!-- For each quiz in the user's quiz list -->
-  <!-- <a [routerLink]="['/quiz-session', ‘quiz.id’]">{{quiz.name}} </a> -->
-  <!-- <a [routerLink]="['/quiz-session', ‘1’]">First Quiz</a> -->

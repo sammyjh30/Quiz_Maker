@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'verify-email-address', component: VerifyEmailComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'quiz-session', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'quiz-session/:id/:teamId', component: QuizSessionComponent, canActivate: [AuthGuard] },
   { path: 'quiz-session/:id', component: QuizSessionComponent, canActivate: [AuthGuard] }
 ];
 
