@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from '../Models/user';
-import { Team } from '../Models/team';
-import { TeamMember } from '../Models/teammember';
-import { TeamUser } from '../Models/teamUser';
+
+import { User } from '../models/user';
+import { TeamUser } from '../models/teamUser';
+import { Team } from '../models/team';
+import { TeamMember } from '../models/teammember';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
   private static link = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
@@ -24,7 +26,7 @@ export class UserService {
     return this.http.post(UserService.link + '/addUser', data).toPromise();
   }
 
-  updateUser(userId: string, name: string, surname: string, email: string): Promise<any> {  // set null for the stuff you don't want to change 
+  updateUser(userId: string, name: string, surname: string, email: string): Promise<any> {  // set null for the stuff you don't want to change
     const data = {
       userId,
       name,
@@ -116,6 +118,14 @@ export class UserService {
       body: data
     };
     return this.http.delete(UserService.link + '/removeTeamMember', httpOptions).toPromise();
+  }
+
+  getTeamUserByEmail(email: string): TeamUser {
+    throw new Error("Method not implemented.");
+  }
+
+  getTeamUser(userId: string): TeamUser {
+    throw new Error("Method not implemented.");
   }
 
   createCaptainAndTheirTeam(userId: string, name: string, surname: string, email: string, teamName: string, quizId: number): Promise<any> {

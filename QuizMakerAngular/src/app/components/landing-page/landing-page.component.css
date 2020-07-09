@@ -3,7 +3,7 @@
   height: 100vh;
   padding: 0;
   margin: 20;
-  background-image: url("C:/Users/liebenbergd03/Desktop/GitHub/Quiz_Maker/QuizMakerAngular/src/assets/img/login.jpg");
+  background-image: url("/src/assets/img/login.jpg");
   background-color: black;
   background-size: cover;
   background-position: center center;
