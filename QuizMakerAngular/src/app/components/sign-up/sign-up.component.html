@@ -1,14 +1,28 @@
-<h3>Sign Up</h3>
+<div class="topnav">
+	<a class="active" href="C:/Users/liebenbergd03/Desktop/Quizz Website/Login.html">Login</a>
+</div>
+<body class="login_body">
 
-<input type="email" placeholder="Email Address" #userEmail required>
-
-<input type="password" placeholder="Password" #userPwd required>
-
-<input type="button" value="Sign Up" (click)="authService.SignUp(userEmail.value, userPwd.value)">
-
-<!-- Continue with Google -->
-<button type="button" (click)="authService.GoogleAuth()">
-  Continue with Google
-</button>
-
-<span>Already have an account? <button class="redirect" routerLink="log-in">Log In</button></span>
+	<form class="register_form">
+		<h1>Register Here</h1>
+		<p>First Name</p>
+		<input type="text" name="" placeholder="First Name" #firstName required>
+		<p>Last Name</p>
+		<input type="text" name="" placeholder="Last Name" #lastName required>
+		<p>Date of Birth</p>
+		<input type="date" name="" placeholder="Date of Birth" #userDOB required>
+		<p>Email</p>
+		<input type="email" name="" placeholder="Email" #userEmail required>
+		<p>Password</p>
+		<input type="password" name="" placeholder="Password" #userPwd required>
+		<p>Confirm Password</p>
+		<input type="password" name="" placeholder="Confirm Password">
+		<br>
+		<br>
+		<div class="container-contact100-form-btn">
+			<input type="submit" name="" value="Sign Un" (click)="authService.SignUp(userEmail.value, userPwd.value)">
+		</div>
+        <button class="btn google" data-provider="google" (click)="authService.GoogleAuth()"><i class="fab fa-google"></i><span>Google</span></button><br>
+        <br>
+		<a class="redirect" routerLink="log-in">Already have an account?</a>
+	</form>
