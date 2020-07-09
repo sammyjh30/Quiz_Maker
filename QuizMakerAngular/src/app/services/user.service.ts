@@ -20,7 +20,7 @@ export class UserService {
     return this.http.post(UserService.link + '/addUser', data).toPromise();
   }
 
-  updateUser(userId: string, name: string, surname: string, email: string): Promise<any> {  // set null for the stuff you don't want to change 
+  updateUser(userId: string, name: string, surname: string, email: string): Promise<any> {  // set null for the stuff you don't want to change
     const data = {
       userId,
       name,
@@ -45,7 +45,7 @@ export class UserService {
     const data = {
       email: emailAddress
     };
-    return this.http.get(UserService.link + '/getUserByEmail', data).toPromise();
+    return this.http.get(UserService.link + '/getUserByEmail', { params: data }).toPromise();
   }
 
   addTeam(teamName: string, quizId: number): Promise<any> {

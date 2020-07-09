@@ -1,1 +1,3 @@
 /QuizMakerAngular/src/environments/firebase.json
+.firebase/
+node_modules
