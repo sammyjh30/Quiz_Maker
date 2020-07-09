@@ -276,6 +276,25 @@ router.post('/addTeamMember',function(req,res){
         request.input('teamId', req.body.teamId);
         request.input('userId',req.body.userId)
         request.input('captain',req.body.captain)
+        if(req.body.captain){
+            request.query(`
+        INSERT INTO [dbo].[TeamMembers]
+           ([teamId]
+           ,[userId]
+           ,[captain])
+        VALUES
+           (@teamId,
+            @userId,
+            @captain); 
+        UPDATE Teams
+            SET CaptainId = @userId 
+            WHERE teamId = @teamId`).then(() => {
+                res.status(201).send({'message' : messages[201]})
+            }).catch((err) => {
+                console.log(err)
+                res.status(500).send({'error':messages[500]})
+            })
+        }else {
         request.query(`
         INSERT INTO [dbo].[TeamMembers]
            ([teamId]
@@ -290,6 +309,7 @@ router.post('/addTeamMember',function(req,res){
                 console.log(err)
                 res.status(500).send({'error':messages[500]})
             })
+        }
     }).catch((err) => {
         console.log(err)
         res.status(500).send({'error':messages[500]})
