@@ -17,10 +17,12 @@ nav a {
     color: #039be5;
   }
 
-
   
 .dropdown {
-    float: left;
+    float: right;
+  }
+  .logout {
+    float: right;
   }
   
   
