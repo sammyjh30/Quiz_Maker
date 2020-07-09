@@ -18,10 +18,11 @@ router.post('/addQuestion',function(req,res){
         request.input('wrongAnswer1', conn.sql.VarChar , req.body.wrongAnswer1)
         request.input('wrongAnswer2', conn.sql.VarChar , req.body.wrongAnswer2)
         request.input('wrongAnswer3', conn.sql.VarChar , req.body.wrongAnswer3)
-        request.execute(`InsertQuestion`).then(() => {
-            res.status(201).send({'message' : messages[201]})
+        request.execute(`InsertQuestion`).then((data) => {
+            res.status(201).send(data.recordset[0])
         }).catch((err) => {
-            throw err;
+            console.log(err)
+            res.status(500).send({'error':messages[500]})
         })
     }).catch((err) => {
         console.log(err)
@@ -37,7 +38,8 @@ router.delete('/deleteQuestion/:questionID',function(req,res){
         WHERE QuestionID =@questionID`).then(() => {
             res.status(200).send({'message' : messages[200]})
         }).catch((err) => {
-            throw err;
+            console.log(err)
+            res.status(500).send({'error':messages[500]})
         })
     }).catch((err) => {
         console.log(err)
@@ -45,7 +47,7 @@ router.delete('/deleteQuestion/:questionID',function(req,res){
     })
 })
 
-router.get('/getQuestions/:quizId', function(req,res){
+router.get('/getQuestionsByQuizId/:quizId', function(req,res){
     conn.poolPromise.then((pool)=>{
         const request = pool.request();
         request.input('quizId',req.params.quizId)
@@ -54,9 +56,37 @@ router.get('/getQuestions/:quizId', function(req,res){
         LEFT JOIN MultipleChoiceQuestions ON Questions.questionId = MultipleChoiceQuestions.questionId
         WHERE quizId = @quizId
         ORDER BY roundNumber, questionNumber`).then((data) => {
-            res.status(200).send(data.recordset)
+            data = data.recordset; 
+            const response = [];
+            data.forEach(element => {
+                if(element.questionType === 1){
+                    response.push({
+                        questionId: element.questionId,
+                        roundNumber: element.roundNumber,
+                        questionType: element.questionType,
+                        questionNumber: element.questionNumber,
+                        correctAnswer: element.correctAnswer,
+                        question: element.text
+                    });
+                }else {
+                    response.push({
+                        questionId: element.questionId,
+                        roundNumber: element.roundNumber,
+                        questionType: element.questionType,
+                        questionNumber: element.questionNumber,
+                        question: element.multiText ,
+                        rightAnswer: element.rightAnswer,
+                        wrongAnswer1:element.wrongAnswer1,
+                        wrongAnswer2: element.wrongAnswer2,
+                        wrongAnswer3: element.wrongAnswer3
+                    });
+                }
+        }); 
+            res.status(200).send(response)
+            
         }).catch((err) => {
-            throw err;
+            console.log(err)
+            res.status(500).send({'error':messages[500]})
         })
     }).catch((err) => {
         console.log(err)
@@ -64,7 +94,7 @@ router.get('/getQuestions/:quizId', function(req,res){
     })
 })
 
-router.get('/getQuestions/:questionId',function(req,res){
+router.get('/getQuestionsByQuestionId/:questionId',function(req,res){
     conn.poolPromise.then((pool)=>{
         const request = pool.request();
         request.input('questionId',req.params.questionId)
@@ -73,9 +103,34 @@ router.get('/getQuestions/:questionId',function(req,res){
         LEFT JOIN MultipleChoiceQuestions ON Questions.questionId = MultipleChoiceQuestions.questionId
         WHERE Questions.questionId = @questionId
         ORDER BY roundNumber, questionNumber`).then((data) => {
-            res.status(200).send(data.recordset)
+            data = data.recordset[0]; 
+            const response = [];
+            if(data.questionType === 1){
+                response.push({
+                    questionId: data.questionId,
+                    roundNumber: data.roundNumber,
+                    questionType: data.questionType,
+                    questionNumber: data.questionNumber,
+                    correctAnswer: data.correctAnswer,
+                    question: data.text
+                });
+            }else {
+                response.push({
+                    questionId: data.questionId,
+                    roundNumber: data.roundNumber,
+                    questionType: data.questionType,
+                    questionNumber: data.questionNumber,
+                    question: data.multiText ,
+                    rightAnswer: data.rightAnswer,
+                    wrongAnswer1:data.wrongAnswer1,
+                    wrongAnswer2: data.wrongAnswer2,
+                    wrongAnswer3: data.wrongAnswer3
+                });
+            }
+            res.status(200).send(response[0])
         }).catch((err) => {
-            throw err;
+            console.log(err)
+            res.status(500).send({'error':messages[500]})
         })
     }).catch((err) => {
         console.log(err)
@@ -98,7 +153,8 @@ router.put('/updateQuestion',function(req,res){
         request.execute(`UpdateQuestion`).then(() => {
             res.status(201).send({'message' : messages[201]})
         }).catch((err) => {
-            throw err;
+            console.log(err)
+            res.status(500).send({'error':messages[500]})
         })
     }).catch((err) => {
         console.log(err)
@@ -116,10 +172,13 @@ router.post('/addQuiz',function(req,res){
         request.input('hostId',req.body.hostId)
         request.input('startDateTime',conn.sql.DateTime,req.body.startDateTime)
         request.query(`INSERT INTO Quiz(quizName,HostId,startDateTime) 
-        VALUES (@quizName,@hostId,@startDateTime)`).then(()=> {
-            res.status(201).send({'message' : messages[201]})
+        VALUES (@quizName,@hostId,@startDateTime); 
+           
+        SELECT SCOPE_IDENTITY() AS quizId;`).then((data)=> {
+            res.status(201).send(data.recordset[0])
         }).catch((err) => {
-            throw err;
+            console.log(err)
+            res.status(500).send({'error':messages[500]})
         })
     }).catch((err) => {
         console.log(err)
@@ -135,7 +194,8 @@ router.delete('/deleteQuiz/:quizId',function(req,res){
         WHERE quizId =@quizId`).then(() => {
             res.status(200).send({'message' : messages[200]})
         }).catch((err) => {
-            throw err;
+            console.log(err)
+            res.status(500).send({'error':messages[500]})
         })
     }).catch((err) => {
         console.log(err)
@@ -150,7 +210,8 @@ router.get('/getQuiz/:quizId',function(req,res){
         request.query(`SELECT * FROM quiz WHERE quizId = @quizId`).then((data) => {
             res.status(200).send(data.recordset)
         }).catch((err) => {
-            throw err;
+            console.log(err)
+            res.status(500).send({'error':messages[500]})
         })
     }).catch((err) => {
         console.log(err)
@@ -165,7 +226,8 @@ router.get('/getQuizByHostId/:hostId',function(req,res){ //can be change to be l
         request.query(`SELECT * FROM quiz WHERE hostId =  @hostId`).then((data) => {
             res.status(200).send(data.recordset)
         }).catch((err) => {
-            throw err;
+            console.log(err)
+            res.status(500).send({'error':messages[500]})
         })
     }).catch((err) => {
         console.log(err)
@@ -202,12 +264,14 @@ router.put('/updateQuiz',function(req,res){
             hostId = @hostId,
             startDateTime = @startDateTime
             WHERE quizId = @quizId`).then(() => {
-                res.status(201).send(messages[201])
+                res.status(201).send({'message' : messages[201]})
             }).catch((err) => {
-              throw err;
+                console.log(err)
+                res.status(500).send({'error':messages[500]})
             })
         }).catch((err) => {
-            throw err;
+            console.log(err)
+            res.status(500).send({'error':messages[500]})
         })  
     }).catch((err) => {
         console.log(err)

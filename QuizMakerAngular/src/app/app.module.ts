@@ -1,15 +1,28 @@
 import { NgModule } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { UserProfileComponent } from './userProfile/userProfile.component';
+//import { UsernameComponent } from './username/username.component';
+import { PasswordComponent } from './password/password.component';
+import { UsernameComponent } from './username/username.component';
+import { HeaderComponent } from './header/header.component';
+import { MainComponent } from './main/main.component';
+import { NavComponent } from './nav/nav.component';
+import { FooterComponent } from './footer/footer.component';
+import { AsideComponent } from './aside/aside.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { LandingpageComponent } from './landingpage/landingpage.component';
+
 
 
 // Firebase services + enviorment module
-import { AngularFireModule } from "@angular/fire";
-import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -25,37 +38,54 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AuthService } from './services/auth.service';
 import { HackermanService } from './services/hackerman.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import {TokenInterceptorService} from "./providers/token-interceptor.service";
+import {TokenInterceptorService} from './providers/token-interceptor.service';
+import { CarouselComponent } from './components/carousel/carousel.component';
+
+// Landing Carousal
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    UserProfileComponent,
+    //UsernameComponent,
+    PasswordComponent,
+    UsernameComponent,
+    HeaderComponent,
+    MainComponent,
+    NavComponent,
+    FooterComponent,
+    AsideComponent,
+    PrivacyPolicyComponent,
+    LandingpageComponent,
     DashboardComponent,
     LogInComponent,
     SignUpComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
+    CarouselComponent,
+    AppComponent,
+    CarouselComponent,
+    LandingPageComponent,
     NewQuizComponent,
     FormatTitlePipe
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     FormsModule,
-    MatSlideToggleModule,
     ReactiveFormsModule,
-    AppRoutingModule,
+    MatSlideToggleModule,
     HttpClientModule,
-    AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    BrowserModule,
+    BrowserAnimationsModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptorService
-    ,
-    multi: true
-  },],
+  providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
