@@ -155,4 +155,18 @@ export class UserService {
     return this.http.get<TeamUser[]>(UserService.link + '/getTeamUserByTeamId', { params: data }).toPromise();
   }
 
+  changeCaptainRandom(teamId: number): Promise<any> {
+    const data = { teamId: teamId.toString() };
+    return this.http.put(UserService.link + '/changeCaptainRandom', { params: data }).toPromise();
+  }
+
+  changeCaptain(teamId: number, userId: string): Promise<any> {
+    const data = {
+      teamId,
+      userId
+    };
+    return this.http.put(UserService.link + '/changeCaptain', data).toPromise();
+  }
+
+
 }

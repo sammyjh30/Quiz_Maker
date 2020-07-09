@@ -418,4 +418,40 @@ router.get('/getTeamUserByTeamId/:teamId',function(req,res){
     })
 })
 
+router.put('/changeCaptain',function(req,res){
+    conn.poolPromise.then((pool)=> {
+        const request = pool.request();
+        request.input('teamId', req.body.teamId);
+        request.input('userId',req.body.userId)
+        request.execute(`ChangeCaptain`).then((data) => {
+                res.status(200).send({'message' : messages[201]})
+            }).catch((err) => {
+                console.log(err)
+                res.status(500).send({'error':messages[500]})
+            })
+    }).catch((err) => {
+        console.log(err)
+        res.status(500).send({'error':messages[500]})
+    })
+})
+
+
+router.put('/changeCaptainRandom/:teamId',function(req,res){
+    conn.poolPromise.then((pool)=> {
+        const request = pool.request();
+        request.input('teamId', req.params.teamId);
+        request.execute(`RandomlySetNewCaptain`).then((data) => {
+                res.status(200).send({'message' : messages[201]})
+            }).catch((err) => {
+                console.log(err)
+                res.status(500).send({'error':messages[500]})
+            })
+    }).catch((err) => {
+        console.log(err)
+        res.status(500).send({'error':messages[500]})
+    })
+})
+
+
+
 module.exports = router
