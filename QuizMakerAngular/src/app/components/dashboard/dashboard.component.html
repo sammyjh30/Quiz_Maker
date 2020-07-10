@@ -14,4 +14,11 @@
   <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
   <p>User ID: <strong>{{user.uid}}</strong></p>
   <p>Email: <strong>{{user.email}}</strong></p>
+  <p>Email Verified: <strong>{{authService.token}}</strong></p>
+
+  <!-- For each quiz in the user's quiz list -->
+  <!-- <a [routerLink]="['/quiz-session', ‘quiz.id’]">{{quiz.name}} </a> -->
+  <a routerLink="/quiz-session/1/123">First Quiz</a>
+  <a routerLink="/quiz-session/1">First Quiz</a>
+  <a routerLink="/quiz-session/2">Second Quiz</a>
 </div>
