@@ -31,8 +31,8 @@ export class QuizComponent implements OnInit {
     this.route.params.subscribe( params => {
       console.log(params);
       this.quizId = params.quizId;
-      params.host == 1 ? this.host = true : this.host = false;
-      params.captain == 1 ? this.captain = true : this.captain = false;
+      this.host =  params.host == 1 ? true : false;
+      this.captain =  params.captain == 1 ? true : false;
       if (params.teamId) {
         this.teamId = params.teamId;
       }

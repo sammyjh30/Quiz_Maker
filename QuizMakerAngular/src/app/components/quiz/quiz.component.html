@@ -6,8 +6,8 @@
     </div>
     <ng-template #quizContent>
             <app-quiz-session quizId="{{quizId}}" 
-                            host="{{host}}"
-                            captain="{{captain}}"
+                            [host]="host"
+                            [captain]="captain"
                             teamId="{{teamId}}"
                             [user]="user"></app-quiz-session>>
     </ng-template>

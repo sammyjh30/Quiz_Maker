@@ -1,0 +1,38 @@
+.table-striped{
+    color:white;
+    border-collapse:collapse;
+    border: 1px solid white;
+    text-align: left;
+    align-items: center;
+    width: 40em;
+    margin: 1em;
+    /* width: 600px; */
+  }
+  
+  th{
+    padding: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  
+  .next{
+    float: left;
+  }
+  
+  button{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: rgb(84,57,129);
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+    width: 150px;
+  }
+  
+  button:hover{
+    cursor: pointer;
+    background: rgb(159, 59, 59);
+    color:#000
+  }
+  

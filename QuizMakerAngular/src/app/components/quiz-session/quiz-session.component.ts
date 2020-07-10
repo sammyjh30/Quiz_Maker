@@ -31,12 +31,24 @@ export class QuizSessionComponent implements OnInit {
     } else {
       this.username = "User";
     }
-    this.player = !this.host && !this.captain ? true : false;
+    if (!this.host) {
+      console.log("VERY NOT HOST")
+    } else {
+      console.log("VERY HOST")
+
+    }
+    if (this.host == false && this.captain == false) {
+      this.player = true;
+    } else {
+      this.player=false;
+    }
+    // this.player = !this.host && !this.captain ? true : false;
     this.setupSocketConnection();
     //
     console.log(this.quizId);
     console.log(this.host);
     console.log(this.captain);
+    console.log(this.player);
     console.log(this.teamId);
     console.log(this.user);
     console.log("USERNAME: " + this.username);
