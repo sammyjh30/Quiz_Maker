@@ -1,0 +1,53 @@
+<form [formGroup]="multipleChoiceQuestion" (ngSubmit)="onSubmit(multipleChoiceQuestion.value)">
+    <div>
+        <label for="roundNumber">
+            Round Number
+        </label>
+        <input id="roundNumber" type="number" formControlName="roundNumber">
+    </div>
+
+    <div>
+        <label for="questionNumber">
+            Question Number
+        </label>
+        <input id="questionNumber" type="number" formControlName="questionNumber">
+    </div>
+
+    <div>
+        <label for="question">
+            Question
+        </label>
+        <input id="question" type="textarea" formControlName="question">
+    </div>
+
+    <div>
+        <label for="answer">
+            Answer
+        </label>
+        <input id="answer" type="text" formControlName="answer">
+    </div>
+
+    <div>
+        <label for="wrongAnswer1">
+            Wrong Answer 1
+        </label>
+        <input id="wrongAnswer1" type="text" formControlName="wrongAnswer1">
+    </div>
+
+    <div>
+        <label for="wrongAnswer2">
+            Wrong Answer 2
+        </label>
+        <input id="wrongAnswer2" type="text" formControlName="wrongAnswer2">
+    </div>
+
+    <div>
+        <label for="wrongAnswer3">
+            Wrong Answer 3
+        </label>
+        <input id="wrongAnswer3" type="text" formControlName="wrongAnswer3">
+    </div>
+
+
+    <button class="button" type="submit">add question</button>
+</form>

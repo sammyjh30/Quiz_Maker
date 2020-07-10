@@ -28,7 +28,7 @@ export class QuizService {
     const data = {
       quizId,
       roundNumber,
-      questionType: QuizService.questionTypes.Multi,
+      questionType: QuizService.questionTypes.TF,
       questionNumber,
       text: question,
       correctAnswer

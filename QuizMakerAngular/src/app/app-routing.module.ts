@@ -14,8 +14,7 @@ import { LandingpageComponent } from './components/landingpage/landingpage.compo
 import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
 import { TeamViewComponent } from './components/team-view/team-view.component';
 import { TeamJoinComponent } from './components/team-join/team-join.component';
-import { MainComponent } from './components/main/main.component';
-
+import { CreateQuizComponent } from './components/create-quiz/create-quiz.component';
 
 // Import canActivate guard services
 import { AuthGuard } from "./guard/auth.guard";
@@ -23,9 +22,9 @@ import { SecureInnerPagesGuard } from "./guard/secure-inner-pages.guard";
 
 // Include route guard in routes array
 const routes: Routes = [
-  { path: '', redirectTo: '/landing', pathMatch: 'full'},
-  { path: 'landing', component: LandingPageComponent, canActivate: [SecureInnerPagesGuard]},
-  { path: 'log-in', component: LogInComponent, canActivate: [SecureInnerPagesGuard]},
+  { path: '', redirectTo: '/landing', pathMatch: 'full' },
+  { path: 'landing', component: LandingPageComponent, canActivate: [SecureInnerPagesGuard] },
+  { path: 'log-in', component: LogInComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'register-user', component: SignUpComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'verify-email-address', component: VerifyEmailComponent, canActivate: [SecureInnerPagesGuard] },
@@ -34,8 +33,9 @@ const routes: Routes = [
   { path: 'team/:id', component: TeamViewComponent, canActivate: [AuthGuard] },
   { path: 'join', component: TeamJoinComponent, canActivate: [AuthGuard] },
   { path: 'username', component: UsernameComponent },
-  { path: 'signedinn', component: LandingpageComponent },
+  { path: 'signedIn', component: LandingpageComponent },
   { path: 'userprofile', component: UserProfileComponent },
+  { path: 'createQuiz', component: CreateQuizComponent }
 ];
 
 @NgModule({

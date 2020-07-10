@@ -1,14 +1,26 @@
-<h3>Thank You for Registering</h3>
+<body class="main">
+  <form class="verifyMail">
+    <h1>Thank You for Registering</h1>
 
-<div *ngIf="authService.userData as user">
-  <p>We have sent a confirmation email to <strong>{{user.email}}</strong>.</p>
-  <p>Please check your email and click on the link to verfiy your email address.</p>
-</div>
+    <div *ngIf="authService.userData as user">
+      <p>We have sent a confirmation email to <strong>{{user.email}}</strong>.</p>
+      <p>Please check your email and click on the link to verfiy your email address.</p>
+    </div>
 
-<!-- Calling SendVerificationMail() method using authService Api -->
-<button type="button" (click)="authService.SendVerificationMail()">
-  Resend Verification Email
-</button>
+    <!-- Calling SendVerificationMail() method using authService Api -->
+    <button type="button" (click)="authService.SendVerificationMail()">
+      Resend Verification Email
+    </button>
 
+    <br>
+    <br>
 
-<span>Go back to?<button routerLink="/log-in"> Sign in</button></span>
+    <span>Go back to Login</span>
+
+    <br>
+    <br>
+
+    <button routerLink="/log-in"> Sign in</button>
+  </form>
+</body>
+

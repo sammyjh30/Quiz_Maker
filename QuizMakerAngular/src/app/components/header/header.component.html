@@ -1,14 +1,16 @@
 <nav>
-    <div class="logout">
-        <a (click)="authService.SignOut()">Logout</a>
+  <div class="logout">
+    <a (click)="authService.SignOut()">
+      Log out
+    </a>
+  </div>
+
+  <div class="dropdown">
+    <a>Settings</a>
+    <div class="dropdown-content">
+      <a routerLink="/userprofile">Profile</a>
+      <a href="#">Teams</a>
+      <a href="#">Quiz</a>
     </div>
-    
-    <div class="dropdown">
-      <a >Settings</a>
-      <div class="dropdown-content">
-        <a  routerLink="/userprofile">Profile</a>
-        <a href="#">Teams</a>
-        <a href="#">Quiz</a>
-      </div>
-    </div> 
-  </nav>
+  </div>
+</nav>
