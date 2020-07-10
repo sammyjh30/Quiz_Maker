@@ -79,7 +79,7 @@ export class HostViewComponent implements OnInit {
       this.currentFrame = this.frames[this.iterator];
       this.nextFrame = this.frames[this.iterator + 1];
     }
-    // this.socket.emit('message', this.message, this.roomId, time);
+    this.socket.emit('question', this.currentFrame, this.quizId);
   }
 
   nextQuestion() {

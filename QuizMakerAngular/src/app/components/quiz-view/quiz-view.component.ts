@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { User as FireUser } from "firebase/app";
@@ -22,6 +22,7 @@ export class QuizViewComponent implements OnInit {
   teams: Team[];
   currentUser: TeamUser;
   isHost: boolean;
+  @Input() quizId: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -37,8 +38,8 @@ export class QuizViewComponent implements OnInit {
   }
 
   async getQuiz(): Promise<void> {
-    const quizId = +this.route.snapshot.paramMap.get('id');
-    this.quiz = await this.quizService.getQuizByQuizId(quizId);
+    // const quizId = +this.route.snapshot.paramMap.get('id');
+    this.quiz = await this.quizService.getQuizByQuizId(this.quizId);
     this.host = await this.userService.getUser(this.quiz.hostId);
     const fireUser: FireUser = JSON.parse(localStorage.getItem('user'));
     this.isHost = this.host.userId === this.quiz.hostId;

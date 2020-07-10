@@ -35,7 +35,7 @@ const routes: Routes = [
   { path: 'quiz-session/:id/:teamId', component: QuizSessionComponent, canActivate: [AuthGuard] },
   { path: 'quiz-session/:id', component: QuizSessionComponent, canActivate: [AuthGuard] },
 
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', redirectTo: '/signedIn', pathMatch: 'full' },
   { path: 'quiz/:quizId/:host/:captain/:teamId', component: QuizComponent, canActivate: [AuthGuard] },
   { path: 'quiz/:quizId/:host/:captain', component: QuizComponent, canActivate: [AuthGuard] },
   // { path: 'quiz/:id', component: QuizViewComponent, canActivate: [AuthGuard] },

@@ -45,6 +45,15 @@ io.on('connection', (socket) => {
     });
   });
 
+  socket.on('question', (question, roomId) => {
+    console.log(question);
+    //emits message to all connected
+    socket.broadcast.to(roomId).emit('question-broadcast', {
+      question,
+      roomId
+    });
+  });
+
   socket.on('disconnecting', () => {
     const rooms = Object.keys(socket.rooms);
     console.log("DICONNECTING FROM ROOM: " + rooms[0]);
