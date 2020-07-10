@@ -1,3 +1,12 @@
+/QuizMakerAngular/src/environments/firebase.json
+
+# Config files
+QuizMakerAngular/firebase.json
+QuizMakerAngular/firebaseadmin.json
+QuizMakerAngular/firebasesettings.json
+QuizMakerAngular/.vscode/launch.json
+QuizMakerAngular/config.js
+
 /node_modules
 /.firebase
 
@@ -5,7 +14,4 @@
 /QuizMakerAngular/src/environments/firebase.json
 /QuizMakerAngular/src/environments/firebase.json
 /QuizMakerAngular/src/environments/environment.ts
-/QuizMakerAngular/firebaseadmin.json
 /QuizMakerNode/firebaseadmin.json
-/QuizMakerNode/firebasesettings.json
-/QuizMakerNode/config.js

@@ -136,9 +136,9 @@ export class UserService {
     return this.http.post(this.link + '/removeTeamMember', data, this.httpOptions).toPromise();
   }
 
-  getUserDashboard(userId: number): Promise<User[]> {
-    let url = `${this.link}/getTeamMembers/${userId}`;
-    return this.http.get<User[]>(url, this.httpOptions).toPromise();
+  getUserDashboard(userId: string): Promise<User[]> {
+    let url = `${this.link}/dashboard/${userId}`;
+    return this.http.get<any>(url, this.httpOptions).toPromise();
   }
 
 
