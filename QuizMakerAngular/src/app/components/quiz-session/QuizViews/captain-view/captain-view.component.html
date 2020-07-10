@@ -1,21 +1,68 @@
-<div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+          <th>Previous View</th>
+          <th>Current View</th>
+          <th>Next View</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td *ngIf="currentFrame">
+          <div *ngIf="currentFrame.type === 3">
+            <div>
+              <h1>Round Number: {{currentFrame.text}}</h1>
+            </div>
+          </div>
+          
+          <div *ngIf="currentFrame.type === 1">
+            <div>
+              <h1>Round Number: {{currentFrame.question.roundNumber}}</h1>
+              <h2>Question Number: {{currentFrame.question.questionNumber}}</h2>
+            </div>
+            <div *ngIf="currentFrame.question.questionType === 1">
+                <!--for TF questions -->
+                <p>QuestionType: True/False </p>
+                <p> Question: {{currentFrame.question.text}}</p>
+            </div>
+          </div>
+
+          <div *ngIf="currentFrame.type === 2">
+            <div>
+              <h1>Round Number: {{currentFrame.question.roundNumber}}</h1>
+              <h2>Question Number: {{currentFrame.question.questionNumber}}</h2>
+            </div>
+            <!--for multiple choice questions -->
+            <p>QuestionType: MultipleChoice </p>
+            <p>Question: {{currentFrame.question.text}}</p>
+            <p>Option2: {{currentFrame.question.wrongAnswer1}}</p>
+            <p>Option1: {{currentFrame.question.rightAnswer}}</p>
+            <p>Option3: {{currentFrame.question.wrongAnswer2}}</p>c
+            <p>Option4: {{currentFrame.question.wrongAnswer3}}</p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+<!-- <div>
     <h1>Round Number: {{question.roundNumber}}</h1>
     <h2>Question Number: {{question.questionNumber}}</h2>
 </div>
-<div *ngIf="question.questionType === 1">
+<div *ngIf="question.questionType === 1"> -->
     <!--for TF questions -->
-    <p>QuestionType: True/False </p>
+    <!-- <p>QuestionType: True/False </p>
     <p> Question: {{question.text}}</p>
     <div>
         <button (click)="TFAnswer(True)">True</button>
         <button (click)="TFAnswer(False)">False</button>
     </div>
-</div>
+</div> -->
 
-<div *ngIf="question.questionType === 2">
-    <form [formGroup]="MultipleChoiceQuestion" (ngSubmit)="onSubmit(MultipleChoiceQuestion.value)">
+<!-- <div *ngIf="question.questionType === 2">
+    <form [formGroup]="MultipleChoiceQuestion" (ngSubmit)="onSubmit(MultipleChoiceQuestion.value)"> -->
         <!--for multiple choice questions -->
-        <p>QuestionType: MultipleChoice </p>
+        <!-- <p>QuestionType: MultipleChoice </p>
         <p>Question: {{question.text}}</p>
 
         <label for="first">{{question.wrongAnswer1}}</label><br>
@@ -29,4 +76,4 @@
 
         <button class="button" type="submit">Answer</button>
     </form>
-</div>
+</div> -->

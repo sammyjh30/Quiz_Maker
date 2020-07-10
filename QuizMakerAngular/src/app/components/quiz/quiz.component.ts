@@ -6,6 +6,7 @@ import { User as FireUser } from "firebase/app";
 import { QuizService } from '../../services/quiz.service';
 import { UserService } from '../../services/user.service';
 import { Quiz } from 'src/app/models/quiz';
+import {formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-quiz',
@@ -61,7 +62,14 @@ export class QuizComponent implements OnInit {
   async getQuiz() {
     await this.quizService.getQuizByQuizId(this.quizId).then( res => {
       this.quiz = res;
-      if (this.quiz.startDateTime < new Date()) {
+      let dateTime = new Date();
+      console.log("DATE CHECK");
+      formatDate(dateTime, 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+0530')
+      console.log(this.quiz.startDateTime < dateTime);
+        console.log(dateTime)
+      if (this.quiz.startDateTime < dateTime) {
+        console.log(this.quiz.startDateTime);
+        console.log(dateTime)
         this.beforeDate = true;
       } else {
         this.beforeDate = false;
@@ -69,5 +77,9 @@ export class QuizComponent implements OnInit {
     });
     console.log(this.quiz);
   }
+
+  // isDateBeforeToday(date): boolean {
+  //   return new Date(date.toDateString()) < new Date(new Date().toDateString()); 
+  // }
 
 }
