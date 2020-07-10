@@ -14,6 +14,7 @@ export class ChatInboxComponent implements OnInit {
   messages: string[] = [];
   // Room id (either quiz or team)
   @Input() public roomId: string;
+  @Input() public username: string;
   @Input() public socket: SocketIOClient.Socket;
 
   constructor(public authService: AuthService) {}
@@ -39,7 +40,7 @@ export class ChatInboxComponent implements OnInit {
     var date = new Date();
     var time = date.getHours() + ":" + date.getMinutes()
     this.socket.emit('message', this.message, this.roomId, time);
-    this.messages.push( this.authService.userData.displayName + ": " + this.message + "\t" + time);
+    this.messages.push( this.username + ": " + this.message + "\t" + time);
     this.message = '';
   }
 

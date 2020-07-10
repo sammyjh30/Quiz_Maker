@@ -16,3 +16,11 @@
 .team-chat{
     float: left;
 }
+
+.quiz-page {
+    overflow-y: scroll;
+    height: 90vh;
+    width: 75%;
+    display: inline-flex;
+    align-items: center;
+}

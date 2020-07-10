@@ -26,3 +26,9 @@
     margin: auto 0.2rem;
     width: 100px;
  }
+ .message {
+   background: white;
+   padding: 15px 30px;
+   margin: 10px;
+   color: black;
+ }
