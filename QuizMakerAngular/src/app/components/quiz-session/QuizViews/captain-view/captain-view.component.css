@@ -4,7 +4,9 @@
     border: 1px solid white;
     text-align: left;
     align-items: center;
-    width: 600px;
+    width: 40em;
+    margin: 1em;
+    /* width: 600px; */
   }
   
   th{
