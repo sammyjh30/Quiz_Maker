@@ -57,6 +57,7 @@ export class HostViewComponent implements OnInit {
     this.previousFrame = {};
     this.currentFrame = this.frames[this.iterator];
     this.nextFrame = this.frames[this.iterator + 1];
+    this.socket.emit('question', this.currentFrame, this.quizId);
   }
 
   previous() {
@@ -102,6 +103,7 @@ export class HostViewComponent implements OnInit {
       this.currentFrame = this.frames[this.iterator];
       this.nextFrame = this.frames[this.iterator + 1];
     }
+    this.socket.emit('question', this.currentFrame, this.quizId);
   }
   // constructor() { }
 

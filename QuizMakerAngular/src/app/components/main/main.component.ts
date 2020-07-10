@@ -21,11 +21,15 @@ export class MainComponent implements OnInit {
   async ngOnInit() {
     console.log("MAIN ENTERED");
     const fireUser: FireUser = JSON.parse(localStorage.getItem('user'));
-    //Get User's quiz
-    await this.userService.getUserDashboard(fireUser.uid).then( res => {
-      this.quizzes = res;
-    });;
-    console.log(this.quizzes);
+
+    if (fireUser) {
+      //Get User's quiz
+      await this.userService.getUserDashboard(fireUser.uid).then( res => {
+        this.quizzes = res;
+      });;
+      console.log(this.quizzes);
+    }
+    
   }
 
 

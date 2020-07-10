@@ -21,6 +21,7 @@ button{
   border: none;
   outline: none;
   height: 40px;
+  min-width: 4.9em;
   background: rgb(84,57,129);
   color: #fff;
   font-size: 18px;
