@@ -1,6 +1,6 @@
 <div *ngIf="user">
     <div *ngIf="beforeDate; else quizContent">
-        <app-quiz-view></app-quiz-view>>
+        <app-quiz-view quizId="{{quizId}}"></app-quiz-view>>
     </div>
     <ng-template #quizContent>
             <app-quiz-session quizId="{{quizId}}" 

@@ -4,7 +4,7 @@
       <app-chat-inbox roomId="{{teamId}}" username="{{username}}" [socket]="socket"></app-chat-inbox>
     </div>
     <!-- </div> -->
-    <a routerLink="/dashboard">Error</a>
+    <a routerLink="/signedIn">Back</a>
     <!-- <div class="quiz-page"> -->
     <!-- ngif host -->
     <!-- host view -->
@@ -12,10 +12,10 @@
     <!-- Ngif captain -->
     <!-- Captain view (can click answers) -->
     <!-- else player view (can see answers) -->
-    <!-- <div *ngIf="captain"> -->
+    <div *ngIf="!host && captain">
         <!-- <app-captain-view [question]=question (answer)="functionAnswerFromCaptain()"></app-captain-view> -->
-        <!-- <app-captain-view quizId="{{quizId}}"  [socket]="socket"></app-captain-view> -->
-      <!-- </div> -->
+        <app-captain-view quizId="{{quizId}}"  [socket]="socket"></app-captain-view>
+      </div>
       <div *ngIf="player">
         <!-- <app-player-view [question]=question></app-player-view> -->
         <app-player-view quizId="{{quizId}}"  [socket]="socket"></app-player-view>
