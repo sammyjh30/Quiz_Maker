@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from  '@angular/forms';
 import { Router } from  '@angular/router';
 import {Location} from '@angular/common';
+import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: 'app-password',
@@ -16,7 +17,7 @@ export class PasswordComponent implements OnInit {
   usernameForm:FormGroup;
   isSubmitted  =  false;
   selectedFile: File
-  constructor(private _location: Location,private formBuilder: FormBuilder,private router: Router) { }
+  constructor(public authService: AuthService,private _location: Location,private formBuilder: FormBuilder,private router: Router) { }
 
   get formControls() { return this.pswChangeForm.controls; }
 

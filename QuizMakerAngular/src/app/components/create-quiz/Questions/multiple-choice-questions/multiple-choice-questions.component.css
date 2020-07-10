@@ -1,0 +1,65 @@
+button{
+  border: none;
+  outline: none;
+  height: 40px;
+  width: 100%;
+  font-size: 18px;
+  border-radius: 20px;
+  background: rgb(84,57,129);
+  font-weight: bold;
+}
+
+button:hover{
+  background: rgb(159, 59, 59);
+}
+
+
+
+input{
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+input[type="text"], input[type="datetime-local"], input[type="number"], input[type="textarea"]{
+  margin: 0px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  background: rgba(114, 82, 82, 0.2);
+  outline: none;
+  height: 40px;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+}
+
+button[type="submit"]:hover{
+  cursor: pointer;
+  background: rgb(159, 59, 59);
+  color:#000
+}
+
+button{
+  border: none;
+  outline: none;
+  height: 40px;
+  width: 100%;
+  font-size: 18px;
+  border-radius: 20px;
+  background: rgb(84,57,129);
+  font-weight: bold;
+}
+
+h1{
+  margin: 0;
+  padding: 0 0 20px;
+  text-align: center;
+  font-size: 30px;
+
+}
+
+label{
+  margin: 50px;
+}
+
+
+

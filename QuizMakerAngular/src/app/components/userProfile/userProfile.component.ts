@@ -36,7 +36,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   onClickOpenForm(){
-    console.log("form");
     this.openform=true;
     return this.openform;
   

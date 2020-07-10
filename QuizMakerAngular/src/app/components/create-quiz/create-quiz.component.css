@@ -1,0 +1,119 @@
+
+.main{
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-image: url('/../assets/img/login.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: sans-serif;
+}
+.CreateQuiz, .TrueFalse, .MulitpleChoice{
+  width: 400px;
+  height: 470px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  box-sizing: border-box;
+  padding: 70px 30px;
+  text-align: center;
+  opacity: 0.9;
+  align-items: center;
+}
+
+.TrueFalse{
+  height: 470px;
+}
+
+.MulitpleChoice{
+  height: 800px;
+}
+
+.selectQuestions{
+  width: 400px;
+  height: 350px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  box-sizing: border-box;
+  padding: 70px 30px;
+  text-align: center;
+  opacity: 0.9;
+  align-items: center;
+}
+
+.selectQuestions button{
+  border: none;
+  outline: none;
+  height: 40px;
+  width: 100%;
+  font-size: 18px;
+  border-radius: 20px;
+  background: rgb(84,57,129);
+  font-weight: bold;
+}
+
+.selectQuestions button:hover{
+  background: rgb(159, 59, 59);
+}
+
+
+
+.CreateQuiz input{
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.CreateQuiz input[type="text"], input[type="datetime-local"]{
+  margin: 0px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  background: rgba(114, 82, 82, 0.2);
+  outline: none;
+  height: 40px;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+}
+
+.CreateQuiz button[type="submit"]:hover{
+  cursor: pointer;
+  background: rgb(159, 59, 59);
+  color:#000
+}
+
+.CreateQuiz button{
+  border: none;
+  outline: none;
+  height: 40px;
+  width: 100%;
+  font-size: 18px;
+  border-radius: 20px;
+  background: rgb(84,57,129);
+  font-weight: bold;
+}
+
+h1{
+  margin: 0;
+  padding: 0 0 20px;
+  text-align: center;
+  font-size: 30px;
+
+}
+
+label{
+  margin: 50px;
+}
+
+
+
