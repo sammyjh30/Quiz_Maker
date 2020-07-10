@@ -9,12 +9,11 @@
             <th>Event Name</th>
             <th>Your Role</th>
             <th>When</th>
-            
           </tr>
       </thead>
       <tbody *ngFor="let quiz of quizzes">
         <tr>
-          <td><a routerLink="/quiz-session/{{quiz.quizId}}">{{quiz.quizName}}</a></td>
+          <td><a routerLink="/quiz/{{quiz.quizId}}/{{quiz.hostBool}}/{{quiz.captain}}/{{quiz.teamId}}">{{quiz.quizName}}</a></td>
           <td>
             <div *ngIf="quiz.hostBool == 1; else playerContent">
               Host
