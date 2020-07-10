@@ -42,7 +42,7 @@ import { ChatInboxComponent } from './components/chat-inbox/chat-inbox.component
 // Landing Carousal
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
-import { QuizComponent } from './quiz/quiz.component';
+import { QuizComponent } from './components/quiz/quiz.component';
 import { CreateQuizComponent } from './components/create-quiz/create-quiz.component';
 import { TFquestionComponent } from './components/create-quiz/Questions/tfquestion/tfquestion.component';
 import { MultipleChoiceQuestionsComponent } from './components/create-quiz/Questions/multiple-choice-questions/multiple-choice-questions.component';

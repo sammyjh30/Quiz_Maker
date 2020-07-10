@@ -25,6 +25,7 @@ export class MainComponent implements OnInit {
     await this.userService.getUserDashboard(fireUser.uid).then( res => {
       this.quizzes = res;
     });;
+    console.log(this.quizzes);
   }
 
 

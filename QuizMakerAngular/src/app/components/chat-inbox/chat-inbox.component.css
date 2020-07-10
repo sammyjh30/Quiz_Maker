@@ -49,3 +49,10 @@
  .chat-messages-create-button:hover {
   background: rgb(159, 59, 59);
 }
+
+ .message {
+   background: white;
+   padding: 15px 30px;
+   margin: 10px;
+   color: black;
+ }
