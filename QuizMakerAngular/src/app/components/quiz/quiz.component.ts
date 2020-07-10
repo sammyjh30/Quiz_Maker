@@ -62,24 +62,18 @@ export class QuizComponent implements OnInit {
   async getQuiz() {
     await this.quizService.getQuizByQuizId(this.quizId).then( res => {
       this.quiz = res;
-      let dateTime = new Date();
-      console.log("DATE CHECK");
+      
+    console.log(this.quiz);
+    let dateTime = new Date();
+    let eventDate = new Date(res["0"].startDateTime);
       formatDate(dateTime, 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+0530')
-      console.log(this.quiz.startDateTime < dateTime);
-        console.log(dateTime)
-      if (this.quiz.startDateTime < dateTime) {
-        console.log(this.quiz.startDateTime);
-        console.log(dateTime)
+      formatDate(eventDate, 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+0530')
+      if (eventDate > dateTime) {
         this.beforeDate = true;
       } else {
         this.beforeDate = false;
       }
     });
-    console.log(this.quiz);
   }
-
-  // isDateBeforeToday(date): boolean {
-  //   return new Date(date.toDateString()) < new Date(new Date().toDateString()); 
-  // }
 
 }
