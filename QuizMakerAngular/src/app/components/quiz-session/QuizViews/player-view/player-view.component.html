@@ -1,0 +1,20 @@
+<div>
+    <h1>Round Number: {{question.roundNumber}}</h1>
+    <h2>Question Number: {{question.questionNumber}}</h2>
+</div>
+<div *ngIf="question.questionType === 1">
+    <!--for TF questions -->
+    <p>QuestionType: True/False </p>
+    <p> Question: {{question.text}}</p>
+
+</div>
+
+<div *ngIf="question.questionType === 2">
+    <!--for multiple choice questions -->
+    <p>QuestionType: MultipleChoice </p>
+    <p>Question: {{question.text}}</p>
+    <p>Option2: {{question.wrongAnswer1}}</p>
+    <p>Option1: {{question.rightAnswer}}</p>
+    <p>Option3: {{question.wrongAnswer2}}</p>
+    <p>Option4: {{question.wrongAnswer3}}</p>
+</div>
