@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "QuizMakerAngular/dist/QuizMakerAngular",
+    "public": "dist/QuizMakerAngular",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -12,8 +12,5 @@
         "destination": "/index.html"
       }
     ]
-  },
-  "functions": {
-    "source": "QuizMakerNode"
   }
 }
