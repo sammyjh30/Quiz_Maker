@@ -28,12 +28,12 @@
 }
 
 .leftContent, .rightContent{
-  margin: 20px;
+  margin: 1.25rem;
   height: 90%;
   overflow: hidden;
   background:rgba(0, 0, 0, 0.3);
-  margin-bottom: 20px;
-  padding: 20px;
+  margin-bottom: 1.25rem;
+  padding: 1.25rem;
 }
 
 .topnav {
@@ -46,30 +46,30 @@
   float: right;
   color: #f2f2f2;
   text-align: center;
-  padding: 14px 16px;
+  padding: 0.875rem 1rem;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 1.063rem;
 }
 
 .logo{
-  max-width: 300px;
+  max-width: 18.75rem;
   overflow: hidden;
   border-radius: 30%;
-  margin: 20px;
+  margin: 1.25rem;
 }
 
 .leftContent h1, .rightContent h1{
-  font-size: 50px;
+  font-size: 3.125rem;
   color: white;
   font-weight: bold;
-  margin: 100px;
+  margin: 6.25rem;
   font-family: sans-serif;
 }
 
 .leftContent p{
-  font-size: 30px;
+  font-size: 1.875rem;
   color: white;
-  margin: 100px;
+  margin: 6.25rem;
   font-weight: bold;
   font-family: sans-serif;
 }
@@ -78,5 +78,5 @@
   display: block;
   height: 100%;
   width: 40%;
-  padding: 10px;
+  padding: 0.625rem;
 }
