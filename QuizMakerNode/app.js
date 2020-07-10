@@ -10,7 +10,6 @@ const userRouter = require('./routes/UserRoute')
 const mailer = require('./routes/MailerRoute');
 
 app.use(cors());
-
 //app.use(auth);  // enable request authentication
 app.use(express.json());
 app.use(bodyParser.json());
@@ -23,15 +22,15 @@ app.get("/", (req, res) => {
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
-io.on('connection', (socket) => {  
+io.on('connection', (socket) => {
   var username = "";
 
   username = socket.handshake.query['user']
-  console.log(username + ' connected'); 
+  console.log(username + ' connected');
 
-  socket.on('join', function(roomId) {
+  socket.on('join', function (roomId) {
     socket.join(roomId);
-    console.log(username + ' connected for roomId:' + roomId); 
+    console.log(username + ' connected for roomId:' + roomId);
   });
 
   socket.on('message', (msg, roomId, timeStamp) => {
@@ -52,12 +51,12 @@ io.on('connection', (socket) => {
   });
 
   socket.on('disconnect', () => {
-     console.log('a user disconnected. ' +  username);
+    console.log('a user disconnected. ' + username);
   });
 });
 
 
-http.listen(3001, () => {
+http.listen(process.env.port || 3001, () => {
   console.log('listening on *:3001');
 });
 // 
@@ -78,6 +77,6 @@ app.get('/testDB', function (req, res) {
   }).catch(err => res.status(500).send(err)) //do shit with error
 });
 
-app.listen(config.web.port, function () {
+app.listen(process.env.port || config.web.port, function () {
   console.log('Example app listening on port ' + config.web.port + '!');
 });

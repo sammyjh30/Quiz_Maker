@@ -1,7 +1,6 @@
 {
   "name": "quizmakernode",
   "description": "Cloud Functions for Firebase",
-  
   "scripts": {
     "start": "node app.js"
   },

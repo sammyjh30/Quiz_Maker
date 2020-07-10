@@ -33,5 +33,5 @@ From angular root folder run
 - npm install -g firebase-tools (if you haven't)
 - firebase login
 - firebase deploy
-- firebase openfire
+- firebase open
 

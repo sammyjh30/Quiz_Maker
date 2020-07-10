@@ -1,9 +1,10 @@
 import * as io from 'socket.io-client';
 import { Observable } from 'rxjs/Observable';
+import { environment } from 'src/environments/environment';
 
 export class ChatService {
-    private url = 'http://localhost:3000';
-    private socket;    
+    private url = environment.endpoints.backend;
+    private socket;
 
     constructor() {
         this.socket = io(this.url);

@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as io from 'socket.io-client'
 import { AuthService } from "../../services/auth.service";
+import { environment } from 'src/environments/environment';
 
-const SOCKET_ENDPOINT = 'localhost:3001';
+const SOCKET_ENDPOINT = environment.endpoints.backend;
 
 @Component({
   selector: 'app-chat-inbox',

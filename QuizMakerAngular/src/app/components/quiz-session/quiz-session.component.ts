@@ -4,8 +4,9 @@ import { AuthService } from "../../services/auth.service";
 import * as io from 'socket.io-client'
 // import { User } from 'firebase';
 import { User } from '../../models/user';
+import { environment } from 'src/environments/environment';
 
-const SOCKET_ENDPOINT = 'localhost:3001';
+const SOCKET_ENDPOINT = environment.endpoints.backend;
 
 @Component({
   selector: 'app-quiz-session',
@@ -19,8 +20,8 @@ export class QuizSessionComponent implements OnInit {
   public socket: SocketIOClient.Socket;
 
   constructor(
-    private route: ActivatedRoute, 
-    public authService: AuthService) { 
+    private route: ActivatedRoute,
+    public authService: AuthService) {
 
     this.route.params.subscribe( params => {
       console.log(params);

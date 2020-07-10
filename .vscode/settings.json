@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/b5677408-4010-4773-8e01-dd9a69de47ff/resourceGroups/bbd/providers/Microsoft.Web/sites/quizmaker911",
+    "appService.deploySubpath": "QuizMakerNode"
+}
