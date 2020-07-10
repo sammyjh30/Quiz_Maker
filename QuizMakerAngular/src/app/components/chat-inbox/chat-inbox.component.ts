@@ -38,7 +38,7 @@ export class ChatInboxComponent implements OnInit {
 
   SendMessage() {
     var date = new Date();
-    var time = date.getHours() + ":" + date.getMinutes()
+    var time = date.getHours() + ":" + date.getMinutes();
     this.socket.emit('message', this.message, this.roomId, time);
     this.messages.push( this.username + ": " + this.message + "\t" + time);
     this.message = '';
