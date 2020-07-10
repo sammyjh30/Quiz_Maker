@@ -18,7 +18,7 @@ import { User } from '../../models/user';
 })
 export class QuizViewComponent implements OnInit {
   host: User;
-  quiz: Quiz;
+  @Input() quiz: Quiz;
   teams: Team[];
   currentUser: TeamUser;
   isHost: boolean;
@@ -30,27 +30,39 @@ export class QuizViewComponent implements OnInit {
     private quizService: QuizService,
     private userService: UserService
   ) {
-    this.getQuiz();
-    this.getTeams();
+    
   }
 
   ngOnInit() {
+    if (this.quiz) {
+      this.getQuiz();
+      this.getTeams();
+    }
+    
   }
 
   async getQuiz(): Promise<void> {
     // const quizId = +this.route.snapshot.paramMap.get('id');
-    this.quiz = await this.quizService.getQuizByQuizId(this.quizId);
-    this.host = await this.userService.getUser(this.quiz.hostId);
+    // await this.quizService.getQuizByQuizId(this.quizId).then( res => {
+    //   this.quiz = res;
+    // });
+    await this.userService.getUser(this.quiz.hostId).then( res => {
+      this.host = res;
+    });
     const fireUser: FireUser = JSON.parse(localStorage.getItem('user'));
-    this.isHost = this.host.userId === this.quiz.hostId;
+    this.isHost = this.host ? this.host.userId === this.quiz.hostId : null;
     if (!this.isHost) {
-      this.currentUser = await this.userService.getUserByEmail(fireUser.email);
+      await this.userService.getUserByEmail(fireUser.email).then( res => {
+        this.currentUser = res;
+      });
     }
   }
 
   async getTeams(): Promise<void> {
     const quizId = +this.route.snapshot.paramMap.get('id');
-    this.teams = await this.userService.getTeamsByQuizId(quizId);
+    await this.userService.getTeamsByQuizId(quizId).then( res => {
+      this.teams = res;
+    });
   }
 
   async removeTeam(team: Team): Promise<void> {

@@ -21,11 +21,11 @@ nav a {
 
   
 .dropdown {
-    float: right;
+    float: left;
    
   }
   .logout {
-    float: right;
+    float: left;
    
   }
   .logout a{
@@ -61,5 +61,13 @@ nav a {
   .dropdown:hover .dropdown-content {
     display: block;
   }
-
-  
+  .navbar {
+    width: 100%;
+    display: grid;
+    background: black;
+    clear: both;
+  }
+  .home {
+    width: 90%;
+    float: left;
+  }

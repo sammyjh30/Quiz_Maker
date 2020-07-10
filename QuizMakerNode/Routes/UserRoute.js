@@ -114,10 +114,10 @@ router.get('/getUser/:userId', function (req, res) {
     })
 })
 
-router.put('/getUserByEmail', function (req, res) {
+router.get('/getUserByEmail/:email', function (req, res) {
     conn.poolPromise.then((pool) => {
         const request = pool.request();
-        request.input('email', req.body.email);
+        request.input('email', req.params.email);
         request.query(`
         SELECT * FROM Users 
         WHERE email = @email`).then((data) => {
