@@ -20,7 +20,7 @@
       </div> -->
     <div *ngIf="host">
       <!-- <app-host-view [hostQuestion]=question (prev)="functionForPrevious()" (next)="functionForNext()"></app-host-view> -->
-      <app-host-view quizId="{{quizId}}"></app-host-view>
+      <app-host-view quizId="{{quizId}}"  [socket]="socket"></app-host-view>
     </div>
   </div>
 

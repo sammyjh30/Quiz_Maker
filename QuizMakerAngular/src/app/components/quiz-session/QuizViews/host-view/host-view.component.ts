@@ -13,6 +13,7 @@ export class HostViewComponent implements OnInit {
   ) { }
 
   @Input() quizId: number;
+  @Input() socket: SocketIOClient.Socket;
 
   questions: Question[]; //put your 3 in here
   frames;
@@ -78,6 +79,7 @@ export class HostViewComponent implements OnInit {
       this.currentFrame = this.frames[this.iterator];
       this.nextFrame = this.frames[this.iterator + 1];
     }
+    // this.socket.emit('message', this.message, this.roomId, time);
   }
 
   nextQuestion() {
