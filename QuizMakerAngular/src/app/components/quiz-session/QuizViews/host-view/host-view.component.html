@@ -1,9 +1,9 @@
 <table class="table table-striped">
     <thead>
         <tr>
-          <th>Previous View</th>
-          <th>Current View</th>
-          <th>Next View</th>
+          <th><h3>Previous View</h3></th>
+          <th><h3>Current View</h3></th>
+          <th><h3>Next View</h3></th>
         </tr>
     </thead>
     <tbody>
@@ -11,14 +11,14 @@
         <td *ngIf="previousFrame">
           <div *ngIf="previousFrame.type === 3">
             <div>
-              <h1>Round Number: {{previousFrame.text}}</h1>
+              <p>Round Number: {{previousFrame.text}}</p>
             </div>
           </div>
-          
+
           <div *ngIf="previousFrame.type === 1">
             <div>
-              <h1>Round Number: {{previousFrame.question.roundNumber}}</h1>
-              <h2>Question Number: {{previousFrame.question.questionNumber}}</h2>
+              <p>Round Number: {{previousFrame.question.roundNumber}}</p>
+              <p>Question Number: {{previousFrame.question.questionNumber}}</p>
             </div>
             <div *ngIf="previousFrame.question.questionType === 1">
                 <!--for TF questions -->
@@ -29,8 +29,8 @@
 
           <div *ngIf="previousFrame.type === 2">
             <div>
-              <h1>Round Number: {{previousFrame.question.roundNumber}}</h1>
-              <h2>Question Number: {{previousFrame.question.questionNumber}}</h2>
+              <p>Round Number: {{previousFrame.question.roundNumber}}</p>
+              <p>Question Number: {{previousFrame.question.questionNumber}}</p>
             </div>
             <!--for multiple choice questions -->
             <p>QuestionType: MultipleChoice </p>
@@ -44,14 +44,14 @@
         <td *ngIf="currentFrame">
           <div *ngIf="currentFrame.type === 3">
             <div>
-              <h1>Round Number: {{currentFrame.text}}</h1>
+              <p>Round Number: {{currentFrame.text}}</p>
             </div>
           </div>
-          
+
           <div *ngIf="currentFrame.type === 1">
             <div>
-              <h1>Round Number: {{currentFrame.question.roundNumber}}</h1>
-              <h2>Question Number: {{currentFrame.question.questionNumber}}</h2>
+              <p>Round Number: {{currentFrame.question.roundNumber}}</p>
+              <p>Question Number: {{currentFrame.question.questionNumber}}</p>
             </div>
             <div *ngIf="currentFrame.question.questionType === 1">
                 <!--for TF questions -->
@@ -62,8 +62,8 @@
 
           <div *ngIf="currentFrame.type === 2">
             <div>
-              <h1>Round Number: {{currentFrame.question.roundNumber}}</h1>
-              <h2>Question Number: {{currentFrame.question.questionNumber}}</h2>
+              <p>Round Number: {{currentFrame.question.roundNumber}}</p>
+              <p>Question Number: {{currentFrame.question.questionNumber}}</p>
             </div>
             <!--for multiple choice questions -->
             <p>QuestionType: MultipleChoice </p>
@@ -77,14 +77,14 @@
         <td *ngIf="nextFrame">
           <div *ngIf="nextFrame.type === 3">
             <div>
-              <h1>Round Number: {{nextFrame.text}}</h1>
+              <p>Round Number: {{nextFrame.text}}</p>
             </div>
           </div>
-          
+
           <div *ngIf="nextFrame.type === 1">
             <div>
-              <h1>Round Number: {{nextFrame.question.roundNumber}}</h1>
-              <h2>Question Number: {{nextFrame.question.questionNumber}}</h2>
+              <p>Round Number: {{nextFrame.question.roundNumber}}</p>
+              <p>Question Number: {{nextFrame.question.questionNumber}}</p>
             </div>
             <div *ngIf="nextFrame.question.questionType === 1">
                 <!--for TF questions -->
@@ -95,8 +95,8 @@
 
           <div *ngIf="nextFrame.type === 2">
             <div>
-              <h1>Round Number: {{nextFrame.question.roundNumber}}</h1>
-              <h2>Question Number: {{nextFrame.question.questionNumber}}</h2>
+              <p>Round Number: {{nextFrame.question.roundNumber}}</p>
+              <p>Question Number: {{nextFrame.question.questionNumber}}</p>
             </div>
             <!--for multiple choice questions -->
             <p>QuestionType: MultipleChoice </p>
@@ -108,13 +108,12 @@
           </div>
         </td>
       </tr>
-      <tr>
-        <td><button (click)="previous()">Previous</button></td>
-        <td> </td>
-        <td><button (click)="nextQuestion()">Next</button></td>
-      </tr>
     </tbody>
   </table>
+  <button (click)="previous()">Previous</button>
+  <button (click)="nextQuestion()">Next</button>
+
+
 
 
 <!-- <div *ngFor="let question of questions">
