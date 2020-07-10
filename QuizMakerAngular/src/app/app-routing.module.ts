@@ -11,7 +11,7 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { QuizSessionComponent } from './components/quiz-session/quiz-session.component';
 import { UserProfileComponent } from './components/userProfile/userProfile.component';
 import { UsernameComponent } from './components/username/username.component';
-// import { LandingpageComponent } from './components/landingpage/landingpage.component';
+import { LandingpageComponent } from './components/landingpage/landingpage.component';
 import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
 import { TeamViewComponent } from './components/team-view/team-view.component';
 import { TeamJoinComponent } from './components/team-join/team-join.component';
@@ -42,7 +42,7 @@ const routes: Routes = [
   { path: 'team/:id', component: TeamViewComponent, canActivate: [AuthGuard] },
   { path: 'join', component: TeamJoinComponent, canActivate: [AuthGuard] },
   { path: 'username', component: UsernameComponent },
-  { path: 'signedIn', component: LandingPageComponent },
+  { path: 'signedIn', component: LandingpageComponent },
   { path: 'userprofile', component: UserProfileComponent },
   { path: 'createQuiz', component: CreateQuizComponent }
 ];
