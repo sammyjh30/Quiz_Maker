@@ -1,31 +1,62 @@
+<<<<<<< HEAD
+<body class="main">
+  <form class="CreateQuiz" [formGroup]="quizForm" (ngSubmit)="onSubmit(quizForm.value)" *ngIf="!created">
+=======
 <form [formGroup]="quizForm" (ngSubmit)="onSubmit(quizForm.value)" *ngIf="!created">
+>>>>>>> develop
     <div>
-        <label for="quizName">
-            QuizName
-        </label>
-        <input id="quizName" type="text" formControlName="quizName">
-    </div>
+      <h1>Start your Quiz</h1>
+        <br>
+        <br>
 
+      <label for="quizName">
+            Enter Quiz Name
+        </label>
+        <br>
+        <br>
+
+        <input id="quizName" type="text" formControlName="quizName" placeholder="Enter Quiz Name">
+    </div>
+    <br>
+    <br>
     <div>
         <label for="startDateTime">
             Start Date Time
         </label>
+        <br>
+        <br>
         <input id="startDateTime" type="datetime-local" formControlName="startDateTime">
     </div>
+    <br>
+    <button class="button" type="submit">Create Quiz</button>
 
-    <button class="button" type="submit">create</button>
+
+  </form>
+
+  <form *ngIf="showChoice" class="selectQuestions">
+    <div *ngIf="showChoice">
+      <h1>Choose your Question</h1>
+      <br><br>
+      <button class="button" (click)="showTF()">True/False Question </button>
+      <br>
+      <br>
+      <button class="button" (click)="showMultiple()">Multiple Choice Question </button>
+      <br>
+      <br>
+      <button class="button" routerLink="/dashboard" routerLinkActive="active">End Quiz </button>
+
+  </div>
 </form>
+  <div class="TrueFalse" *ngIf="enterTF">
+      <app-tfquestion (data)="addTFQuestion($event)"> </app-tfquestion>
+  </div>
 
-<div *ngIf="showChoice">
-    <button class="button" (click)="showTF()">add True False Question </button>
-    <button class="button" (click)="showMultiple()">add Multiple Choice Question </button>
-    <button class="button" routerLink="/dashboard" routerLinkActive="active">End Quiz </button>
+  <div class="MulitpleChoice" *ngIf="enterMulti">
+      <app-multiple-choice-questions (data)="addMultipleChoiceQuestion($event)"> </app-multiple-choice-questions>
+  </div>
 
-</div>
-<div *ngIf="enterTF">
-    <app-tfquestion (data)="addTFQuestion($event)"> </app-tfquestion>
-</div>
 
-<div *ngIf="enterMulti">
-    <app-multiple-choice-questions (data)="addMultipleChoiceQuestion($event)"> </app-multiple-choice-questions>
-</div>
+</body>
+
+
+

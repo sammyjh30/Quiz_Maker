@@ -2,14 +2,14 @@
 <div>
 <h3>Your Quizzes</h3>
 <div class="container">
-    
+
     <table class="table table-striped">
       <thead>
           <tr>
             <th>Event Name</th>
             <th>Your Role</th>
             <th>When</th>
-            
+
           </tr>
       </thead>
       <tbody *ngFor="let quiz of quizzes">
@@ -29,7 +29,7 @@
     </table>
   </div>
 <div class="buttons">
-  <button class="btn Create">Create New Quizz</button>
+  <button class="btn Create" routerLink="/createQuiz">Create New Quizz</button>
   <button class="btn Join">Join Existing  Quizz</button>
 </div>
 
