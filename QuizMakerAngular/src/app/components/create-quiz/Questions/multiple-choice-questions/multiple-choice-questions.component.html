@@ -1,55 +1,58 @@
-<p>multiple-choice-questions works!</p>
-
 <form [formGroup]="multipleChoiceQuestion" (ngSubmit)="onSubmit(multipleChoiceQuestion.value)">
-    <div>
+    <h1>Enter Multiple Choice Question</h1>
+  <div>
         <label for="roundNumber">
             Round Number
         </label>
-        <input id="roundNumber" type="number" formControlName="roundNumber">
+        <input id="roundNumber" type="number" formControlName="roundNumber" placeholder="select round number">
     </div>
-
+    <br>
     <div>
         <label for="questionNumber">
             Question Number
         </label>
-        <input id="questionNumber" type="number" formControlName="questionNumber">
+        <input id="questionNumber" type="number" formControlName="questionNumber" placeholder="select question number">
     </div>
-
+    <br>
     <div>
         <label for="question">
             Question
         </label>
-        <input id="question" type="textarea" formControlName="question">
+        <input id="question" type="textarea" formControlName="question" placeholder="enter the question">
     </div>
-
+    <br>
     <div>
         <label for="answer">
-            Answer
+            Right Answer
         </label>
-        <input id="answer" type="text" formControlName="answer">
+        <br>
+        <input id="answer" type="text" formControlName="answer" placeholder="enter right answer">
     </div>
-
+    <br>
     <div>
         <label for="wrongAnswer1">
             Wrong Answer 1
         </label>
-        <input id="wrongAnswer1" type="text" formControlName="wrongAnswer1">
+        <br>
+        <input id="wrongAnswer1" type="text" formControlName="wrongAnswer1" placeholder="enter first wrong answer">
     </div>
-
+    <br>
     <div>
         <label for="wrongAnswer2">
             Wrong Answer 2
         </label>
-        <input id="wrongAnswer2" type="text" formControlName="wrongAnswer2">
+        <br>
+        <input id="wrongAnswer2" type="text" formControlName="wrongAnswer2"placeholder="enter second wrong answer">
     </div>
-
+    <br>
     <div>
         <label for="wrongAnswer3">
             Wrong Answer 3
         </label>
-        <input id="wrongAnswer3" type="text" formControlName="wrongAnswer3">
+        <br>
+        <input id="wrongAnswer3" type="text" formControlName="wrongAnswer3"placeholder="enter third wrong answer">
     </div>
 
-
-    <button class="button" type="submit">add question</button>
+    <br>
+    <button class="button" type="submit">Add Question</button>
 </form>

@@ -1,35 +1,33 @@
-<p>tfquestion works!</p>
-
-
 <form [formGroup]="TFQuestion" (ngSubmit)="onSubmit(TFQuestion.value)">
+  <h1>Adding True/False Question</h1>
     <div>
         <label for="roundNumber">
             Round Number
         </label>
-        <input id="roundNumber" type="number" formControlName="roundNumber">
+        <input id="roundNumber" type="number" formControlName="roundNumber" placeholder="enter round number">
     </div>
-
+    <br>
     <div>
         <label for="questionNumber">
             Question Number
         </label>
-        <input id="questionNumber" type="number" formControlName="questionNumber">
+        <input id="questionNumber" type="number" formControlName="questionNumber" placeholder="enter question number">
     </div>
-
+    <br>
     <div>
         <label for="question">
             Question
         </label>
-        <input id="question" type="textarea" formControlName="question">
+        <input id="question" type="textarea" formControlName="question" placeholder="enter question">
     </div>
-
+    <br>
     <div>
         <label for="answer">
-            Answer
+            Answer (Check box for true answer)
         </label>
         <input id="answer" type="checkbox" formControlName="answer">
     </div>
 
 
-    <button class="button" type="submit">add question</button>
+    <button class="button" type="submit">Add Question</button>
 </form>
