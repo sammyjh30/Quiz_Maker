@@ -27,8 +27,15 @@ export class QuizAddTeamComponent {
   }
 
   async addTeam() {
-    let captain: TeamUser = await this.userService.getUserByEmail(this.captainEmailFC.value);
+    let captain: TeamUser
+    await this.userService.getUserByEmail(this.captainEmailFC.value).then( res => {
+      captain = res;
+    });
     this.userService.createCaptainAndTheirTeam(captain.userId, captain.name, captain.surname, captain.email, this.teamNameFC.value, this.quiz.quizId);
+  }
+
+  createTeam() {
+    
   }
 
   goBack(): void {
