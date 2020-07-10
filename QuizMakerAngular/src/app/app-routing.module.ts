@@ -38,7 +38,7 @@ const routes: Routes = [
   { path: 'join', component: TeamJoinComponent, canActivate: [AuthGuard] },
   { path: 'username', component: UsernameComponent },
   { path: 'signedIn', component: LandingpageComponent },
-  { path: 'userProfile', component: UserProfileComponent },
+  { path: 'userprofile', component: UserProfileComponent },
   { path: 'createQuiz', component: CreateQuizComponent }
 ];
 

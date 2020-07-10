@@ -6,19 +6,19 @@
       <input type="text" placeholder="firstname" formControlName="firstname">
     </p>
     <div *ngIf="isSubmitted && formControls.firstname.errors" class="warning">
-        <div *ngIf="formControls.firstname.errors.required">Password is required</div>
+        <div *ngIf="formControls.firstname.errors.required">Enter first name</div>
       </div>
       <p [ngClass]="{ 'has-error': isSubmitted && formControls.firstname.errors }">
         <input type="text" placeholder="lastname" formControlName="lastname">
       </p>
       <div *ngIf="isSubmitted && formControls.lastname.errors" class="warning">
-        <div *ngIf="formControls.lastname.errors.required">Confirm Password</div>
+        <div *ngIf="formControls.lastname.errors.required">Enter last name</div>
       </div>
       <p [ngClass]="{ 'has-error': isSubmitted && formControls.firstname.errors }">
         <input type="email" placeholder="email" formControlName="email">
       </p>
       <div *ngIf="isSubmitted && formControls.email.errors" class="warning">
-        <div *ngIf="formControls.email.errors.required">Confirm Password</div>
+        <div *ngIf="formControls.email.errors.required">Enter email address</div>
       </div>
       <input type="submit" value="update">
     </form>
