@@ -12,12 +12,14 @@
     <!-- Ngif captain -->
     <!-- Captain view (can click answers) -->
     <!-- else player view (can see answers) -->
-    <!-- <div *ngIf="captain">
-        <app-captain-view [question]=question (answer)="functionAnswerFromCaptain()"></app-captain-view>
-      </div>
+    <!-- <div *ngIf="captain"> -->
+        <!-- <app-captain-view [question]=question (answer)="functionAnswerFromCaptain()"></app-captain-view> -->
+        <!-- <app-captain-view quizId="{{quizId}}"  [socket]="socket"></app-captain-view> -->
+      <!-- </div> -->
       <div *ngIf="player">
-        <app-player-view [question]=question></app-player-view>
-      </div> -->
+        <!-- <app-player-view [question]=question></app-player-view> -->
+        <app-player-view quizId="{{quizId}}"  [socket]="socket"></app-player-view>
+      </div>
     <div *ngIf="host">
       <!-- <app-host-view [hostQuestion]=question (prev)="functionForPrevious()" (next)="functionForNext()"></app-host-view> -->
       <app-host-view quizId="{{quizId}}"  [socket]="socket"></app-host-view>

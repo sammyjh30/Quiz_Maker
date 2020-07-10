@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Question } from 'src/app/Models/question';
+import { QuizService } from '../../../../services/quiz.service';
 
 @Component({
   selector: 'app-player-view',
@@ -7,9 +8,23 @@ import { Question } from 'src/app/Models/question';
   styleUrls: ['./player-view.component.css']
 })
 export class PlayerViewComponent implements OnInit {
+  constructor(private quizService: QuizService) { }
+  @Input() quizId: number;
+  @Input() socket: SocketIOClient.Socket;
 
-  question: Question;
+  currentFrame;
+
   ngOnInit(): void {
+    this.currentFrame = {};
+    this.socket.on('question-broadcast', (data) => {
+      if (data.roomId === this.quizId && data.question) {
+        this.currentFrame = data.question;
+       }
+     });
   }
+
+  // question: Question;
+  // ngOnInit(): void {
+  // }
 
 }
