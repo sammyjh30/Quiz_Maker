@@ -1,24 +1,29 @@
-<h1>
-  {{quiz.quizName}}
-</h1>
-<h2>
-  Start Time: {{quiz.startDateTime | date : 'yyyy-MM-dd HH:mm'}}
-</h2>
+<div class="body">
+  <div class="container">
+    <h1>
+      {{quiz.quizName}}
+    </h1>
+    <h2>
+      Start Time: {{quiz.startDateTime | date : 'yyyy-MM-dd HH:mm'}}
+    </h2>
 
-<h3>Teams</h3>
-<p *ngIf="teams.length === 0">No teams in quiz/p>
-<ul>
-  <li *ngFor="let team of teams">
-    <a routerLink="/team/{{team.teamId}}">
-      <p>{{team.teamName}}</p>
-    </a>
-    <p>Score: {{team.teamScore}}</p>
+    <h3>Teams</h3>
+    <p *ngIf="teams.length === 0">No teams in quiz</p>
+    <ul>
+      <li *ngFor="let team of teams">
+        <a routerLink="/team/{{team.teamId}}">
+          <p>{{team.teamName}}</p>
+        </a>
+        <p>Score: {{team.teamScore}}</p>
+        <div *ngIf="isHost">
+          <button title="delete team" (click)="removeTeam(team)">Remove</button>
+        </div>
+      </li>
+    </ul>
+
     <div *ngIf="isHost">
-      <button title="delete team" (click)="removeTeam(team)">Remove</button>
+      <app-quiz-add-team [quiz]="quiz"></app-quiz-add-team>
     </div>
-  </li>
-</ul>
+  </div>
 
-<div *ngIf="isHost">
-  <app-quiz-add-team [quiz]="quiz"></app-quiz-add-team>
 </div>

@@ -16,6 +16,7 @@ import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
 import { TeamViewComponent } from './components/team-view/team-view.component';
 import { TeamJoinComponent } from './components/team-join/team-join.component';
 import { CreateQuizComponent } from './components/create-quiz/create-quiz.component';
+import { QuizComponent } from './components/quiz/quiz.component';
 
 // Import canActivate guard services
 import { AuthGuard } from "./guard/auth.guard";
@@ -30,15 +31,19 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'verify-email-address', component: VerifyEmailComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'quiz-session', redirectTo: '/dashboard', pathMatch: 'full' },
+
   { path: 'quiz-session/:id/:teamId', component: QuizSessionComponent, canActivate: [AuthGuard] },
   { path: 'quiz-session/:id', component: QuizSessionComponent, canActivate: [AuthGuard] },
+
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'quiz/:id', component: QuizViewComponent, canActivate: [AuthGuard] },
+  { path: 'quiz/:quizId/:host/:captain/:teamId', component: QuizComponent, canActivate: [AuthGuard] },
+  { path: 'quiz/:quizId/:host/:captain', component: QuizComponent, canActivate: [AuthGuard] },
+  // { path: 'quiz/:id', component: QuizViewComponent, canActivate: [AuthGuard] },
   { path: 'team/:id', component: TeamViewComponent, canActivate: [AuthGuard] },
   { path: 'join', component: TeamJoinComponent, canActivate: [AuthGuard] },
   { path: 'username', component: UsernameComponent },
   { path: 'signedIn', component: LandingpageComponent },
-  { path: 'userProfile', component: UserProfileComponent },
+  { path: 'userprofile', component: UserProfileComponent },
   { path: 'createQuiz', component: CreateQuizComponent }
 ];
 

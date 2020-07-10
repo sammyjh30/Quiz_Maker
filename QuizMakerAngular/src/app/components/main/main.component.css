@@ -7,20 +7,20 @@
 	
 }
 h3{
-    margin-left: 420px;
+    margin-left: 38rem;
 }
   table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 700px;
+    width: 40rem;
     align-self: center;
-    margin-left: 250px;
+    margin-left: 18rem;
     background-color: grey;
   }
   
   table td, table th {
-    border: 1px solid #ddd;
-    padding: 8px;
+    border: 0.1rem solid #ddd;
+    padding: 0.8rem;
   }
   
   table tr:nth-child(even){background-color: #f2f2f2;}
@@ -28,8 +28,8 @@ h3{
   table tr:hover {background-color: #ddd;}
   
   table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 1.2rem;
+    padding-bottom: 1.0rem;
     text-align: left;
     background-color:black;
     color: white;
@@ -61,14 +61,14 @@ h3{
   }
   
   .buttons {
-    margin-left: 1020px;
+    margin-left: 65rem;
     
   }
   .buttons button{
     display: block;
     cursor: pointer;
     border: none;
-    padding: 14px 28px;
+    padding: 1.4rem 2.8rem;
     background-color: inherit;
   }
   .Create {color: green;}
