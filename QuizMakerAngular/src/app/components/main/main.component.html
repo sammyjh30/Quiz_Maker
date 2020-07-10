@@ -22,8 +22,8 @@
             <ng-template #playerContent>
               Player
             </ng-template>
-          </td>      
-          <td>{{quiz.startDateTime}}</td>
+          </td>
+          <td>{{quiz.startDateTime | date: 'short'}}</td>
         </tr>
       </tbody>
     </table>
