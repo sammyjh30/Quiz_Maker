@@ -1,32 +1,3 @@
-<<<<<<< HEAD
-<form action="">
-  <div class="quiz-session" *ngIf="authService.userData as user">
-    <div class="">
-      <div class="team-chat" *ngIf="teamId">
-        <app-chat-inbox roomId="{{teamId}}" [socket]="socket"></app-chat-inbox>
-      </div>
-    </div>
-    <a routerLink="/dashboard">Error</a>
-
-    <!-- ngif host -->
-    <!-- host view -->
-
-    <!-- Ngif captain -->
-    <!-- Captain view (can click answers) -->
-    <!-- else player view (can see answers) -->
-    <!-- <div *ngIf="true">
-      <app-captain-view [question]=question (answer)="functionAnswerFromCaptain()"></app-captain-view>
-    </div>
-    <div *ngIf="true">
-      <app-player-view [question]=question></app-player-view>
-    </div>
-    <div *ngIf="true">
-      <app-host-view [hostQuestion]=question (prev)="functionForPrevious()" (next)="functionForNext()"></app-host-view>
-    </div> -->
-    <div class="quiz-chat" *ngIf="socket">
-      <app-chat-inbox roomId="{{quizId}}" [socket]="socket"></app-chat-inbox>
-    </div>
-=======
 <div class="quiz-session" *ngIf="username">
   <div class="quiz-page">
     <div class="team-chat" *ngIf="teamId">
@@ -56,6 +27,5 @@
 
   <div class="quiz-chat" *ngIf="socket">
     <app-chat-inbox roomId="{{quizId}}" username="{{username}}" [socket]="socket"></app-chat-inbox>
->>>>>>> develop
   </div>
 </form>
