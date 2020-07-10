@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { ChatService } from '../chat/chat.service';
 
 // Firebase services + enviorment module
 import { AngularFireModule } from '@angular/fire';
@@ -34,12 +34,21 @@ import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-poli
 import { LandingpageComponent } from './components/landingpage/landingpage.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 
+// services
+import { AuthService } from './services/auth.service';
+import { QuizSessionComponent } from './components/quiz-session/quiz-session.component';
+import { ChatInboxComponent } from './components/chat-inbox/chat-inbox.component';
+
 // Landing Carousal
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { QuizComponent } from './quiz/quiz.component';
 import { CreateQuizComponent } from './components/create-quiz/create-quiz.component';
 import { TFquestionComponent } from './components/create-quiz/Questions/tfquestion/tfquestion.component';
 import { MultipleChoiceQuestionsComponent } from './components/create-quiz/Questions/multiple-choice-questions/multiple-choice-questions.component';
+import { HostViewComponent } from './components/quiz-session/QuizViews/host-view/host-view.component';
+import { PlayerViewComponent } from './components/quiz-session/QuizViews/player-view/player-view.component';
+import { CaptainViewComponent } from './components/quiz-session/QuizViews/captain-view/captain-view.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +68,8 @@ import { MultipleChoiceQuestionsComponent } from './components/create-quiz/Quest
     SignUpComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
+    QuizSessionComponent,
+    ChatInboxComponent,
     QuizViewComponent,
     TeamViewComponent,
     TeamAddMemberComponent,
@@ -67,9 +78,13 @@ import { MultipleChoiceQuestionsComponent } from './components/create-quiz/Quest
     AppComponent,
     CarouselComponent,
     LandingPageComponent,
+    QuizComponent,
     CreateQuizComponent,
     TFquestionComponent,
-    MultipleChoiceQuestionsComponent
+    MultipleChoiceQuestionsComponent,
+    HostViewComponent,
+    PlayerViewComponent,
+    CaptainViewComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +97,7 @@ import { MultipleChoiceQuestionsComponent } from './components/create-quiz/Quest
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 

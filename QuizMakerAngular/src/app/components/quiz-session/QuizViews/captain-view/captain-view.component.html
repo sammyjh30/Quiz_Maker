@@ -1,0 +1,32 @@
+<div>
+    <h1>Round Number: {{question.roundNumber}}</h1>
+    <h2>Question Number: {{question.questionNumber}}</h2>
+</div>
+<div *ngIf="question.questionType === 1">
+    <!--for TF questions -->
+    <p>QuestionType: True/False </p>
+    <p> Question: {{question.text}}</p>
+    <div>
+        <button (click)="TFAnswer(True)">True</button>
+        <button (click)="TFAnswer(False)">False</button>
+    </div>
+</div>
+
+<div *ngIf="question.questionType === 2">
+    <form [formGroup]="MultipleChoiceQuestion" (ngSubmit)="onSubmit(MultipleChoiceQuestion.value)">
+        <!--for multiple choice questions -->
+        <p>QuestionType: MultipleChoice </p>
+        <p>Question: {{question.text}}</p>
+
+        <label for="first">{{question.wrongAnswer1}}</label><br>
+        <input type="radio" id="first" formControlName="choice" value="false">
+        <label for="second">{{question.rightAnswer}}</label><br>
+        <input type="radio" id="second" formControlName="choice" value="true">
+        <label for="third">{{question.wrongAnswer2}}</label><br>
+        <input type="radio" id="third" formControlName="choice" value="false">
+        <label for="fourth">{{question.wrongAnswer3}}</label><br>
+        <input type="radio" id="fourth" formControlName="choice" value="false">
+
+        <button class="button" type="submit">Answer</button>
+    </form>
+</div>

@@ -20,29 +20,28 @@ body {
 
 app-header {
     color:black;
-    font-size: 14px;
-    background-color: grey;
+    /* width: 0rem; */
+    background-color:black;
     grid-area: header;
   }
   
   app-nav {
     grid-area: nav;
     margin-left: 0.9rem;
-    background-color: darkgrey;
-    width: 400px;
+    background-color: black;
+    width: 16.2rem;
   }
   
   app-privacy-policy,
   app-main {
     grid-area: content;
     padding: 25px;
-    width: 1000%;
+  
   }
   
   app-aside {
     grid-area: side;
     margin-right: 0.6rem;
-    width: 110%;
     background-color: darkgrey;
   }
   

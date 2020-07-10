@@ -8,6 +8,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+import { QuizSessionComponent } from './components/quiz-session/quiz-session.component';
 import { UserProfileComponent } from './components/userProfile/userProfile.component';
 import { UsernameComponent } from './components/username/username.component';
 import { LandingpageComponent } from './components/landingpage/landingpage.component';
@@ -22,19 +23,22 @@ import { SecureInnerPagesGuard } from "./guard/secure-inner-pages.guard";
 
 // Include route guard in routes array
 const routes: Routes = [
-  { path: '', redirectTo: '/landing', pathMatch: 'full' },
-  { path: 'landing', component: LandingPageComponent, canActivate: [SecureInnerPagesGuard] },
-  { path: 'log-in', component: LogInComponent, canActivate: [SecureInnerPagesGuard] },
+  { path: '', redirectTo: '/signedIn', pathMatch: 'full'},
+  { path: 'landing', component: LandingPageComponent, canActivate: [SecureInnerPagesGuard]},
+  { path: 'log-in', component: LogInComponent, canActivate: [SecureInnerPagesGuard]},
   { path: 'register-user', component: SignUpComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'verify-email-address', component: VerifyEmailComponent, canActivate: [SecureInnerPagesGuard] },
+  { path: 'quiz-session', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'quiz-session/:id/:teamId', component: QuizSessionComponent, canActivate: [AuthGuard] },
+  { path: 'quiz-session/:id', component: QuizSessionComponent, canActivate: [AuthGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'quiz/:id', component: QuizViewComponent, canActivate: [AuthGuard] },
   { path: 'team/:id', component: TeamViewComponent, canActivate: [AuthGuard] },
   { path: 'join', component: TeamJoinComponent, canActivate: [AuthGuard] },
   { path: 'username', component: UsernameComponent },
   { path: 'signedIn', component: LandingpageComponent },
-  { path: 'userProfile', component: UserProfileComponent },
+  { path: 'userprofile', component: UserProfileComponent },
   { path: 'createQuiz', component: CreateQuizComponent }
 ];
 

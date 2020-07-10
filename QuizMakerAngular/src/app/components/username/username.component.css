@@ -37,20 +37,19 @@
 
   .user-container {
     background-color: #f1f1f1;
-    padding: 20px;
     /* width: 20%; */
     /* margin: 0px auto; */
     /* margin-left: 230px; */
-    width: 400px;
-    height: 440px;
+    width: 20rem;
+    height: 28rem;
     background: #000;
     color: #fff;
-    top: 30%;
-    left: 50%;
+    top: 20rem;
+    left: 30rem;
     position: absolute;
     transform: translate(-50%,-50%);
     box-sizing: border-box;
-    padding: 70px 30px;
+    padding: 1rem 2rem;
     text-align: center;
     opacity: 0.9;
   }
