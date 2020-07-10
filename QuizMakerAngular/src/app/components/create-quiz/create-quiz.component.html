@@ -1,4 +1,5 @@
-<form [formGroup]="quizForm" (ngSubmit)="onSubmit(quizForm.value)" *ngIf="!created">
+<body class="main">
+  <form class="CreateQuiz" [formGroup]="quizForm" (ngSubmit)="onSubmit(quizForm.value)" *ngIf="!created">
     <div>
       <h1>Start your Quiz</h1>
         <br>
