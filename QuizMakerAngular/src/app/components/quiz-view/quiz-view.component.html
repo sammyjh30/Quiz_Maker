@@ -6,7 +6,7 @@
 </h2>
 
 <h3>Teams</h3>
-<p *ngIf="teams.length === 0">No teams in quiz/p>
+<p *ngIf="teams.length === 0">No teams in quiz</p>
 <ul>
   <li *ngFor="let team of teams">
     <a routerLink="/team/{{team.teamId}}">
