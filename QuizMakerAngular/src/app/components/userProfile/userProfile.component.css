@@ -62,15 +62,17 @@ input[type=submit] {
   } 
 
   .container{
-    height: 100vh;
-    width: 200vh;
+    /* height: 100vh; */
+    /* width: 200vh; */
+    width: 100%;
     margin: 0;
     padding: 0;
-    height: 100vh;
+    /* height: 100vh; */
     background-image: url('/../assets/img/login.jpg');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+    background-attachment: inherit;
     background-attachment: fixed;
     font-family: sans-serif;
   }
